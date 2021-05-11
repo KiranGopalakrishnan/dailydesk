@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack --watch --mode development",
-    "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
+    "dev": "NODE_ENV='development' next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "./actions/package.sh",
     "push": "./actions/push.sh",
-    "serve": "npm run watch && serve -p 3000 -s",
     "prettier": "prettier --config ./.prettierrc  --write 'src/**/*.{ts,tsx}'"
   },
   "repository": {
@@ -19,6 +18,12 @@
   },
   "author": "Kiran Gopalakrishnan",
   "license": "ISC",
+  "proxy": {
+    "/rest/*": {
+      "target": "http://localhost:8080",
+      "changeOrigin": true
+    }
+  },
   "bugs": {
     "url": "https://github.com/KiranGopalakrishnan/projctor/issues"
   },
@@ -26,24 +31,32 @@
   "devDependencies": {
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/validator": "^13.1.3",
+    "express": "^4.17.1",
     "html-webpack-plugin": "4.3.0",
+    "http-proxy-middleware": "^0.19.1",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.7.5",
+    "typescript": "^4.2.4",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@reduxjs/toolkit": "^1.5.1",
     "@types/react-router-dom": "5.1.5",
     "@types/styled-components": "5.1.0",
     "axios": "0.19.2",
+    "next": "^10.1.3",
     "prettier": "2.0.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-hook-form": "^7.1.1",
+    "react-redux": "^7.2.3",
     "react-router-dom": "5.2.0",
     "serve": "11.3.1",
-    "styled-components": "5.1.1"
-  },
-  "proxy": "http://localhost:8080"
+    "styled-components": "^5.2.3",
+    "validator": "^13.6.0"
+  }
 }

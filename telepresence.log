@@ -39,7 +39,7 @@
    2.8 TEL | [7] Running: sudo -n echo -n
    2.8   7 | sudo: a password is required
    2.8 TEL | [7] exit 1 in 0.03 secs.
-   2.8 >>> | How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies
+   2.8 >>> | How Telepresence uses sudo: https://www.ts.telepresence.io/reference/install#dependencies
    2.8 >>> | Invoking sudo. Please enter your sudo password.
    2.8 TEL | [8] Running: sudo echo -n
 2380.6 TEL | (proxy checking local liveness)
@@ -289,8 +289,8 @@
   77.0  19 | 2020-05-27T01:59:00+0000 [stdout#info] A query: b'vortex.data.microsoft.com'
   77.0  19 | 2020-05-27T01:59:00+0000 [stdout#info] Result for b'vortex.data.microsoft.com' is ['64.4.54.254']
   78.2  29 | c : DNS request from ('192.168.2.16', 60543) to None: 32 bytes
-  78.3  19 | 2020-05-27T01:59:02+0000 [stdout#info] A query: b'www.google.com'
-  78.3  19 | 2020-05-27T01:59:02+0000 [stdout#info] Result for b'www.google.com' is ['216.58.193.68']
+  78.3  19 | 2020-05-27T01:59:02+0000 [stdout#info] A query: b'www.ts.google.com'
+  78.3  19 | 2020-05-27T01:59:02+0000 [stdout#info] Result for b'www.ts.google.com' is ['216.58.193.68']
   88.7 TEL | [37] Running: sudo -n echo -n
   88.8 TEL | [37] ran in 0.03 secs.
   90.0  29 | c : DNS request from ('192.168.2.16', 56848) to None: 35 bytes
@@ -362,18 +362,18 @@
  109.5  29 | c : DNS request from ('192.168.2.16', 34578) to None: 33 bytes
  109.5  29 | c : DNS request from ('192.168.2.16', 59334) to None: 33 bytes
  109.5  29 | c : DNS request from ('192.168.2.16', 49585) to None: 33 bytes
- 109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] A query: b'www.gstatic.com'
+ 109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] A query: b'www.ts.gstatic.com'
  109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] A query: b'ssl.gstatic.com'
  109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] A query: b'apis.google.com'
- 109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] Result for b'www.gstatic.com' is ['216.58.193.67']
+ 109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] Result for b'www.ts.gstatic.com' is ['216.58.193.67']
  109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] Result for b'ssl.gstatic.com' is ['172.217.14.195']
  109.6  19 | 2020-05-27T01:59:33+0000 [stdout#info] Result for b'apis.google.com' is ['172.217.3.206']
  110.6  29 | c : DNS request from ('192.168.2.16', 56151) to None: 33 bytes
  110.7  19 | 2020-05-27T01:59:34+0000 [stdout#info] A query: b'play.google.com'
  110.7  19 | 2020-05-27T01:59:34+0000 [stdout#info] Result for b'play.google.com' is ['172.217.3.206']
  112.1  29 | c : DNS request from ('192.168.2.16', 58031) to None: 34 bytes
- 112.2  19 | 2020-05-27T01:59:36+0000 [stdout#info] A query: b'www.facebook.com'
- 112.2  19 | 2020-05-27T01:59:36+0000 [stdout#info] Result for b'www.facebook.com' is ['157.240.11.35']
+ 112.2  19 | 2020-05-27T01:59:36+0000 [stdout#info] A query: b'www.ts.facebook.com'
+ 112.2  19 | 2020-05-27T01:59:36+0000 [stdout#info] Result for b'www.ts.facebook.com' is ['157.240.11.35']
  115.3  29 | c : DNS request from ('192.168.2.16', 58337) to None: 43 bytes
  115.4  19 | 2020-05-27T01:59:39+0000 [stdout#info] A query: b'vortex.data.microsoft.com'
  115.4  19 | 2020-05-27T01:59:39+0000 [stdout#info] Result for b'vortex.data.microsoft.com' is ['64.4.54.254']
@@ -395,9 +395,9 @@
  118.9 TEL | [38] Running: sudo -n echo -n
  118.9 TEL | [38] ran in 0.05 secs.
  119.4  29 | c : DNS request from ('192.168.2.16', 21881) to None: 42 bytes
- 119.5  19 | 2020-05-27T01:59:43+0000 [stdout#info] A query: b'www.google-analytics.com'
+ 119.5  19 | 2020-05-27T01:59:43+0000 [stdout#info] A query: b'www.ts.google-analytics.com'
  119.5  29 | c : DNS request from ('192.168.2.16', 35621) to None: 36 bytes
- 119.5  19 | 2020-05-27T01:59:43+0000 [stdout#info] Result for b'www.google-analytics.com' is ['172.217.3.174']
+ 119.5  19 | 2020-05-27T01:59:43+0000 [stdout#info] Result for b'www.ts.google-analytics.com' is ['172.217.3.174']
  119.6  19 | 2020-05-27T01:59:43+0000 [stdout#info] A query: b'lux.speedcurve.com'
  119.6  19 | 2020-05-27T01:59:43+0000 [stdout#info] Result for b'lux.speedcurve.com' is ['151.101.54.217']
  122.6 TEL | (proxy checking local liveness)
@@ -410,8 +410,8 @@
 2505.7 TEL | [119] Running: sudo -n echo -n
 2505.7 TEL | [119] ran in 0.04 secs.
  139.0  29 | c : DNS request from ('192.168.2.16', 50791) to None: 34 bytes
- 139.1  19 | 2020-05-27T02:00:02+0000 [stdout#info] A query: b'www.gravatar.com'
- 139.2  19 | 2020-05-27T02:00:03+0000 [stdout#info] Result for b'www.gravatar.com' is ['192.0.73.2']
+ 139.1  19 | 2020-05-27T02:00:02+0000 [stdout#info] A query: b'www.ts.gravatar.com'
+ 139.2  19 | 2020-05-27T02:00:03+0000 [stdout#info] Result for b'www.ts.gravatar.com' is ['192.0.73.2']
  149.0 TEL | [39] Running: sudo -n echo -n
  149.0 TEL | [39] ran in 0.03 secs.
  151.1  29 | c : DNS request from ('192.168.2.16', 63862) to None: 43 bytes
@@ -571,8 +571,8 @@
  305.5  19 | 2020-05-27T02:02:49+0000 [stdout#info] A query: b'safebrowsing.googleapis.com'
  305.5  19 | 2020-05-27T02:02:49+0000 [stdout#info] Result for b'safebrowsing.googleapis.com' is ['172.217.14.234']
  307.3  29 | c : DNS request from ('192.168.2.16', 7189) to None: 32 bytes
- 307.4  19 | 2020-05-27T02:02:51+0000 [stdout#info] A query: b'www.google.com'
- 307.4  19 | 2020-05-27T02:02:51+0000 [stdout#info] Result for b'www.google.com' is ['172.217.3.196']
+ 307.4  19 | 2020-05-27T02:02:51+0000 [stdout#info] A query: b'www.ts.google.com'
+ 307.4  19 | 2020-05-27T02:02:51+0000 [stdout#info] Result for b'www.ts.google.com' is ['172.217.3.196']
  309.0  29 | c : DNS request from ('192.168.2.16', 38052) to None: 49 bytes
  309.0  29 | c : DNS request from ('192.168.2.16', 23640) to None: 41 bytes
  309.1  19 | 2020-05-27T02:02:52+0000 [stdout#info] A query: b'godfall.dev.cluster.projctor.io'
@@ -633,21 +633,21 @@
 2771.2 TEL | (proxy checking local liveness)
 2772.0  19 | 2020-05-27T02:04:25+0000 [Poll#info] Checkpoint
  406.5  29 | c : DNS request from ('192.168.2.16', 10666) to None: 32 bytes
- 406.6  19 | 2020-05-27T02:04:30+0000 [stdout#info] A query: b'www.google.com'
- 406.6  19 | 2020-05-27T02:04:30+0000 [stdout#info] Result for b'www.google.com' is ['172.217.14.228']
+ 406.6  19 | 2020-05-27T02:04:30+0000 [stdout#info] A query: b'www.ts.google.com'
+ 406.6  19 | 2020-05-27T02:04:30+0000 [stdout#info] Result for b'www.ts.google.com' is ['172.217.14.228']
 2776.7 TEL | [128] Running: sudo -n echo -n
 2776.8 TEL | [128] ran in 0.03 secs.
  408.5  29 | c : DNS request from ('192.168.2.16', 28699) to None: 34 bytes
- 408.6  19 | 2020-05-27T02:04:32+0000 [stdout#info] A query: b'www.facebook.com'
- 408.6  19 | 2020-05-27T02:04:32+0000 [stdout#info] Result for b'www.facebook.com' is ['157.240.11.35']
+ 408.6  19 | 2020-05-27T02:04:32+0000 [stdout#info] A query: b'www.ts.facebook.com'
+ 408.6  19 | 2020-05-27T02:04:32+0000 [stdout#info] Result for b'www.ts.facebook.com' is ['157.240.11.35']
  409.0  29 | c : DNS request from ('192.168.2.16', 35195) to None: 44 bytes
  409.1  19 | 2020-05-27T02:04:33+0000 [stdout#info] A query: b'cloudsearch.googleapis.com'
  409.1  19 | 2020-05-27T02:04:33+0000 [stdout#info] Result for b'cloudsearch.googleapis.com' is ['172.217.3.202']
  410.5  29 | c : DNS request from ('192.168.2.16', 31900) to None: 33 bytes
  410.6  29 | c : DNS request from ('192.168.2.16', 54613) to None: 33 bytes
- 410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] A query: b'www.gstatic.com'
+ 410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] A query: b'www.ts.gstatic.com'
  410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] A query: b'play.google.com'
- 410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] Result for b'www.gstatic.com' is ['172.217.14.195']
+ 410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] Result for b'www.ts.gstatic.com' is ['172.217.14.195']
  410.7  19 | 2020-05-27T02:04:34+0000 [stdout#info] Result for b'play.google.com' is ['172.217.14.238']
  412.1  29 | c : DNS request from ('192.168.2.16', 28834) to None: 32 bytes
  412.2  19 | 2020-05-27T02:04:36+0000 [stdout#info] A query: b'lh3.google.com'
@@ -668,8 +668,8 @@
  416.8  19 | 2020-05-27T02:04:40+0000 [stdout#info] A query: b'interactive-examples.mdn.mozilla.net'
  416.9  19 | 2020-05-27T02:04:40+0000 [stdout#info] Result for b'interactive-examples.mdn.mozilla.net' is ['99.86.38.104', '99.86.38.13', '99.86.38.93', '99.86.38.94']
  417.8  29 | c : DNS request from ('192.168.2.16', 36783) to None: 42 bytes
- 417.9  19 | 2020-05-27T02:04:41+0000 [stdout#info] A query: b'www.google-analytics.com'
- 417.9  19 | 2020-05-27T02:04:41+0000 [stdout#info] Result for b'www.google-analytics.com' is ['216.58.217.46']
+ 417.9  19 | 2020-05-27T02:04:41+0000 [stdout#info] A query: b'www.ts.google-analytics.com'
+ 417.9  19 | 2020-05-27T02:04:41+0000 [stdout#info] Result for b'www.ts.google-analytics.com' is ['216.58.217.46']
  420.0 TEL | [48] Running: sudo -n echo -n
  420.0 TEL | [48] ran in 0.04 secs.
  421.9  29 | c : DNS request from ('192.168.2.16', 27539) to None: 37 bytes
@@ -760,8 +760,8 @@
  529.5  19 | 2020-05-27T02:06:33+0000 [stdout#info] A query: b'occ-0-748-1001.1.nflxso.net'
  529.5  19 | 2020-05-27T02:06:33+0000 [stdout#info] Result for b'occ-0-748-1001.1.nflxso.net' is ['184.150.15.15', '184.150.15.17']
  531.2  29 | c : DNS request from ('192.168.2.16', 36379) to None: 33 bytes
- 531.3  19 | 2020-05-27T02:06:35+0000 [stdout#info] A query: b'www.netflix.com'
- 531.3  19 | 2020-05-27T02:06:35+0000 [stdout#info] Result for b'www.netflix.com' is ['35.161.95.70', '35.161.32.8', '35.160.251.36', '52.26.79.174', '52.24.197.182', '52.11.211.26', '52.11.104.17', '35.164.154.29']
+ 531.3  19 | 2020-05-27T02:06:35+0000 [stdout#info] A query: b'www.ts.netflix.com'
+ 531.3  19 | 2020-05-27T02:06:35+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['35.161.95.70', '35.161.32.8', '35.160.251.36', '52.26.79.174', '52.24.197.182', '52.11.211.26', '52.11.104.17', '35.164.154.29']
  540.4 TEL | [52] Running: sudo -n echo -n
  540.5 TEL | [52] ran in 0.04 secs.
  542.7 TEL | (proxy checking local liveness)
@@ -813,8 +813,8 @@
 3017.7 TEL | [136] Running: sudo -n echo -n
 3017.7 TEL | [136] ran in 0.04 secs.
  651.8  29 | c : DNS request from ('192.168.2.16', 14747) to None: 33 bytes
- 651.9  19 | 2020-05-27T02:08:35+0000 [stdout#info] A query: b'www.netflix.com'
- 651.9  19 | 2020-05-27T02:08:35+0000 [stdout#info] Result for b'www.netflix.com' is ['52.26.79.174', '52.24.197.182', '52.11.211.26', '34.216.180.180', '52.43.214.196', '52.41.147.151', '52.34.158.161', '52.33.157.25']
+ 651.9  19 | 2020-05-27T02:08:35+0000 [stdout#info] A query: b'www.ts.netflix.com'
+ 651.9  19 | 2020-05-27T02:08:35+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['52.26.79.174', '52.24.197.182', '52.11.211.26', '34.216.180.180', '52.43.214.196', '52.41.147.151', '52.34.158.161', '52.33.157.25']
  653.5  29 | c : DNS request from ('192.168.2.16', 58122) to None: 38 bytes
  653.5  29 | c : DNS request from ('192.168.2.16', 59005) to None: 38 bytes
  653.5  29 | c : DNS request from ('192.168.2.16', 64175) to None: 37 bytes
@@ -1003,8 +1003,8 @@
 3439.2 TEL | [150] Running: sudo -n echo -n
 3439.3 TEL | [150] ran in 0.05 secs.
 1073.2  29 | c : DNS request from ('192.168.2.16', 33717) to None: 33 bytes
-1073.3  19 | 2020-05-27T02:15:37+0000 [stdout#info] A query: b'www.netflix.com'
-1073.4  19 | 2020-05-27T02:15:37+0000 [stdout#info] Result for b'www.netflix.com' is ['52.33.134.215', '52.41.135.17', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '52.25.200.177', '52.32.85.80']
+1073.3  19 | 2020-05-27T02:15:37+0000 [stdout#info] A query: b'www.ts.netflix.com'
+1073.4  19 | 2020-05-27T02:15:37+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['52.33.134.215', '52.41.135.17', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '52.25.200.177', '52.32.85.80']
 1081.0  29 | c : DNS request from ('192.168.2.16', 38943) to None: 47 bytes
 1081.1  19 | 2020-05-27T02:15:45+0000 [stdout#info] A query: b'clientservices.googleapis.com'
 1081.1  19 | 2020-05-27T02:15:45+0000 [stdout#info] Result for b'clientservices.googleapis.com' is ['216.58.193.67']
@@ -1124,8 +1124,8 @@
 1383.6 TEL | [80] Running: sudo -n echo -n
 1383.6 TEL | [80] ran in 0.03 secs.
 1385.6  29 | c : DNS request from ('192.168.2.16', 29053) to None: 33 bytes
-1385.7  19 | 2020-05-27T02:20:49+0000 [stdout#info] A query: b'www.netflix.com'
-1385.7  19 | 2020-05-27T02:20:49+0000 [stdout#info] Result for b'www.netflix.com' is ['52.41.168.84', '34.215.127.206', '34.216.122.36', '35.163.82.195', '35.165.194.49', '35.166.180.66', '52.34.38.200', '52.39.26.2']
+1385.7  19 | 2020-05-27T02:20:49+0000 [stdout#info] A query: b'www.ts.netflix.com'
+1385.7  19 | 2020-05-27T02:20:49+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['52.41.168.84', '34.215.127.206', '34.216.122.36', '35.163.82.195', '35.165.194.49', '35.166.180.66', '52.34.38.200', '52.39.26.2']
 3760.6 TEL | (proxy checking local liveness)
 3760.7  19 | 2020-05-27T02:20:55+0000 [Poll#info] Checkpoint
 3770.5 TEL | [161] Running: sudo -n echo -n
@@ -1262,8 +1262,8 @@
 1654.5 TEL | [89] Running: sudo -n echo -n
 1654.6 TEL | [89] ran in 0.04 secs.
 1655.0  29 | c : DNS request from ('192.168.2.16', 52688) to None: 32 bytes
-1655.1  19 | 2020-05-27T02:25:19+0000 [stdout#info] A query: b'www.google.com'
-1655.1  19 | 2020-05-27T02:25:19+0000 [stdout#info] Result for b'www.google.com' is ['216.58.217.36']
+1655.1  19 | 2020-05-27T02:25:19+0000 [stdout#info] A query: b'www.ts.google.com'
+1655.1  19 | 2020-05-27T02:25:19+0000 [stdout#info] Result for b'www.ts.google.com' is ['216.58.217.36']
 1657.0  29 | c : DNS request from ('192.168.2.16', 58122) to None: 38 bytes
 1657.0  29 | c : DNS request from ('192.168.2.16', 59005) to None: 38 bytes
 1657.0  29 | c : DNS request from ('192.168.2.16', 64175) to None: 37 bytes
@@ -1363,8 +1363,8 @@
 4210.6 TEL | (proxy checking local liveness)
 4210.7  19 | 2020-05-27T02:28:25+0000 [Poll#info] Checkpoint
 1851.5  29 | c : DNS request from ('192.168.2.16', 16371) to None: 33 bytes
-1852.5  19 | 2020-05-27T02:28:35+0000 [stdout#info] A query: b'www.netflix.com'
-1852.5  19 | 2020-05-27T02:28:35+0000 [stdout#info] Result for b'www.netflix.com' is ['52.26.79.174', '52.33.157.25', '52.34.158.161', '52.41.147.151', '52.43.214.196', '34.216.180.180', '35.160.251.36', '35.161.32.8']
+1852.5  19 | 2020-05-27T02:28:35+0000 [stdout#info] A query: b'www.ts.netflix.com'
+1852.5  19 | 2020-05-27T02:28:35+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['52.26.79.174', '52.33.157.25', '52.34.158.161', '52.41.147.151', '52.43.214.196', '34.216.180.180', '35.160.251.36', '35.161.32.8']
 4222.1 TEL | [176] Running: sudo -n echo -n
 4222.2 TEL | [176] ran in 0.03 secs.
 1863.5 TEL | (proxy checking local liveness)
@@ -1472,8 +1472,8 @@
 2076.1 TEL | [103] Running: sudo -n echo -n
 2076.1 TEL | [103] ran in 0.04 secs.
 2077.6  29 | c : DNS request from ('192.168.2.16', 58560) to None: 33 bytes
-2077.7  19 | 2020-05-27T02:32:21+0000 [stdout#info] A query: b'www.netflix.com'
-2077.7  19 | 2020-05-27T02:32:21+0000 [stdout#info] Result for b'www.netflix.com' is ['35.160.125.120', '52.25.243.49', '52.26.62.48', '52.35.70.161', '52.40.104.39', '52.88.214.100', '54.187.29.151', '54.187.51.79']
+2077.7  19 | 2020-05-27T02:32:21+0000 [stdout#info] A query: b'www.ts.netflix.com'
+2077.7  19 | 2020-05-27T02:32:21+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['35.160.125.120', '52.25.243.49', '52.26.62.48', '52.35.70.161', '52.40.104.39', '52.88.214.100', '54.187.29.151', '54.187.51.79']
 2081.0  29 | c : DNS request from ('192.168.2.16', 20003) to None: 69 bytes
 2081.1  19 | 2020-05-27T02:32:24+0000 [stdout#info] A query: b'ipv4-c014-ymy002-bellcanada-isp.1.oca.nflxvideo.net'
 4450.6 TEL | (proxy checking local liveness)
@@ -1621,8 +1621,8 @@
 4812.6 TEL | (proxy checking local liveness)
 4813.2  19 | 2020-05-27T02:38:27+0000 [Poll#info] Checkpoint
 2444.4  29 | c : DNS request from ('192.168.2.16', 47957) to None: 33 bytes
-2445.3  19 | 2020-05-27T02:38:28+0000 [stdout#info] A query: b'www.netflix.com'
-2445.3  19 | 2020-05-27T02:38:28+0000 [stdout#info] Result for b'www.netflix.com' is ['34.209.106.197', '34.209.22.202', '54.187.176.196', '52.88.70.220', '52.41.244.189', '52.24.243.27', '35.167.109.163', '35.160.215.62']
+2445.3  19 | 2020-05-27T02:38:28+0000 [stdout#info] A query: b'www.ts.netflix.com'
+2445.3  19 | 2020-05-27T02:38:28+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['34.209.106.197', '34.209.22.202', '54.187.176.196', '52.88.70.220', '52.41.244.189', '52.24.243.27', '35.167.109.163', '35.160.215.62']
 2450.8  29 | c : DNS request from ('192.168.2.16', 56685) to None: 69 bytes
 2451.5  19 | 2020-05-27T02:38:35+0000 [stdout#info] A query: b'ipv4-c014-ymy002-bellcanada-isp.1.oca.nflxvideo.net'
 2451.5  19 | 2020-05-27T02:38:35+0000 [stdout#info] Result for b'ipv4-c014-ymy002-bellcanada-isp.1.oca.nflxvideo.net' is ['184.150.15.21']
@@ -1641,9 +1641,9 @@
 2487.2  29 | c : DNS request from ('192.168.2.16', 57698) to None: 42 bytes
 2487.2  29 | c : DNS request from ('192.168.2.16', 56930) to None: 50 bytes
 2487.3  29 | c : DNS request from ('192.168.2.16', 51535) to None: 30 bytes
-2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'www.apple.com'
+2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'www.ts.apple.com'
 2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'api.apple-cloudkit.com'
-2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'www.apple.com' is ['23.192.116.246']
+2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'www.ts.apple.com' is ['23.192.116.246']
 2487.3  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'1-courier.push.apple.com'
 2487.4  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'1-courier.push.apple.com' is ['17.57.144.181', '17.57.144.180']
 2487.4  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'1-courier.sandbox.push.apple.com'
@@ -1652,8 +1652,8 @@
 2487.4  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'gs.apple.com'
 2487.5  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'gs.apple.com' is ['17.137.162.1']
 2487.6  29 | c : DNS request from ('192.168.2.16', 53544) to None: 33 bytes
-2487.7  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'www.spotify.com'
-2487.7  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'www.spotify.com' is ['35.186.224.25']
+2487.7  19 | 2020-05-27T02:39:11+0000 [stdout#info] A query: b'www.ts.spotify.com'
+2487.7  19 | 2020-05-27T02:39:11+0000 [stdout#info] Result for b'www.ts.spotify.com' is ['35.186.224.25']
 2488.4  29 | c : DNS request from ('192.168.2.16', 56412) to None: 43 bytes
 2488.5  19 | 2020-05-27T02:39:12+0000 [stdout#info] A query: b'vortex.data.microsoft.com'
 2488.5  19 | 2020-05-27T02:39:12+0000 [stdout#info] Result for b'vortex.data.microsoft.com' is ['64.4.54.254']
@@ -1676,16 +1676,16 @@
 2523.3  29 | c : DNS request from ('192.168.2.16', 60566) to None: 33 bytes
 2523.3  29 | c : DNS request from ('192.168.2.16', 64830) to None: 30 bytes
 2523.3  29 | c : DNS request from ('192.168.2.16', 65026) to None: 50 bytes
-2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'www.apple.com'
-2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'www.apple.com' is ['23.192.116.246']
+2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'www.ts.apple.com'
+2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'www.ts.apple.com' is ['23.192.116.246']
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'api.apple-cloudkit.com'
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'1-courier.push.apple.com'
-2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'www.spotify.com'
+2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'www.ts.spotify.com'
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'api.apple-cloudkit.com' is ['17.248.130.17', '17.248.130.153', '17.248.130.143', '17.248.130.141', '17.248.130.136', '17.248.130.74', '17.248.130.40', '17.248.130.32']
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'gs.apple.com'
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'1-courier.push.apple.com' is ['17.57.144.181', '17.57.144.180']
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] A query: b'1-courier.sandbox.push.apple.com'
-2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'www.spotify.com' is ['35.186.224.25']
+2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'www.ts.spotify.com' is ['35.186.224.25']
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'gs.apple.com' is ['17.137.162.1']
 2523.6  19 | 2020-05-27T02:39:47+0000 [stdout#info] Result for b'1-courier.sandbox.push.apple.com' is ['17.188.138.71', '17.188.138.70', '17.188.136.186', '17.188.135.186', '17.188.134.202', '17.188.133.61', '17.188.132.72', '17.188.138.72']
 2527.7 TEL | [118] Running: sudo -n echo -n
@@ -1717,16 +1717,16 @@
 2592.3  29 | c : DNS request from ('192.168.2.16', 53639) to None: 33 bytes
 2592.3  29 | c : DNS request from ('192.168.2.16', 57385) to None: 30 bytes
 2592.3  29 | c : DNS request from ('192.168.2.16', 50482) to None: 50 bytes
-2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'www.apple.com'
+2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'www.ts.apple.com'
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'api.apple-cloudkit.com'
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'1-courier.push.apple.com'
-2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'www.spotify.com'
+2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'www.ts.spotify.com'
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'gs.apple.com'
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] A query: b'1-courier.sandbox.push.apple.com'
-2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'www.apple.com' is ['23.1.101.19']
+2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'www.ts.apple.com' is ['23.1.101.19']
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'api.apple-cloudkit.com' is ['17.248.130.145', '17.248.130.149', '17.248.130.9', '17.248.130.24', '17.248.130.28', '17.248.130.34', '17.248.130.71', '17.248.130.138']
 2592.4  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'1-courier.push.apple.com' is ['17.57.144.181', '17.57.144.180']
-2592.5  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'www.spotify.com' is ['35.186.224.25']
+2592.5  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'www.ts.spotify.com' is ['35.186.224.25']
 2592.5  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'gs.apple.com' is ['17.137.162.1']
 2592.5  19 | 2020-05-27T02:40:56+0000 [stdout#info] Result for b'1-courier.sandbox.push.apple.com' is ['17.188.165.208', '17.188.165.209', '17.188.165.211', '17.188.166.9', '17.188.166.16', '17.188.165.200', '17.188.165.201', '17.188.165.202']
 2602.6  29 | c : DNS request from ('192.168.2.16', 10332) to None: 47 bytes
@@ -2018,8 +2018,8 @@
 3401.6 TEL | [147] Running: sudo -n echo -n
 3401.6 TEL | [147] ran in 0.03 secs.
 3402.3  29 | c : DNS request from ('192.168.2.16', 44137) to None: 33 bytes
-3402.4  19 | 2020-05-27T02:54:26+0000 [stdout#info] A query: b'www.netflix.com'
-3402.4  19 | 2020-05-27T02:54:26+0000 [stdout#info] Result for b'www.netflix.com' is ['34.216.233.138', '52.25.200.177', '52.32.85.80', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124']
+3402.4  19 | 2020-05-27T02:54:26+0000 [stdout#info] A query: b'www.ts.netflix.com'
+3402.4  19 | 2020-05-27T02:54:26+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['34.216.233.138', '52.25.200.177', '52.32.85.80', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124']
 5788.6 TEL | [228] Running: sudo -n echo -n
 5788.6 TEL | [228] ran in 0.03 secs.
 3421.5  25 | Connection to 127.0.0.1 closed by remote host.
@@ -2109,8 +2109,8 @@
 5832.2  19 | 2020-05-27T02:55:26+0000 [stdout#info] A query: b'safebrowsing.brave.com'
 5832.2  19 | 2020-05-27T02:55:26+0000 [stdout#info] Result for b'safebrowsing.brave.com' is ['151.101.53.7']
 5832.6  30 | c : DNS request from ('192.168.2.16', 48579) to None: 33 bytes
-5832.7  19 | 2020-05-27T02:55:27+0000 [stdout#info] A query: b'www.netflix.com'
-5832.7  19 | 2020-05-27T02:55:27+0000 [stdout#info] Result for b'www.netflix.com' is ['34.213.69.2', '34.215.79.124', '34.216.233.138', '52.25.200.177', '52.32.85.80', '52.33.134.215', '52.41.135.17', '54.187.132.161']
+5832.7  19 | 2020-05-27T02:55:27+0000 [stdout#info] A query: b'www.ts.netflix.com'
+5832.7  19 | 2020-05-27T02:55:27+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['34.213.69.2', '34.215.79.124', '34.216.233.138', '52.25.200.177', '52.32.85.80', '52.33.134.215', '52.41.135.17', '54.187.132.161']
 5843.6  30 | c : DNS request from ('192.168.2.16', 49493) to None: 35 bytes
 5843.7  19 | 2020-05-27T02:55:38+0000 [stdout#info] A query: b'desktop.tidal.com'
 5843.7  19 | 2020-05-27T02:55:38+0000 [stdout#info] Result for b'desktop.tidal.com' is ['13.224.13.77', '13.224.13.26', '13.224.13.47', '13.224.13.71']
@@ -2154,7 +2154,7 @@
 3512.6 TEL |   kubectl --context godfall.dev.cluster.projctor.io --namespace default logs -f frontend-55ce7bf7f6114e22ba70ac124fe3c7ca-778b5df7b8-mwcdj --container frontend --tail=10
 3512.6 TEL | 
 3512.6 TEL | Recent output was:
-3512.6 TEL |   2020-05-27T02:54:26+0000 [stdout#info] Result for b'www.netflix.com' is ['34.216.233.138', '52.25.200.177', '52.32.85.80', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124']
+3512.6 TEL |   2020-05-27T02:54:26+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['34.216.233.138', '52.25.200.177', '52.32.85.80', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124']
 3512.6 TEL |   2020-05-27T02:54:46+0000 [Poll#error] Failed to contact Telepresence client:
 3512.6 TEL |   2020-05-27T02:54:46+0000 [Poll#error] An error occurred while connecting: 99: Address not available.
 3512.6 TEL |   2020-05-27T02:54:46+0000 [Poll#warn] Perhaps it's time to exit?
@@ -2241,8 +2241,8 @@
 6040.6 TEL | (proxy checking local liveness)
 6040.7  19 | 2020-05-27T02:58:55+0000 [Poll#info] Checkpoint
 6052.5  30 | c : DNS request from ('192.168.2.16', 54356) to None: 33 bytes
-6052.6  19 | 2020-05-27T02:59:06+0000 [stdout#info] A query: b'www.netflix.com'
-6052.6  19 | 2020-05-27T02:59:06+0000 [stdout#info] Result for b'www.netflix.com' is ['52.33.134.215', '52.41.135.17', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124', '52.32.85.80']
+6052.6  19 | 2020-05-27T02:59:06+0000 [stdout#info] A query: b'www.ts.netflix.com'
+6052.6  19 | 2020-05-27T02:59:06+0000 [stdout#info] Result for b'www.ts.netflix.com' is ['52.33.134.215', '52.41.135.17', '52.43.218.25', '52.89.214.214', '54.187.132.161', '34.213.69.2', '34.215.79.124', '52.32.85.80']
 6059.5 TEL | [237] Running: sudo -n echo -n
 6059.6 TEL | [237] ran in 0.03 secs.
 6059.9  30 | c : DNS request from ('192.168.2.16', 50435) to None: 35 bytes

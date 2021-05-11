@@ -13,7 +13,25 @@ services:
             # - ./init-mongo:/docker-entrypoint-initdb.d/init-mongo.sh
             - ./mongo/data:/data/db
         ports:
-            - 27017:27017
+            - 28017:27017
+    bifrost-db:
+        image: 'postgres'
+        container_name: 'bifrost-db'
+        environment:
+            - POSTGRES_DB=bifrost-db
+            - POSTGRES_USER=heimdall-the-gatekeeper
+            - POSTGRES_PASSWORD=bifrost-password
+        # environment:
+        #     - MONGO_INITDB_DATABASE=projector-main
+        #     - MONGO_INITDB_ROOT_USERNAME=projector-main-admin
+        #     - MONGO_INITDB_ROOT_PASSWORD=projector-main-admin-secret-password
+        #     - MONGO_INITDB_USERNAME=localuser
+        #     - MONGO_INITDB_PASSWORD=localuser-password
+        volumes:
+            # - ./init-mongo:/docker-entrypoint-initdb.d/init-mongo.sh
+            - ./bifrost/data:/data/db
+        ports:
+            - 27017:5432
     # frontend:
     #     build: ./frontend
     #     hostname: frontend
