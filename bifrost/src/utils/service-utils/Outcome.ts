@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus } from '../http/HttpException';
 import { NextFunction, Request, Response, response } from 'express';
+import { CookieData } from '../http/cookies';
 
 export type FromTransformer<T> = (data: any) => T;
 
@@ -63,6 +64,7 @@ export class ExpressContext {
 class Outcome<T = any> {
   private readonly httpResponse: HttpResponse<T>;
   private context: ExpressContext | undefined;
+  private cookieData: CookieData | undefined;
   constructor(outcome: HttpResponse<T>, context?: ExpressContext) {
     this.httpResponse = outcome;
     this.context = context;
@@ -73,12 +75,18 @@ class Outcome<T = any> {
     return this;
   }
 
+  withTokenCookie(cookieData: CookieData) {
+    this.cookieData = cookieData;
+  }
+
   transformOrThrow(
-    convertor: TransformFunction<T>,
+    convertor: TransformFunction<T> = () => ({
+      to: (val: any) => val,
+    }),
     middleware: (payload: any) => any = (val) => val
   ): void {
     if (this.httpResponse.isSuccess()) {
-      const response = convertor().to(this.httpResponse.getResponse());
+      const response = convertor?.().to(this.httpResponse.getResponse());
       this.context?.response.setHeader('Content-Type', 'application/json');
       this.context?.response.send(middleware(response));
     } else {

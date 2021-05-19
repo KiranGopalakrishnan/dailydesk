@@ -1,2 +1,3 @@
 const projectorUrl = (url: string) => `rest/projector/${url}`;
-export {projectorUrl};
+const bifrostUrl = (url: string) => `bifrost/${url}`;
+export { projectorUrl, bifrostUrl };

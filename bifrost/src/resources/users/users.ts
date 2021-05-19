@@ -10,7 +10,8 @@ import {
 import { badRequest, ExpressContext, internalServerError } from '../../utils/service-utils/Outcome';
 import { logger } from '../../logger';
 import bodyParser from 'body-parser';
-import { signJWT, generateRefreshToken } from '../../utils/jwt';
+import cookieParser from 'cookie-parser';
+import { signJWT, generateRefreshToken, verifyJWT } from '../../utils/jwt';
 
 const express = require('express');
 const router = express.Router();
@@ -29,7 +30,7 @@ router.post('/', jsonParser, async (req: Request, res: Response, throwable: Next
   try {
     const outcome = await createUser(userPost);
     const context = new ExpressContext(res, throwable);
-    outcome.withContext(context).transformOrThrow(userPostTransformer);
+    outcome.withContext(context).transformOrThrow();
   } catch (e) {
     console.error(e);
     throwable(internalServerError().getResponse());
@@ -42,12 +43,13 @@ router.post('/login', jsonParser, async (req: Request, res: Response, throwable:
   if (!isPostValid) throwable(badRequest('Invalid arguments').getResponse());
   try {
     const outcome = await authenticateUser(userPost);
+
     const context = new ExpressContext(res, throwable);
-    outcome.withContext(context).transformOrThrow(userPostTransformer);
+    outcome.withContext(context).transformOrThrow(undefined);
   } catch (e) {
     console.error(e);
     throwable(internalServerError().getResponse());
   }
 });
 
-module.exports = router;
+export { router };

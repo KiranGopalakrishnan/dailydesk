@@ -1,6 +1,6 @@
 import { DbTransformFunction, TransformFunction } from '../../utils/service-utils/Outcome';
 import { User, UserStatus } from './user-service';
-import { generateRefreshToken, hashPassword, signJWT } from '../../utils/jwt';
+import { generateRefreshToken, hashPassword, signJWT, Tokens } from '../../utils/jwt';
 
 export type UserWithoutPassword = Omit<User, 'password'>;
 
@@ -18,6 +18,26 @@ export const userDocumentTransformer: DbTransformFunction<Required<User>> = () =
   to: ({ id, firstname, lastname, company, email, password, status }) => {
     const hashedPassword = hashPassword(password);
     return { id, firstname, lastname, email, company, password: hashedPassword, status };
+  },
+});
+
+export const userTokenTransformer: TransformFunction<User, UserResponse> = (data: any) => ({
+  to: (user: User) => {
+    const { id, firstname, lastname, company, email, status } = user;
+
+    const userWithoutPassword = {
+      id,
+      firstname,
+      lastname,
+      company,
+      email,
+      status,
+    };
+
+    return {
+      user: userWithoutPassword,
+      ...data,
+    };
   },
 });
 

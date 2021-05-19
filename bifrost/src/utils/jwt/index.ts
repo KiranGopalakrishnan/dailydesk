@@ -1,6 +1,7 @@
 import { UserResponse } from '../../resources/users/user-post-transformer';
 import path from 'path';
 import { User } from '../../resources/users/user-service';
+import { getExistingRefreshToken } from '../../resources/tokens/token-service';
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -30,7 +31,7 @@ const saltRounds = 10;
 
 const salt = bcrypt.genSaltSync(saltRounds);
 
-export const signJWT = (payload: Partial<User>, expiresIn: string = '8784h'): string => {
+export const signJWT = (payload: Partial<User>, expiresIn: string = '15m'): string => {
   const signOptions = {
     issuer,
     subject,
@@ -42,10 +43,10 @@ export const signJWT = (payload: Partial<User>, expiresIn: string = '8784h'): st
   return jwt.sign({ payload }, privateKEY, signOptions);
 };
 
-export const generateRefreshToken = (payload: Partial<User>) => signJWT(payload, '15m');
+export const generateRefreshToken = (payload: Partial<User>) => signJWT(payload, '60d');
 
-export const verifyJWT = (token: string) => {
-  return jwt.verify(token, publicKEY, verifyOptions);
+export const verifyJWT = <T>(token: string) => {
+  return jwt.verify(token, publicKEY, verifyOptions) as { payload: T };
 };
 
 export const hashPassword = (password: string): string => {
@@ -56,7 +57,7 @@ export const comparePassword = (passwordToCompare: string, hashedPassword: strin
   return bcrypt.compareSync(passwordToCompare, hashedPassword);
 };
 
-export const generateTokens = (user: Partial<User>): Tokens => {
+export const generateTokens = async (user: Partial<User>): Promise<Tokens> => {
   const { id, firstname, lastname, company, email, status } = user;
   const token = signJWT({ id, firstname, lastname, company, email, status });
   const refresh_token = generateRefreshToken({ id });

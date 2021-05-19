@@ -18,12 +18,6 @@
   },
   "author": "Kiran Gopalakrishnan",
   "license": "ISC",
-  "proxy": {
-    "/rest/*": {
-      "target": "http://localhost:8080",
-      "changeOrigin": true
-    }
-  },
   "bugs": {
     "url": "https://github.com/KiranGopalakrishnan/projctor/issues"
   },

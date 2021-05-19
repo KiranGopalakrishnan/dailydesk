@@ -13,7 +13,7 @@ generator client {
 model Users {
   id           String         @id
   email        String         @unique
-  firstname     String
+  firstname    String
   lastname     String
   company      String
   password     String         @unique
@@ -24,7 +24,9 @@ model Users {
 model AccessTokens {
   id     String @id
   userId String
-  token  String
+  token  String @unique
   status String
   Users  Users  @relation(fields: [userId], references: [id])
+
+  @@unique([token, status], name: "token_status_unique_constraint")
 }

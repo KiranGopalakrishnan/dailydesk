@@ -1,35 +1,56 @@
-import { internalServerError, notFound, Outcome, success } from '../../utils/service-utils/Outcome';
+import {
+  badRequest,
+  forbidden,
+  internalServerError,
+  notFound,
+  Outcome,
+  success,
+  unauthorized,
+} from '../../utils/service-utils/Outcome';
 import { prisma } from '../../utils/db';
-import { comparePassword } from '../../utils/jwt';
-import { userDocumentTransformer } from '../users/user-post-transformer';
+import { comparePassword, generateTokens, verifyJWT } from '../../utils/jwt';
+import { userDocumentTransformer, userTokenTransformer } from '../users/user-post-transformer';
 import { logger } from '../../logger';
-import { User } from '../users/user-service';
-import { v4 as uuidv4 } from 'uuid';
+import { getUserById, User } from '../users/user-service';
+import { nanoid } from 'nanoid';
+import { generateId } from '../../utils/nano-id';
 
 export enum TokenStatus {
   ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
   REVOKED = 'REVOKED',
 }
 
-export const verifyToken = async (user: Pick<User, 'email' | 'password'>): Promise<Outcome> => {
+export interface TokenRecord {
+  id: string;
+  userId: string;
+  token: string;
+  status: TokenStatus;
+}
+
+export const verifyJwtToken = async (token: string): Promise<Outcome> => {
   try {
-    const authenticatedUser = await prisma.users.findUnique({
-      where: { email: user.email },
-    });
-    if (!authenticatedUser || !comparePassword(user.password, authenticatedUser.password))
-      return new Outcome(notFound('User not found'));
-    const transformedUser = userDocumentTransformer().from(authenticatedUser);
-    return new Outcome(success<User>(transformedUser));
+    const decodedJWT = verifyJWT<User>(token);
+    return new Outcome(success(decodedJWT));
   } catch (e) {
-    logger.error(e);
-    return new Outcome(internalServerError());
+    logger.error('verifyJwtToken', e);
+    throw e;
   }
 };
 
 export const saveRefreshToken = async (userId: string, token: string): Promise<string> => {
   try {
-    const id = uuidv4();
-    const data = await prisma.accessTokens.create({
+    const id = generateId();
+    await prisma.accessTokens.updateMany({
+      where: {
+        userId,
+      },
+      data: {
+        status: TokenStatus.INACTIVE,
+      },
+    });
+
+    await prisma.accessTokens.create({
       data: {
         id,
         token,
@@ -39,7 +60,90 @@ export const saveRefreshToken = async (userId: string, token: string): Promise<s
     });
     return token;
   } catch (e) {
-    logger.error(e);
+    logger.error('saveRefreshToken', e);
     throw e;
+  }
+};
+
+export const getExistingRefreshToken = async (userId?: string): Promise<TokenRecord | null> => {
+  if (!userId) return null;
+  try {
+    const tokenRecord = await prisma.accessTokens.findFirst({
+      where: {
+        userId,
+        status: TokenStatus.ACTIVE,
+      },
+    });
+    if (!tokenRecord) return null;
+    const { status, ...rest } = tokenRecord;
+    return {
+      ...rest,
+      status: status as TokenStatus,
+    };
+  } catch (e) {
+    logger.error('getExistingRefreshToken', e);
+    throw e;
+  }
+};
+
+export const revokeTokenForId = async (userId: string): Promise<Outcome> => {
+  if (!userId) return new Outcome(badRequest('User id was not provided'));
+  try {
+    const tokenRecord = await prisma.accessTokens.updateMany({
+      where: {
+        userId,
+        status: TokenStatus.ACTIVE,
+      },
+      data: {
+        status: TokenStatus.REVOKED,
+      },
+    });
+    return new Outcome(success<string>('Successfully revoked'));
+  } catch (e) {
+    logger.error('revokeTokenForId', e);
+    throw e;
+  }
+};
+
+export const isTokenRecordValid = async (token: string): Promise<boolean> => {
+  try {
+    const record = await prisma.accessTokens.findUnique({
+      where: {
+        token_status_unique_constraint: {
+          token,
+          status: TokenStatus.ACTIVE as string,
+        },
+      },
+    });
+    return !!record;
+  } catch (e) {
+    logger.error('isTokenRecordValid', e);
+    throw e;
+  }
+};
+
+export const refreshJwtToken = async (token: string): Promise<Outcome> => {
+  try {
+    const verifiedToken = verifyJWT<{ id: User['id'] }>(token);
+    if (!verifiedToken) return new Outcome(unauthorized('Invalid Refresh token'));
+
+    const record = await getExistingRefreshToken(verifiedToken.payload?.id);
+    if (!record) return new Outcome(unauthorized('Token is no longer valid'));
+
+    if (!(await isTokenRecordValid(token)))
+      return new Outcome(unauthorized('Token is no longer valid'));
+
+    const user = await getUserById(record.userId);
+    if (!user) return new Outcome(unauthorized('User id associated to this token is invalid'));
+
+    const tokens = await generateTokens(user);
+
+    //save the refresh token
+    await saveRefreshToken(record.userId, tokens.refresh_token);
+    return new Outcome(success(tokens));
+  } catch (e) {
+    logger.error('refreshJwtToken', e);
+    if (e.name === 'TokenExpiredError') return new Outcome(unauthorized('Token expired'));
+    return new Outcome(internalServerError());
   }
 };

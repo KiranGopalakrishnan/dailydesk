@@ -49,6 +49,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
   const { register, handleSubmit, control } = useForm<SignupData>();
 
   const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
+    console.error('Called');
     onSubmit({
       firstname,
       lastname,
@@ -59,15 +60,11 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
   };
 
   useEffect(() => {
-    dispatch(getProjects());
-  }, []);
-
-  useEffect(() => {
-    register('email', {
-      validate: {
-        isEmail: (value) => validator.isEmail(value),
-      },
-    });
+    // register('email', {
+    //   validate: {
+    //     isEmail: (value) => validator.isEmail(value),
+    //   },
+    // });
   }, []);
 
   return (

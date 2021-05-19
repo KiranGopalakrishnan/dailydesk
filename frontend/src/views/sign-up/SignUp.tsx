@@ -52,9 +52,9 @@ const SignUp: React.FC = () => {
 
   const { register, handleSubmit, control } = useForm<SignupData>();
 
-  const onAdd = ({ firstname, lastname, email, password }: SignupData) => {
-    console.error({ firstname, lastname, email, password });
-    //dispatch(addUser({ firstname, lastname, email, password }));
+  const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
+    console.error({ firstname, lastname, email, company, password });
+    dispatch(addUser({ firstname, lastname, email, company, password }));
   };
 
   return (

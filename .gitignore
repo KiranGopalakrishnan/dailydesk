@@ -2,3 +2,4 @@ mongo/data/
 .idea/
 ssh_keys/
 ssl
+*.log
