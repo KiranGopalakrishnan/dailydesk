@@ -3,3 +3,4 @@ mongo/data/
 ssh_keys/
 ssl
 *.log
+.gradle/

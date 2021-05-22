@@ -26,6 +26,7 @@
       "@reducers/*": ["reducers/*"],
       "@services/*": ["services/*"],
       "@ui-kit/*": ["ui-kit/*"],
+      "@shared/*": ["shared/*"],
       "@store": ["store/index"],
       "@store/*": ["store/*"],
       "@config/*": ["config/*"]

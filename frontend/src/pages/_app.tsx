@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { ProjectsProvider } from '@reducers/ProjectsReducer';
-import { MuiThemeProvider } from '@material-ui/core';
+import { Grid, MuiThemeProvider } from '@material-ui/core';
 import { theme } from '@ui-kit/Theme';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { AppProps } from 'next/app';
 import { store } from '@store';
 import { createGlobalStyle } from 'styled-components';
+import { useEffect } from 'react';
+import { autoLogin } from '@store/user/user-thunk';
+import { WithAutoLogin } from '../utils/WithAutoLogin';
+import { Header } from '@shared/header/Header';
 
 const GlobalStyle = createGlobalStyle`
 html,body,#__next {
@@ -17,12 +20,17 @@ html,body,#__next {
 const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <ProjectsProvider>
+      <WithAutoLogin>
+        <MuiThemeProvider theme={theme}>
           <GlobalStyle />
-          <Component />
-        </ProjectsProvider>
-      </MuiThemeProvider>
+          <Grid container>
+            <Header />
+          </Grid>
+          <Grid container>
+            <Component />
+          </Grid>
+        </MuiThemeProvider>
+      </WithAutoLogin>
     </Provider>
   );
 };
