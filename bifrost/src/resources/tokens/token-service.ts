@@ -14,6 +14,8 @@ import { logger } from '../../logger';
 import { getUserById, User } from '../users/user-service';
 import { nanoid } from 'nanoid';
 import { generateId } from '../../utils/nano-id';
+import { TokenExpiredError } from 'jsonwebtoken';
+import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
 
 export enum TokenStatus {
   ACTIVE = 'ACTIVE',
@@ -140,10 +142,15 @@ export const refreshJwtToken = async (token: string): Promise<Outcome> => {
 
     //save the refresh token
     await saveRefreshToken(record.userId, tokens.refresh_token);
-    return new Outcome(success(tokens));
+    const refreshCookie = getRefreshTokenCookieData(tokens.refresh_token);
+    const jwtCookie = getJWTCookieData(tokens.token);
+
+    return new Outcome(success({ message: 'Refreshed' }))
+      .withTokenCookie(refreshCookie)
+      .withTokenCookie(jwtCookie);
   } catch (e) {
     logger.error('refreshJwtToken', e);
-    if (e.name === 'TokenExpiredError') return new Outcome(unauthorized('Token expired'));
+    if (e instanceof TokenExpiredError) return new Outcome(unauthorized('Token expired'));
     return new Outcome(internalServerError());
   }
 };

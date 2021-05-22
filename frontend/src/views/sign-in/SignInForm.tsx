@@ -10,9 +10,6 @@ import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
 import { InputBox, withField } from '@ui-kit/InputBox/InputBox';
-import { User } from '@services/Users';
-import { getProjects } from '@store/project/projects-thunk';
-import { get } from '../../api/Api';
 
 const useStyles = makeStyles({
   form: {
@@ -27,31 +24,24 @@ const useStyles = makeStyles({
   },
 });
 
-export interface SignupData {
-  firstname: string;
-  lastname: string;
+export interface SignInData {
   email: string;
-  company: string;
   password: string;
 }
 
 interface Props {
-  onSubmit: (data: SignupData) => void;
+  onSubmit: (data: SignInData) => void;
 }
 
 const getErrorText = (hasError: boolean, field: string): string | null => {
   if (!hasError) return null;
   const errors: Record<string, string> = {
-    firstname: 'Firstname is required',
-    lastname: 'Lastname is required',
     email: 'A valid Email is required',
-    company: 'A company name is required',
-    password: 'Password should have minimum 8 characters',
   };
   return errors[field];
 };
 
-export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
+export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
   const styles = useStyles();
 
   const dispatch = useDispatch();
@@ -63,14 +53,11 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<SignupData>();
+  } = useForm<SignInData>();
 
-  const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
+  const onAdd = ({ email, password }: SignInData) => {
     onSubmit({
-      firstname,
-      lastname,
       email,
-      company,
       password,
     });
   };
@@ -81,52 +68,13 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
         isEmail: (value) => validator.isEmail(value),
       },
     });
-    register('password', {
-      validate: {
-        isValid: (value) => validator.isStrongPassword(value, { minLength: 8 }),
-      },
-    });
   }, []);
 
   return (
     <form onSubmit={handleSubmit(onAdd)}>
       <Grid container className={styles.form}>
         <Grid container className={styles.item}>
-          <Typography variant="h3">Sign Up</Typography>
-        </Grid>
-        <Grid item container spacing={3} className={styles.item}>
-          <Grid item xs={6}>
-            <Controller
-              name="firstname"
-              control={control}
-              rules={{ required: true, maxLength: 20 }}
-              render={({ field }) => (
-                <InputBox
-                  error={!!errors.firstname}
-                  helperText={getErrorText(!!errors.firstname, 'firstname')}
-                  placeholder="Luke"
-                  label="Firstname"
-                  {...withField(field)}
-                />
-              )}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Controller
-              name="lastname"
-              control={control}
-              rules={{ required: true, maxLength: 20 }}
-              render={({ field }) => (
-                <InputBox
-                  error={!!errors.lastname}
-                  helperText={getErrorText(!!errors.lastname, 'lastname')}
-                  placeholder="Skywalker"
-                  label="Lastname"
-                  {...withField(field)}
-                />
-              )}
-            />
-          </Grid>
+          <Typography variant="h3">Sign In</Typography>
         </Grid>
         <Grid container className={styles.item}>
           <Controller
@@ -139,22 +87,6 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                 helperText={getErrorText(!!errors.email, 'email')}
                 placeholder="luke@resistance.com"
                 label="Email"
-                {...withField(field)}
-              />
-            )}
-          />
-        </Grid>
-        <Grid container className={styles.item}>
-          <Controller
-            name="company"
-            control={control}
-            rules={{ required: true, maxLength: 20 }}
-            render={({ field }) => (
-              <InputBox
-                error={!!errors.company}
-                helperText={getErrorText(!!errors.company, 'company')}
-                placeholder="The Resistance"
-                label="Company"
                 {...withField(field)}
               />
             )}
@@ -186,7 +118,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
           </Grid>
           <Grid item xs={6}>
             <Button type="submit" fullWidth variant="outlined" color="primary">
-              {'Sign up'}
+              {'Sign In'}
             </Button>
           </Grid>
         </Grid>

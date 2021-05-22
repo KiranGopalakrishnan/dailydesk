@@ -25,8 +25,13 @@ import {
   hashPassword,
   signJWT,
 } from '../../utils/jwt';
-import { getExistingRefreshToken, saveRefreshToken } from '../tokens/token-service';
+import {
+  getExistingRefreshToken,
+  revokeTokenForId,
+  saveRefreshToken,
+} from '../tokens/token-service';
 import { generateId } from '../../utils/nano-id';
+import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
 
 export enum UserStatus {
   CREATED = 'CREATED',
@@ -60,6 +65,18 @@ export const getUserById = async (id: User['id']): Promise<User | null> => {
   }
 };
 
+export const getUser = async (id: User['id']): Promise<Outcome> => {
+  try {
+    const user = await getUserById(id);
+    console.error({ user });
+    if (!user) return new Outcome(notFound('No user found with the provided id'));
+    return new Outcome(success<UserResponse>(userPostTransformer().to(user)));
+  } catch (e) {
+    logger.e('getUser', e);
+    return new Outcome(internalServerError());
+  }
+};
+
 export const createUser = async (user: Omit<User, 'id' | 'status'>): Promise<Outcome> => {
   try {
     const id = await generateId();
@@ -81,9 +98,14 @@ export const createUser = async (user: Omit<User, 'id' | 'status'>): Promise<Out
     //save the refresh token
     await saveRefreshToken(transformedUser.id, tokens.refresh_token);
 
-    const response = userTokenTransformer(tokens).to(transformedUser);
+    const response = userTokenTransformer().to(transformedUser);
 
-    return new Outcome(success<UserResponse>(response));
+    const refreshCookieData = getRefreshTokenCookieData(tokens.refresh_token);
+    const jwtCookieData = getJWTCookieData(tokens.token);
+
+    return new Outcome(success<UserResponse>(response))
+      .withTokenCookie(jwtCookieData)
+      .withTokenCookie(refreshCookieData);
   } catch (e) {
     logger.error(e);
     return new Outcome(internalServerError());
@@ -112,10 +134,23 @@ export const authenticateUser = async (
     //save the refresh token
     await saveRefreshToken(transformedUser.id, tokens.refresh_token);
 
-    const response = userPostTransformer(tokens).to(transformedUser);
-    return new Outcome(success<UserResponse>(response));
+    const response = userPostTransformer().to(transformedUser);
+    const refreshCookieData = getRefreshTokenCookieData(tokens.refresh_token);
+    const jwtCookieData = getJWTCookieData(tokens.token);
+
+    return new Outcome(success<UserResponse>(response))
+      .withTokenCookie(jwtCookieData)
+      .withTokenCookie(refreshCookieData);
   } catch (e) {
     logger.error(e);
     return new Outcome(internalServerError());
   }
+};
+
+export const logoutUser = async (userId: User['id']): Promise<Outcome> => {
+  if (!userId) return new Outcome(badRequest('No user id provided'));
+  await revokeTokenForId(userId);
+  return new Outcome(
+    success<any>({ message: 'Logged out' })
+  );
 };

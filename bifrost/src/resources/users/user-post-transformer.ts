@@ -6,8 +6,6 @@ export type UserWithoutPassword = Omit<User, 'password'>;
 
 export interface UserResponse {
   user: UserWithoutPassword;
-  token: string;
-  refresh_token: string;
 }
 
 export const userDocumentTransformer: DbTransformFunction<Required<User>> = () => ({

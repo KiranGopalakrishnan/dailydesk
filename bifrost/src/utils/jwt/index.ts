@@ -27,6 +27,15 @@ export interface Tokens {
   refresh_token: string;
 }
 
+export interface DecodedToken<T> {
+  iat: number;
+  exp: number;
+  aud: string;
+  iss: string;
+  sub: string;
+  payload: T;
+}
+
 const saltRounds = 10;
 
 const salt = bcrypt.genSaltSync(saltRounds);

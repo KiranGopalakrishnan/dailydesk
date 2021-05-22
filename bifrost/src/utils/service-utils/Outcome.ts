@@ -64,7 +64,7 @@ export class ExpressContext {
 class Outcome<T = any> {
   private readonly httpResponse: HttpResponse<T>;
   private context: ExpressContext | undefined;
-  private cookieData: CookieData | undefined;
+  private cookieData: CookieData[] = [];
   constructor(outcome: HttpResponse<T>, context?: ExpressContext) {
     this.httpResponse = outcome;
     this.context = context;
@@ -76,7 +76,8 @@ class Outcome<T = any> {
   }
 
   withTokenCookie(cookieData: CookieData) {
-    this.cookieData = cookieData;
+    this.cookieData = this.cookieData.concat([cookieData]);
+    return this;
   }
 
   transformOrThrow(
@@ -87,6 +88,10 @@ class Outcome<T = any> {
   ): void {
     if (this.httpResponse.isSuccess()) {
       const response = convertor?.().to(this.httpResponse.getResponse());
+      this.cookieData.map(({ key, value, maxAge, httpOnly }) => {
+        this.context?.response?.cookie(key, value, { maxAge, httpOnly });
+      });
+
       this.context?.response.setHeader('Content-Type', 'application/json');
       this.context?.response.send(middleware(response));
     } else {
