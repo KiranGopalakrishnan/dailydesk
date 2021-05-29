@@ -5,10 +5,11 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
+	id ("com.google.protobuf") version "0.8.16"
 	application
 }
 
-group = "com.projector"
+group = "com.dailydesk"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -18,10 +19,14 @@ repositories {
 }
 
 application {
-	mainClassName = "com.projector.ApplicationKt"
+	mainClassName = "com.dailydesk.ApplicationKt"
 }
 
+
+
 dependencies {
+	implementation(project(":protobuf"))
+
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-jersey")
 	implementation("org.springframework.security:spring-security-crypto")
@@ -49,15 +54,15 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-tasks.register("package") { 
-	dependsOn("build")
-	exec {
-		executable("./actions/package.sh")
-	}
-}
-
-tasks.register("push") { 
-    exec {
-		executable("./actions/push.sh")
-	}
-}
+//tasks.register("package") {
+//	//dependsOn("build")
+//	exec {
+//		executable("./actions/package.sh")
+//	}
+//}
+//
+//tasks.register("push") {
+//    exec {
+//		executable("./actions/push.sh")
+//	}
+//}

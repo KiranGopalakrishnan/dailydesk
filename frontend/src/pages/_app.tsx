@@ -23,10 +23,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       <WithAutoLogin>
         <MuiThemeProvider theme={theme}>
           <GlobalStyle />
-          <Grid container>
+          <Grid container style={{ height: '72px' }}>
             <Header />
           </Grid>
-          <Grid container>
+          <Grid container style={{ height: 'calc(100vh - 72px)' }}>
             <Component />
           </Grid>
         </MuiThemeProvider>

@@ -139,7 +139,6 @@ export const refreshJwtToken = async (token: string): Promise<Outcome> => {
     if (!user) return new Outcome(unauthorized('User id associated to this token is invalid'));
 
     const tokens = await generateTokens(user);
-
     //save the refresh token
     await saveRefreshToken(record.userId, tokens.refresh_token);
     const refreshCookie = getRefreshTokenCookieData(tokens.refresh_token);

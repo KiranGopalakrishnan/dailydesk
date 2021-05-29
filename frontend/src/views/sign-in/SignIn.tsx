@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { InputBox, withField } from '@ui-kit/InputBox/InputBox';
-import { get } from '../../api/Api';
-import { User } from '@services/Users';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, authenticateUser } from '@store/user/user-thunk';
+import { login, logout } from '@store/user/user-thunk';
 import { RootState } from '@store';
-import { useEffect } from 'react';
-import { getProjects } from '@store/project/projects-thunk';
-import { Box, Button, Grid, makeStyles, Paper, TextField, Typography } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { colors } from '@ui-kit/Theme/colors';
 import { theme } from '@ui-kit/Theme';
-import { useForm, Controller } from 'react-hook-form';
-import validator from 'validator';
 import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 import { SignInData, SignInForm } from '@views/sign-in/SignInForm';
 import { useRouter } from 'next/router';
+import { AuthenticationStatus } from '@store/user';
+import { routes } from '@config/routes';
 
 const useStyles = makeStyles({
   container: {
@@ -45,29 +41,28 @@ const useStyles = makeStyles({
 const SignIn: React.FC = () => {
   const styles = useStyles();
 
-  let history = useHistory();
+  const history = useHistory();
   const router = useRouter();
 
   const dispatch = useDispatch();
 
-  const user = useSelector((state: RootState) => state.user.item);
-
-  useEffect(() => {
-    console.error(user);
-    if (user?.id) {
-      router.push('/home');
-    }
-  }, [user]);
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
 
   const onSignIn = ({ email, password }: SignInData) => {
-    dispatch(authenticateUser(email, password));
+    dispatch(login(email, password));
   };
+
+  useEffect(() => {
+    if (authStatus === AuthenticationStatus.LOGGED_IN) {
+      router.push(routes.HOME.url);
+    }
+  }, [authStatus]);
 
   return (
     <Grid container justify="center" alignItems="center" className={styles.container}>
       <Grid container justify="center">
         <Grid container justify="center" className={styles.logoContainer}>
-          <Grid item className={styles.logo}>
+          <Grid container item className={styles.logo} justify="center" alignItems="center">
             <DailyDeskLogo />
           </Grid>
         </Grid>

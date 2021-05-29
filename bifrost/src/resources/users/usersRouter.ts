@@ -20,11 +20,10 @@ import cookieParser from 'cookie-parser';
 import { signJWT, generateRefreshToken, verifyJWT, DecodedToken } from '../../utils/jwt';
 import { COOKIE_KEYS } from '../../utils/http/cookies';
 import { decodeHeader } from '../../utils/http/handle-jwt-auth';
+import { client } from '../../grpc/client';
 
 const express = require('express');
-const router = express.Router();
-const protectedRouter = express.Router();
-protectedRouter.use(decodeHeader);
+const usersRoute = express.Router();
 
 const jsonParser = bodyParser.json();
 
@@ -33,24 +32,7 @@ interface TokenResponse {
   refresh_token: string;
 }
 
-protectedRouter.get(
-  '/me',
-  jsonParser,
-  async (req: Request, res: Response, throwable: NextFunction) => {
-    const decodedToken = (req as any).user as DecodedToken<User>;
-    if (!decodedToken) throwable(internalServerError().getResponse());
-    try {
-      const outcome = await getUser(decodedToken.payload.id);
-      const context = new ExpressContext(res, throwable);
-      outcome.withContext(context).transformOrThrow();
-    } catch (e) {
-      console.error(e);
-      throwable(internalServerError().getResponse());
-    }
-  }
-);
-
-router.post('/', jsonParser, async (req: Request, res: Response, throwable: NextFunction) => {
+usersRoute.post('/', jsonParser, async (req: Request, res: Response, throwable: NextFunction) => {
   const userPost = req.body as User;
   const isPostValid = validateUserPost(userPost);
   if (!isPostValid) throwable(badRequest('Invalid arguments').getResponse());
@@ -64,32 +46,17 @@ router.post('/', jsonParser, async (req: Request, res: Response, throwable: Next
   }
 });
 
-router.post('/login', jsonParser, async (req: Request, res: Response, throwable: NextFunction) => {
-  const userPost = req.body as Pick<User, 'email' | 'password'>;
-  const isPostValid = validateUserLoginPost(userPost);
-  if (!isPostValid) throwable(badRequest('Invalid arguments').getResponse());
-  try {
-    const outcome = await authenticateUser(userPost);
-
-    const context = new ExpressContext(res, throwable);
-    outcome.withContext(context).transformOrThrow(undefined);
-  } catch (e) {
-    console.error(e);
-    throwable(internalServerError().getResponse());
-  }
-});
-
-protectedRouter.get(
-  '/logout',
+usersRoute.post(
+  '/login',
   jsonParser,
   async (req: Request, res: Response, throwable: NextFunction) => {
+    const userPost = req.body as Pick<User, 'email' | 'password'>;
+    const isPostValid = validateUserLoginPost(userPost);
+    if (!isPostValid) throwable(badRequest('Invalid arguments').getResponse());
     try {
-      const decodedUser = (req as any).user as User;
+      const outcome = await authenticateUser(userPost);
       const context = new ExpressContext(res, throwable);
-      const outcome = await logoutUser(decodedUser.id);
-      res.clearCookie(COOKIE_KEYS.JWT_TOKEN);
-      res.clearCookie(COOKIE_KEYS.REFRESH_TOKEN);
-      outcome.transformOrThrow(undefined);
+      outcome.withContext(context).transformOrThrow(undefined);
     } catch (e) {
       console.error(e);
       throwable(internalServerError().getResponse());
@@ -97,4 +64,4 @@ protectedRouter.get(
   }
 );
 
-export { router, protectedRouter };
+export { usersRoute };

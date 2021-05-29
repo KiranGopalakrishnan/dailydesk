@@ -6,20 +6,25 @@ import bodyParser from 'body-parser';
 import { refreshJwtToken } from '../tokens/token-service';
 
 const express = require('express');
-const router = express.Router();
+const autoLoginRouter = express.Router();
 
 const jsonParser = bodyParser.json();
 
-router.get('/login', jsonParser, async (req: Request, res: Response, throwable: NextFunction) => {
-  const refresh_token = (req as any).token;
-  try {
-    const outcome = await refreshJwtToken(refresh_token);
-    const context = new ExpressContext(res, throwable);
-    outcome.withContext(context).transformOrThrow();
-  } catch (e) {
-    console.error(e);
-    throwable(internalServerError().getResponse());
+autoLoginRouter.get(
+  '/login',
+  jsonParser,
+  async (req: Request, res: Response, throwable: NextFunction) => {
+    const refresh_token = (req as any).token;
+    console.error({ refresh_token });
+    try {
+      const outcome = await refreshJwtToken(refresh_token);
+      const context = new ExpressContext(res, throwable);
+      outcome.withContext(context).transformOrThrow();
+    } catch (e) {
+      console.error(e);
+      throwable(internalServerError().getResponse());
+    }
   }
-});
+);
 
-export { router };
+export { autoLoginRouter };

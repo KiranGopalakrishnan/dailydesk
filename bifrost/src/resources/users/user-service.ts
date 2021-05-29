@@ -72,7 +72,7 @@ export const getUser = async (id: User['id']): Promise<Outcome> => {
     if (!user) return new Outcome(notFound('No user found with the provided id'));
     return new Outcome(success<UserResponse>(userPostTransformer().to(user)));
   } catch (e) {
-    logger.e('getUser', e);
+    logger.error('getUser', e);
     return new Outcome(internalServerError());
   }
 };
@@ -148,9 +148,14 @@ export const authenticateUser = async (
 };
 
 export const logoutUser = async (userId: User['id']): Promise<Outcome> => {
-  if (!userId) return new Outcome(badRequest('No user id provided'));
-  await revokeTokenForId(userId);
-  return new Outcome(
-    success<any>({ message: 'Logged out' })
-  );
+  try {
+    if (!userId) return new Outcome(badRequest('No user id provided'));
+    await revokeTokenForId(userId);
+    return new Outcome(
+      success<any>({ message: 'Logged out' })
+    );
+  } catch (e) {
+    logger.error(e);
+    return new Outcome(internalServerError());
+  }
 };

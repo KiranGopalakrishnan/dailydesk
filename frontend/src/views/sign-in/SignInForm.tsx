@@ -80,6 +80,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
           <Controller
             name="email"
             control={control}
+            defaultValue={''}
             rules={{ required: true, maxLength: 20 }}
             render={({ field }) => (
               <InputBox
@@ -96,6 +97,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
           <Controller
             name="password"
             control={control}
+            defaultValue={''}
             rules={{ required: true, maxLength: 20, minLength: 8 }}
             render={({ field }) => (
               <InputBox

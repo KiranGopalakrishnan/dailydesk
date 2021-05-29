@@ -51,6 +51,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "5.2.0",
     "serve": "11.3.1",
+    "string-to-color": "^2.2.2",
     "styled-components": "^5.2.3",
     "validator": "^13.6.0"
   }
