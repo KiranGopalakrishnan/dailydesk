@@ -1,15 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.3.0.M1"
+	id("org.springframework.boot") version "2.5.0"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	kotlin("jvm") version "1.3.61"
+	kotlin("jvm") version "1.5.10"
 	kotlin("plugin.spring") version "1.3.61"
 	id ("com.google.protobuf") version "0.8.16"
 	application
 }
 
-group = "com.dailydesk"
+group = "com.dailydesk.projector"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -18,14 +18,11 @@ repositories {
 	maven { url = uri("https://repo.spring.io/milestone") }
 }
 
-application {
-	mainClassName = "com.dailydesk.ApplicationKt"
-}
-
 
 
 dependencies {
 	implementation(project(":protobuf"))
+	implementation(project(":common-bifrost-client"))
 
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-jersey")
