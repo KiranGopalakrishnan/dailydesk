@@ -29,7 +29,8 @@
       "@shared/*": ["shared/*"],
       "@store": ["store/index"],
       "@store/*": ["store/*"],
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
+      "@api/*": ["api/*"]
     }
   },
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],

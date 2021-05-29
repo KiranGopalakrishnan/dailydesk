@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Project } from '../../types/Projects';
+
+export interface Project {
+  id?: string;
+  name: string;
+}
 
 export interface ProjectReducer {
   item: Project | null;

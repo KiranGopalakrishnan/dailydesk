@@ -68,5 +68,13 @@ export const theme = createMuiTheme({
       fontWeight: 500,
       fontSize: '1rem',
     },
+    subtitle1: {
+      fontWeight: 300,
+      fontSize: '1rem',
+    },
+    subtitle2: {
+      fontWeight: 300,
+      fontSize: '1rem',
+    },
   },
 });

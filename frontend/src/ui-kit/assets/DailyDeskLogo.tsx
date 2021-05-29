@@ -20,20 +20,22 @@ const useStyles = makeStyles({
 export const DailyDeskLogo: React.FC<Props> = ({ fontSize = '24px' }) => {
   const styles = useStyles();
   return (
-    <Grid container direction="row">
-      <Grid container item justify="center" alignItems="center" className={styles.logo}>
-        <Image src={'/logo-128.png'} height={32} width={32} />
-      </Grid>
-      <Grid container item justify="center" alignItems="center" xs={11}>
-        <Grid container item direction="row" alignItems="center">
-          <Grid item>
-            <Typography style={{ color: colors.BLACK, fontSize }}>{'daily'}</Typography>
-          </Grid>
-          <Grid item>
-            <Typography style={{ color: colors.BLUE_1, fontSize }}>{'desk'}</Typography>
-          </Grid>
+    <Box>
+      <Grid container>
+        <Grid container item justify="center" alignItems="center" className={styles.logo}>
+          <Image src={'/logo-128.png'} height={32} width={32} />
+        </Grid>
+        <Grid item>
+          <Typography variant="subtitle2" style={{ color: colors.BLACK, fontSize }}>
+            {'daily'}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="subtitle2" style={{ color: colors.BLUE_1, fontSize }}>
+            {'desk'}
+          </Typography>
         </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };

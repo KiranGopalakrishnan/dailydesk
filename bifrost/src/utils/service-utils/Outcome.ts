@@ -86,6 +86,7 @@ class Outcome<T = any> {
     }),
     middleware: (payload: any) => any = (val) => val
   ): void {
+    if (!this.context) throw Error('No context set');
     if (this.httpResponse.isSuccess()) {
       const response = convertor?.().to(this.httpResponse.getResponse());
       this.cookieData.map(({ key, value, maxAge, httpOnly }) => {

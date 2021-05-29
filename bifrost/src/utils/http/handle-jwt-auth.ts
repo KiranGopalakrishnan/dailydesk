@@ -8,7 +8,7 @@ import { COOKIE_KEYS } from './cookies';
 
 export const decodeHeader = (req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies[COOKIE_KEYS.JWT_TOKEN] || req.headers.authorization;
-
+  console.error('LOGOUT CALLED', req.url);
   if (!token) {
     const { statusCode, message } = unauthorized('No authorization header found').getResponse();
     res.status(statusCode);
@@ -47,7 +47,7 @@ export const decodeHeader = (req: Request, res: Response, next: NextFunction) =>
 
 export const decodeRefreshToken = (req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies[COOKIE_KEYS.REFRESH_TOKEN];
-
+  console.error({ token });
   if (!token) {
     const { statusCode, message } = unauthorized('No authorization header found').getResponse();
     res.status(statusCode);

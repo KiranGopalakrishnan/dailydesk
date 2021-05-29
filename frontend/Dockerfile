@@ -7,5 +7,5 @@ RUN npm run build
 FROM mhart/alpine-node
 RUN npm install serve -g
 WORKDIR /app
-COPY --from=builder /app/static .
+COPY --from=builder /src/static .
 CMD serve -p 3000 -s .
