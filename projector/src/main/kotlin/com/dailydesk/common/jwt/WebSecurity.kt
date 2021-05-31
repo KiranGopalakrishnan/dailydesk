@@ -25,7 +25,6 @@ open class WebSecurity(val userAuthenticationService: UserAuthenticationService)
                 .anyRequest().authenticated()
                 .and()
 
-                .addFilter(JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(JWTAuthorizationFilter(authenticationManager()))
 
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -1,6 +1,6 @@
 import { DbTransformFunction, TransformFunction } from '../../utils/service-utils/Outcome';
 import { User, UserStatus } from './user-service';
-import { generateRefreshToken, hashPassword, signJWT, Tokens } from '../../utils/jwt';
+import { hashPassword } from '../../utils/jwt';
 
 export type UserWithoutPassword = Omit<User, 'password'>;
 

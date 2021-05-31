@@ -17,6 +17,41 @@ export const theme = createMuiTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      root: {
+        height: '56px',
+        borderRadius: '8px',
+        color: colors.MIDNIGHT_4,
+        outline: 'none !important',
+          "& .MuiOutlinedInput-notchedOutline": {
+            color: colors.MIDNIGHT_4,
+            border: `solid 1px ${colors.GREY_6}`,
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            border: `solid 2px ${colors.BLUE_1}`,
+            color: colors.MIDNIGHT_4,
+          },
+        "&:focus .MuiOutlinedInput-notchedOutline": {
+          border: `solid 2px ${colors.BLUE_1}`,
+          color: colors.MIDNIGHT_4,
+        },
+        '&:focus':{
+          outline: 'none'
+        },
+        '&:hover':{
+          outline: 'none'
+        },
+      },
+      input: {
+          '&:focus':{
+            outline: 'none'
+          },
+        "&::placeholder": {
+          color: "gray"
+        },
+        color: colors.MIDNIGHT_4
+      }
+    }
   },
   palette: {
     primary: {
@@ -37,7 +72,7 @@ export const theme = createMuiTheme({
     htmlFontSize: 16,
     fontFamily: '"Open Sans", sans-serif',
     allVariants: {
-      color: colors.MIDNIGHT_3,
+      color: colors.MIDNIGHT_4,
     },
     h1: {
       fontWeight: 500,
@@ -76,5 +111,8 @@ export const theme = createMuiTheme({
       fontWeight: 300,
       fontSize: '1rem',
     },
+    body1:{
+      fontWeight: 300,
+    }
   },
 });

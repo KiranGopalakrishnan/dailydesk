@@ -1,4 +1,4 @@
-const PROTO_PATH = __dirname + '/../../../protos/bifrost.proto';
+const PROTO_PATH = __dirname + '/../../../protobuf/src/main/proto/bifrost.proto';
 
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');

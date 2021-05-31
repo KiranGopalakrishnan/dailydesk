@@ -15,6 +15,7 @@ import { useForm, Controller } from 'react-hook-form';
 import validator from 'validator';
 import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 import { SignupData, SignUpForm } from '@views/sign-up/SignUpForm';
+import Image from 'next/image'
 
 const useStyles = makeStyles({
   container: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles({
     height: '80px',
   },
   form: {
-    border: `solid 2px ${colors.BLUE_3}`,
     width: '480px',
     borderRadius: '8px',
     padding: theme.spacing(4),
@@ -53,19 +53,16 @@ const SignUp: React.FC = () => {
   const { register, handleSubmit, control } = useForm<SignupData>();
 
   const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
-    console.error({ firstname, lastname, email, company, password });
     dispatch(addUser({ firstname, lastname, email, company, password }));
   };
 
   return (
     <Grid container justify="center" alignItems="center" className={styles.container}>
-      <Grid container justify="center">
-        <Grid container justify="center" className={styles.logoContainer}>
-          <Box className={styles.logo}>
-            <DailyDeskLogo />
-          </Box>
+      <Grid container justify="center" direction="row">
+        <Grid item container justify="flex-end" xs={5}>
+          <Image src={'/illustrations/signup.png'} width={"700px"} height={"100%"}/>
         </Grid>
-        <Grid container justify="center">
+        <Grid item container justify="center" xs={7}>
           <SignUpForm onSubmit={onAdd} />
         </Grid>
       </Grid>

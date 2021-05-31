@@ -16,8 +16,7 @@ import { get } from '../../api/Api';
 
 const useStyles = makeStyles({
   form: {
-    border: `solid 2px ${colors.BLUE_3}`,
-    width: '480px',
+    width: '640px',
     borderRadius: '8px',
     padding: theme.spacing(4),
     background: colors.WHITE,
@@ -99,6 +98,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
             <Controller
               name="firstname"
               control={control}
+              defaultValue={''}
               rules={{ required: true, maxLength: 20 }}
               render={({ field }) => (
                 <InputBox
@@ -115,6 +115,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
             <Controller
               name="lastname"
               control={control}
+              defaultValue={''}
               rules={{ required: true, maxLength: 20 }}
               render={({ field }) => (
                 <InputBox
@@ -132,6 +133,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
           <Controller
             name="email"
             control={control}
+            defaultValue={''}
             rules={{ required: true, maxLength: 20 }}
             render={({ field }) => (
               <InputBox
@@ -148,6 +150,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
           <Controller
             name="company"
             control={control}
+            defaultValue={''}
             rules={{ required: true, maxLength: 20 }}
             render={({ field }) => (
               <InputBox
@@ -164,6 +167,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
           <Controller
             name="password"
             control={control}
+            defaultValue={''}
             rules={{ required: true, maxLength: 20, minLength: 8 }}
             render={({ field }) => (
               <InputBox

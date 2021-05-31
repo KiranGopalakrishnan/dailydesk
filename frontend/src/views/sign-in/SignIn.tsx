@@ -12,23 +12,14 @@ import { SignInData, SignInForm } from '@views/sign-in/SignInForm';
 import { useRouter } from 'next/router';
 import { AuthenticationStatus } from '@store/user';
 import { routes } from '@config/routes';
+import Image from 'next/image'
 
 const useStyles = makeStyles({
   container: {
-    // background: `linear-gradient(to bottom left, ${colors.WHITE} 50%, ${colors.BLUE_1} 50%)`,
     background: colors.WHITE,
     height: '100%',
   },
-  logo: {
-    width: '200px',
-    height: '80px',
-  },
-  logoContainer: {
-    height: '80px',
-  },
   form: {
-    border: `solid 2px ${colors.BLUE_3}`,
-    width: '480px',
     borderRadius: '8px',
     padding: theme.spacing(4),
     background: colors.WHITE,
@@ -60,14 +51,14 @@ const SignIn: React.FC = () => {
 
   return (
     <Grid container justify="center" alignItems="center" className={styles.container}>
-      <Grid container justify="center">
-        <Grid container justify="center" className={styles.logoContainer}>
-          <Grid container item className={styles.logo} justify="center" alignItems="center">
-            <DailyDeskLogo />
-          </Grid>
+      <Grid container justify="center" direction={"row"} style={{ height: '100%'}}>
+        <Grid item container justify="center" xs={5}>
+          <Image src={'/illustrations/work-signin.svg'} width={"600px"} height={"100%"}/>
         </Grid>
-        <Grid container justify="center">
-          <SignInForm onSubmit={onSignIn} />
+        <Grid item container justify="center" alignItems="center" xs={7}>
+          <Grid container style={{width: '460px'}}>
+            <SignInForm onSubmit={onSignIn} />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

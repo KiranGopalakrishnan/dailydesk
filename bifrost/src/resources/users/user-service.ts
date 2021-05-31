@@ -1,5 +1,3 @@
-import { HttpException } from '../../utils/http/HttpException';
-import { NextFunction } from 'express';
 import { logger } from '../../logger';
 
 import {

@@ -1,9 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpException, HttpStatus } from '../../utils/http/HttpException';
-import { authenticateUser, createUser, getUser, logoutUser, User } from './user-service';
+import { authenticateUser, createUser, User } from './user-service';
 import {
-  userPostTransformer,
-  UserResponse,
   validateUserLoginPost,
   validateUserPost,
 } from './user-post-transformer';
@@ -11,16 +8,8 @@ import {
   badRequest,
   ExpressContext,
   internalServerError,
-  Outcome,
-  success,
 } from '../../utils/service-utils/Outcome';
-import { logger } from '../../logger';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import { signJWT, generateRefreshToken, verifyJWT, DecodedToken } from '../../utils/jwt';
-import { COOKIE_KEYS } from '../../utils/http/cookies';
-import { decodeHeader } from '../../utils/http/handle-jwt-auth';
-import { client } from '../../grpc/client';
 
 const express = require('express');
 const usersRoute = express.Router();

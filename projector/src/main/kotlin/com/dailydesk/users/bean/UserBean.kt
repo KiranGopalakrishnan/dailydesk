@@ -11,7 +11,7 @@ data class UserBean(
     companion object{
         fun from(user: User): UserBean {
             return UserBean(
-                    id = user.id?.value,
+                    id = user.id,
                     email = user.email,
                     firstname = user.firstname,
                     lastname = user.lastname

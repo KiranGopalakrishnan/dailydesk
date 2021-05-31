@@ -15,7 +15,6 @@ autoLoginRouter.get(
   jsonParser,
   async (req: Request, res: Response, throwable: NextFunction) => {
     const refresh_token = (req as any).token;
-    console.error({ refresh_token });
     try {
       const outcome = await refreshJwtToken(refresh_token);
       const context = new ExpressContext(res, throwable);
