@@ -2,8 +2,9 @@ import { User, UserStatus } from '../resources/users/user-service';
 import { ServerUnaryCall } from '@grpc/grpc-js';
 import { sendUnaryData } from '@grpc/grpc-js/src/server-call';
 import { verifyJWT } from '../utils/jwt';
+import { logger } from '../logger';
 
-const PROTO_PATH = __dirname + '/../../../protos/bifrost.proto';
+const PROTO_PATH = __dirname + '/../../../protobuf/src/main/proto/bifrost.proto';
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 // Suggested options for similarity to existing grpc.load behavior
@@ -22,13 +23,15 @@ const server = new grpc.Server();
 const initGRPC = async () => {
   server.addService(bifrostProto.Bifrost.service, {
     verify: (
-      call: ServerUnaryCall<{ token: string }, { user: User }>,
-      callback: sendUnaryData<{ user: User }>
+      call: ServerUnaryCall<{ token: string },  User>,
+      callback: sendUnaryData<User>
     ) => {
       try {
-        const { token } = call.request;
+        const token  =  call.request.token;
+        logger.info(`Bifrost gRPC verification request with token - ${token}`)
         const verifiedToken = verifyJWT<User>(token);
-        callback(null, { user: verifiedToken.payload });
+        logger.info(verifiedToken)
+        callback(null,  verifiedToken.payload);
       } catch (e) {
         callback(Error(e));
       }

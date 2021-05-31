@@ -28,7 +28,7 @@ export const WithAutoLogin: FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (authStatus !== AuthenticationStatus.LOGGED_IN) {
+    if (authStatus && authStatus !== AuthenticationStatus.LOGGED_IN) {
       router.push(routes.SIGN_IN.url);
     }
   }, [authStatus]);

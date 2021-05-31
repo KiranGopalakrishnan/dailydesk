@@ -9,6 +9,13 @@ plugins {
 	application
 }
 
+val kotlinVersion = "1.3.72"
+val coroutinesVersion = "1.3.7"
+val protobufPlugInVersion = "0.8.16"
+val protobufVersion = "3.12.2"
+val grpcVersion = "1.38.0"
+val grpcKotlinVersion = "1.1.0"
+
 group = "com.dailydesk.projector"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -24,6 +31,7 @@ dependencies {
 	implementation(project(":protobuf"))
 	implementation(project(":common-bifrost-client"))
 
+	implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-jersey")
 	implementation("org.springframework.security:spring-security-crypto")

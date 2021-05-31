@@ -13,8 +13,6 @@ import { InputBox, withField } from '@ui-kit/InputBox/InputBox';
 
 const useStyles = makeStyles({
   form: {
-    border: `solid 2px ${colors.BLUE_3}`,
-    width: '480px',
     borderRadius: '8px',
     padding: theme.spacing(4),
     background: colors.WHITE,

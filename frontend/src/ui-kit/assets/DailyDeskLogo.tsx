@@ -22,9 +22,6 @@ export const DailyDeskLogo: React.FC<Props> = ({ fontSize = '24px' }) => {
   return (
     <Box>
       <Grid container>
-        <Grid container item justify="center" alignItems="center" className={styles.logo}>
-          <Image src={'/logo-128.png'} height={32} width={32} />
-        </Grid>
         <Grid item>
           <Typography variant="subtitle2" style={{ color: colors.BLACK, fontSize }}>
             {'daily'}

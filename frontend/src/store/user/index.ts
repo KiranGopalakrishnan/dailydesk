@@ -10,14 +10,14 @@ export enum AuthenticationStatus {
 export interface UserReducer {
   item: User | null;
   list: User[];
-  authStatus: AuthenticationStatus;
+  authStatus: AuthenticationStatus | null;
   isLoading: boolean;
 }
 
 const initialState: UserReducer = {
   item: null,
   list: [],
-  authStatus: AuthenticationStatus.UNAUTHENTICATED,
+  authStatus: null,
   isLoading: false,
 };
 

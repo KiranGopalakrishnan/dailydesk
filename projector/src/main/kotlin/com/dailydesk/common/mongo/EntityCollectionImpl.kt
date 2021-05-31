@@ -4,9 +4,9 @@ import com.mongodb.MongoWriteException
 import com.mongodb.client.MongoDatabase
 import org.bson.conversions.Bson
 
-public class EntityCollectionImpl<T>(private val collectionName:String,private val db: MongoDatabase,private val mapper: DocumentMapper<T>) : EntityCollection<T> {
+class EntityCollectionImpl<T>(private val collectionName:String,private val db: MongoDatabase,private val mapper: DocumentMapper<T>) : EntityCollection<T> {
 
-    override fun save(domain: T):Unit {
+    override fun save(domain: T) {
         try {
             this.db.getCollection(this.collectionName).insertOne(mapper.toDocument(domain))
         }catch (exception:MongoWriteException){
@@ -23,6 +23,5 @@ public class EntityCollectionImpl<T>(private val collectionName:String,private v
         var result = this.db.getCollection(this.collectionName).find();
         return result?.let { it -> it.toList().map { document -> mapper.fromDocument(document) } }
     }
-
 
 }

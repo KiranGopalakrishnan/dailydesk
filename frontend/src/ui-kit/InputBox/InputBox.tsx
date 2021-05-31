@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, TextField, TextFieldProps } from '@material-ui/core';
+import {Box, FormControl, FormGroup, InputLabel, makeStyles, TextField, TextFieldProps } from '@material-ui/core';
 import { ControllerRenderProps } from 'react-hook-form';
 
 export const withField = <T, P>({
@@ -7,13 +7,23 @@ export const withField = <T, P>({
   ...rest
 }: ControllerRenderProps<T>): Omit<ControllerRenderProps, 'ref'> => rest;
 
-const InputBox: React.FC<TextFieldProps> = (props: TextFieldProps) => (
-  <TextField
-    style={{ width: '100%' }}
-    InputLabelProps={{ shrink: true }}
-    variant="outlined"
-    {...props}
-  />
+const InputBox: React.FC<TextFieldProps> = ({id, label, ...rest}: TextFieldProps) => (
+    <FormGroup style={{width: '100%'}}>
+      <InputLabel htmlFor={id}>
+        <Box mb={1}>
+          {label}
+        </Box>
+        <TextField
+            id={id}
+            style={{ width: '100%' }}
+            InputLabelProps={{ shrink: true }}
+            variant="outlined"
+            {...rest}
+        />
+      </InputLabel>
+
+    </FormGroup>
+
 );
 
 export { InputBox };

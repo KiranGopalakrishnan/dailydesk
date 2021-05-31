@@ -4,6 +4,7 @@ import { ExpressContext, internalServerError } from '../../utils/service-utils/O
 import { COOKIE_KEYS } from '../../utils/http/cookies';
 import bodyParser from 'body-parser';
 import { DecodedToken } from '../../utils/jwt';
+import { client } from '../../grpc/client';
 
 const jsonParser = bodyParser.json();
 const currentRoute = express.Router();
