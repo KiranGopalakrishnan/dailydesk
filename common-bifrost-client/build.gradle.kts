@@ -28,7 +28,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 sourceSets {
     main {
         java {
-            setSrcDirs(listOf("lib/src/"))
+            setSrcDirs(listOf("src/**"))
         }
     }
 }

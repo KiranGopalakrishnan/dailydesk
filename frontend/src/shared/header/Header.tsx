@@ -4,9 +4,13 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { theme } from '@ui-kit/Theme';
 import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 import { colors } from '@ui-kit/Theme/colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@store/user/user-thunk';
 import { useRouter } from 'next/router';
+import { RootState } from '@store';
+import { AuthenticationStatus } from '@store/user';
+import { RenderConditionally } from '@shared/utils/RenderConditionally';
+import { isPublic } from '@config/routes';
 
 const useStyles = makeStyles({
   header: {
@@ -25,9 +29,17 @@ const useStyles = makeStyles({
 
 export const Header: FC = () => {
   const styles = useStyles();
+  const router = useRouter();
+
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
+
+  const path = router.pathname;
+  const isPublicRoute = isPublic(path);
+
+  const isLoggedIn = authStatus === AuthenticationStatus.LOGGED_IN;
+  const shouldShowLoggedInOptions = isPublicRoute && isLoggedIn;
 
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const onClick = () => {
     dispatch(logout());
@@ -40,13 +52,15 @@ export const Header: FC = () => {
         <Grid container item xs={4} justify="flex-start">
           <DailyDeskLogo />
         </Grid>
-        <Grid container item xs={8} justify="flex-end" alignItems="center">
-          <Grid item>
-            <Typography className={styles.logout} onClick={onClick}>
-              {'Logout'}
-            </Typography>
+        <RenderConditionally basedOn={shouldShowLoggedInOptions}>
+          <Grid container item xs={8} justify="flex-end" alignItems="center">
+            <Grid item>
+              <Typography className={styles.logout} onClick={onClick}>
+                {'Logout'}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
+        </RenderConditionally>
       </Grid>
     </Grid>
   );
