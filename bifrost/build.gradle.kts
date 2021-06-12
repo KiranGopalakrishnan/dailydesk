@@ -23,7 +23,7 @@ node {
     nodeModulesDir = file("${project.projectDir}")
 }
 
-tasks.register<com.moowork.gradle.node.npm.NpmTask>("compileTS"){
-    dependsOn("build")
-    setArgs(listOf("build"))
-}
+//tasks.register<com.moowork.gradle.node.npm.NpmTask>("compileTS"){
+//    dependsOn("build")
+//    setArgs(listOf("build"))
+//}

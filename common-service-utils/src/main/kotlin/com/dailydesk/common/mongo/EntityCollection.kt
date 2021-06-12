@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component
 @Component
 interface EntityCollection<T> {
 
-    public fun save(domain: T): Unit
+    fun save(domain: T)
 
-    public fun findOne(filter: Bson):T?
+    fun findOne(filter: Bson):T?
 
-    public fun findAll(): List<T>?
+    fun findAll(): List<T>?
+
+    fun findAll(filter: Bson): List<T>?
 
 }

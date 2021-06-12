@@ -66,7 +66,6 @@ export const getUserById = async (id: User['id']): Promise<User | null> => {
 export const getUser = async (id: User['id']): Promise<Outcome> => {
   try {
     const user = await getUserById(id);
-    console.error({ user });
     if (!user) return new Outcome(notFound('No user found with the provided id'));
     return new Outcome(success<UserResponse>(userPostTransformer().to(user)));
   } catch (e) {

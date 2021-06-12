@@ -23,9 +23,20 @@ class ProjectsResource {
     fun getProjects(): List<ProjectBean> {
         val auth = SecurityContextHolder.getContext().authentication
         val user = User.transform(auth.principal)
-        println("USERRRRRR")
-        println(user.firstname +" "+ user.lastname)
-        return projectService.getAllProjects().IterateOrThrow { ProjectBean.from(this) };
+        return projectService.getAllProjects(user).IterateOrThrow { ProjectBean.from(this) };
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    fun getProjectById(
+        @PathParam("id") projectId:String,
+    ): ProjectBean {
+        val auth = SecurityContextHolder.getContext().authentication
+        val user = User.transform(auth.principal)
+
+        return projectService.getProjectById(projectId).transformOrThrow { ProjectBean.from(this) };
     }
 
     @POST
@@ -33,7 +44,9 @@ class ProjectsResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/")
     fun createProject(projectPostBean: ProjectPostBean): ProjectBean {
-        return projectService.create(
+        val auth = SecurityContextHolder.getContext().authentication
+        val user = User.transform(auth.principal)
+        return projectService.create(user,
                 projectPostBean.toDomain()
         ).transformOrThrow { ProjectBean.from(this) }
 

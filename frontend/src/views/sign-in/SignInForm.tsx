@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
-import { Box, Button, Grid, makeStyles, Paper, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 
 import { RootState } from '@store';
 import { addUser } from '@store/user/user-thunk';
 import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
-import { InputBox, withField } from '@ui-kit/InputBox/InputBox';
+import { TextField, withField } from '@ui-kit/Input/TextField';
 
 const useStyles = makeStyles({
   form: {
@@ -81,7 +81,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
             defaultValue={''}
             rules={{ required: true, maxLength: 20 }}
             render={({ field }) => (
-              <InputBox
+              <TextField
                 error={!!errors.email}
                 helperText={getErrorText(!!errors.email, 'email')}
                 placeholder="luke@resistance.com"
@@ -98,7 +98,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
             defaultValue={''}
             rules={{ required: true, maxLength: 20, minLength: 8 }}
             render={({ field }) => (
-              <InputBox
+              <TextField
                 error={!!errors.password}
                 helperText={getErrorText(!!errors.password, 'password')}
                 type="password"

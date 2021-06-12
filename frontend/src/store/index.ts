@@ -1,8 +1,10 @@
 import { Action, AsyncThunkAction, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from '@store/user';
+import { projectReducer } from '@store/project';
 
 const reducer = {
   user: userReducer,
+  project: projectReducer,
 };
 
 export const store = configureStore({

@@ -6,12 +6,16 @@ export const theme = createMuiTheme({
     MuiButton: {
       text: {
         textTransform: 'none',
-        height: '48px',
+        height: '40px',
+      },
+      contained: {
+        textTransform: 'none',
+        height: '40px',
       },
       outlined: {
         border: `solid 1px ${colors.BLUE_1}`,
         textTransform: 'none',
-        height: '48px',
+        height: '40px',
         '&:hover': {
           backgroundColor: colors.BLUE_1,
         },
@@ -23,41 +27,42 @@ export const theme = createMuiTheme({
         borderRadius: '8px',
         color: colors.MIDNIGHT_4,
         outline: 'none !important',
-          "& .MuiOutlinedInput-notchedOutline": {
-            color: colors.MIDNIGHT_4,
-            border: `solid 1px ${colors.GREY_6}`,
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            border: `solid 2px ${colors.BLUE_1}`,
-            color: colors.MIDNIGHT_4,
-          },
-        "&:focus .MuiOutlinedInput-notchedOutline": {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: colors.GREY_4,
+          color: colors.MIDNIGHT_4,
+          border: `solid 1px ${colors.GREY_6}`,
+        },
+        '&:hover .MuiOutlinedInput-notchedOutline': {
           border: `solid 2px ${colors.BLUE_1}`,
           color: colors.MIDNIGHT_4,
         },
-        '&:focus':{
-          outline: 'none'
+        '&:focus .MuiOutlinedInput-notchedOutline': {
+          border: `solid 2px ${colors.BLUE_1}`,
+          color: colors.MIDNIGHT_4,
         },
-        '&:hover':{
-          outline: 'none'
+        '&:focus': {
+          outline: 'none',
+        },
+        '&:hover': {
+          outline: 'none',
         },
       },
       input: {
-          '&:focus':{
-            outline: 'none'
-          },
-        "&::placeholder": {
-          color: "gray"
+        '&:focus': {
+          outline: 'none',
         },
-        color: colors.MIDNIGHT_4
-      }
-    }
+        '&::placeholder': {
+          color: 'gray',
+        },
+        color: colors.MIDNIGHT_4,
+      },
+    },
   },
   palette: {
     primary: {
-      light: colors.GREY_5,
+      light: colors.GREY_2,
       main: colors.BLUE_1,
-      dark: colors.BLUE_1,
+      dark: colors.ALMOST_DARK_2,
       contrastText: colors.WHITE,
     },
     secondary: {
@@ -111,8 +116,16 @@ export const theme = createMuiTheme({
       fontWeight: 300,
       fontSize: '1rem',
     },
-    body1:{
+    body1: {
       fontWeight: 300,
-    }
+    },
+    body2: {
+      fontWeight: 600,
+    },
+    caption: {
+      fontWeight: 500,
+    },
   },
 });
+
+export { colors };

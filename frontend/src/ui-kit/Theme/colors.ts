@@ -1,5 +1,6 @@
 export const colors = {
   ALMOST_DARK_1: '#000225',
+  ALMOST_DARK_2: '#0e1218',
 
   //Midnight blue
   MIDNIGHT_1: '#0a0913',
@@ -11,7 +12,7 @@ export const colors = {
   VIOLET_1: '#2a0c55',
 
   //Blue
-  BLUE_1: '#313aee',
+  BLUE_1: '#2e4acc',
   BLUE_2: '#0151fe',
   BLUE_3: '#3474fe',
   BLUE_4: '#5E81F4',
@@ -28,6 +29,9 @@ export const colors = {
   GREY_6: '#F0F0F0',
   GREY_7: '#F5F5F5',
   GREY_8: '#F8F8F8',
+  GREY_9: '#FCFCFC',
+
+  GREY_BG: '#f4f5f7',
 
   //Dark green
   DARK_GREEN_1: '#212F45',

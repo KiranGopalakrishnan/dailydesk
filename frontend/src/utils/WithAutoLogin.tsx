@@ -11,7 +11,7 @@ const TOKEN_EXPIRY_IN_MS = 13 * 60 * 1000;
 export const WithAutoLogin: FC = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const path = router.pathname;
+  const path = router.route;
   const isPublicRoute = isPublic(path);
   const authStatus = useSelector((state: RootState) => state.user.authStatus);
 
@@ -28,7 +28,9 @@ export const WithAutoLogin: FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (authStatus && authStatus !== AuthenticationStatus.LOGGED_IN) {
+    console.error({ path, authStatus, isPublicRoute });
+
+    if (authStatus && !isPublicRoute && authStatus !== AuthenticationStatus.LOGGED_IN) {
       router.push(routes.SIGN_IN.url);
     }
   }, [authStatus]);

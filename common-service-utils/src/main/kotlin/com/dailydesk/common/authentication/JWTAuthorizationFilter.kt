@@ -17,25 +17,18 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-
-enum class Cookie {
-    JWT_TOKEN,
-    REFRESH_TOKEN
-}
-
 class JWTAuthorizationFilter(private var authManager: AuthenticationManager): BasicAuthenticationFilter(authManager) {
     @Throws(IOException::class, ServletException::class)
     override fun doFilterInternal(request: HttpServletRequest,
                                   response: HttpServletResponse,
                                   chain: FilterChain
     ) {
+        val cookie = WebUtils.getCookie(request, SecurityConstants.JWT_TOKEN_COOKIE)?.value
         val header = request.getHeader(HEADER_STRING)
-
-        if (header == null || !header.startsWith(TOKEN_PREFIX)) {
+        if (cookie == null && header == null ) {
             chain.doFilter(request, response)
             return
         }
-
         val usr = getAuthentication(request)
         val authentication = UsernamePasswordAuthenticationToken(
             usr, null, null
@@ -48,9 +41,8 @@ class JWTAuthorizationFilter(private var authManager: AuthenticationManager): Ba
 
     fun getAuthentication(request: HttpServletRequest):  BifrostOuterClass.User? {
         val headerToken = request.getHeader(HEADER_STRING)?.replace("Bearer ","")
-        val tokenFromCookie = WebUtils.getCookie(request, Cookie.JWT_TOKEN.toString())?.value
+        val tokenFromCookie = WebUtils.getCookie(request, SecurityConstants.JWT_TOKEN_COOKIE)?.value
         val token = tokenFromCookie ?: headerToken
-
         if (token != null) {
             val verify = GlobalScope.async {
                 Bifrost().verify(token)

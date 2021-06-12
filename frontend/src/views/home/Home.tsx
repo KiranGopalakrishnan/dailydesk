@@ -13,11 +13,7 @@ export const Home: FC = () => {
   const styles = useStyles();
   return (
     <Grid container style={{ height: '100%' }}>
-      <Grid container justify="center">
-        <Grid item>
-          <Projects />
-        </Grid>
-      </Grid>
+      <Projects />
     </Grid>
   );
 };
