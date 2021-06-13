@@ -12,7 +12,7 @@ import { SignInData, SignInForm } from '@views/sign-in/SignInForm';
 import { useRouter } from 'next/router';
 import { AuthenticationStatus } from '@store/user';
 import { routes } from '@config/routes';
-import Image from 'next/image'
+import Image from 'next/image';
 
 const useStyles = makeStyles({
   container: {
@@ -51,12 +51,12 @@ const SignIn: React.FC = () => {
 
   return (
     <Grid container justify="center" alignItems="center" className={styles.container}>
-      <Grid container justify="center" direction={"row"} style={{ height: '100%'}}>
+      <Grid container justify="center" direction={'row'} style={{ height: '100%' }}>
         <Grid item container justify="center" xs={5}>
-          <Image src={'/illustrations/work-signin.svg'} width={"600px"} height={"100%"}/>
+          <Image src={'/illustrations/work-signin.svg'} width={'600px'} height={'100%'} />
         </Grid>
         <Grid item container justify="center" alignItems="center" xs={7}>
-          <Grid container style={{width: '460px'}}>
+          <Grid container style={{ width: '460px' }}>
             <SignInForm onSubmit={onSignIn} />
           </Grid>
         </Grid>

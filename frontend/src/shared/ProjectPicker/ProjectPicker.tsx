@@ -1,44 +1,70 @@
-import React, { FC, useState } from 'react';
-import { Box, Collapse, Grid, makeStyles, Slide, Typography } from '@material-ui/core';
-import { getRandomThemeColor } from '@shared/utils/ColorUtils';
-import { RiArrowDownSLine } from 'react-icons/ri';
-import { RiArrowUpSLine } from 'react-icons/ri';
+import React, { FC, useEffect, useState } from 'react';
+import { Grid, makeStyles, Slide, Typography } from '@material-ui/core';
 import { theme } from '@ui-kit/Theme';
 import { Selected } from '@shared/ProjectPicker/Selected';
+import { ListItem } from '@shared/ProjectPicker/ListItem';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store';
 import { RenderConditionally } from '@shared/utils/RenderConditionally';
+import { LoadingState } from '@shared/Loading/LoadingState';
+import { Project } from '@store/project';
 
 const useStyles = makeStyles({
   container: {
     overflow: 'visible',
   },
-  list: {
-    position: 'absolute',
-    top: '-8px',
-    left: 0,
+  listContainer: {
+    position: 'relative',
     background: theme.palette.common.white,
-    height: '300px',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
+    padding: theme.spacing(1, 0),
+    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;',
     borderRadius: '16px',
+    top: '8px',
+  },
+  list: {
+    height: '258px',
+    overflow: 'scroll',
+    background: theme.palette.common.white,
   },
 });
 
 export const ProjectPicker: FC = () => {
+  const { isLoading, list: projects } = useSelector((state: RootState) => state.project);
+
+  const [selected, setSelected] = useState(projects?.[0]);
   const [open, setOpen] = useState(false);
-  const styles = useStyles({ name: 'One' });
+  const styles = useStyles();
+
+  const handleOnSelect = (project: Project) => {
+    setSelected(project);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    setSelected(projects?.[0]);
+  }, [projects]);
+  if (isLoading) return <LoadingState />;
+
   return (
     <Grid container className={styles.container}>
       <Grid container>
-        <Selected onClick={() => setOpen(!open)} />
+        <RenderConditionally basedOn={!!selected}>
+          <Selected onClick={() => setOpen(!open)} selected={selected} />
+        </RenderConditionally>
       </Grid>
-      <Grid container style={{ position: 'relative' }}>
-        <Slide in={open}>
+      <Slide in={open}>
+        <Grid container className={styles.listContainer}>
           <Grid container className={styles.list}>
-            <Grid container>
-              <Typography>{'Item 1'}</Typography>
-            </Grid>
+            {projects.map((project) => {
+              return (
+                <Grid container key={project.id}>
+                  <ListItem onClick={() => handleOnSelect(project)} name={project.name} />
+                </Grid>
+              );
+            })}
           </Grid>
-        </Slide>
-      </Grid>
+        </Grid>
+      </Slide>
     </Grid>
   );
 };

@@ -6,8 +6,6 @@ import { colors } from '@ui-kit/Theme/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store';
 import { fetchProjects } from '@store/project/projects-thunk';
-import { RenderConditionally } from '@shared/utils/RenderConditionally';
-import { CreateProjectModal } from '@views/home/projects/CreateProjectModal';
 import { Project } from '@store/project';
 import { routes } from '@config/routes';
 import { WithSidebar } from '@shared/Sidebar/WithSidebar';
@@ -15,11 +13,12 @@ import { WithSidebar } from '@shared/Sidebar/WithSidebar';
 const useStyles = makeStyles({
   container: {
     padding: theme.spacing(0, 8),
+    backgroundColor: colors.GREY_6,
   },
   title: {
     padding: theme.spacing(4, 0),
     height: '100px',
-    borderBottom: `solid 1px ${colors.GREY_5}`,
+    borderBottom: `solid 1px ${colors.GREY_4}`,
   },
   projectsContainer: {
     padding: theme.spacing(2, 0),
@@ -49,11 +48,6 @@ export const Projects: FC = () => {
             <Box>
               <Typography variant={'h4'}>{'Projects'}</Typography>
             </Box>
-            <Grid container item xs={3} justify="flex-end" alignItems="center">
-              <Button variant={'contained'} color="primary" onClick={() => setIsOpen(true)}>
-                {'Create +'}
-              </Button>
-            </Grid>
           </Grid>
           <Box>
             <Grid container className={styles.projectsContainer}>
@@ -66,10 +60,6 @@ export const Projects: FC = () => {
               ))}
             </Grid>
           </Box>
-
-          <RenderConditionally basedOn={isOpen}>
-            <CreateProjectModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-          </RenderConditionally>
         </Grid>
       </Grid>
     </WithSidebar>

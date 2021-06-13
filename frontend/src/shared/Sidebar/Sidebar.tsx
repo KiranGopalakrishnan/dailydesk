@@ -18,11 +18,12 @@ interface Props {
 const useStyles = makeStyles({
   container: {
     height: '100%',
-    backgroundColor: colors.GREY_BG,
-    borderRight: `solid 1px ${colors.GREY_7}`,
+    backgroundColor: colors.WHITE,
+    borderRight: `solid 1px ${colors.GREY_5}`,
+    boxSizing: 'border-box',
+    boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
     // boxShadow:
     //   'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px',
-    padding: theme.spacing(5, 0),
   },
   menuItem: {
     height: '48px',
@@ -45,15 +46,20 @@ const useStyles = makeStyles({
   middleSection: {
     height: '70%',
   },
+  mainSectionContainer: {
+    height: '50%',
+    backgroundColor: colors.GREY_BG,
+    padding: theme.spacing(4, 2),
+  },
   mainSection: {
-    height: '20%',
-    padding: theme.spacing(2),
+    height: '30%',
     width: '100%',
   },
   bottomSection: {
     height: '10%',
   },
-  subMenu: {
+  secondSection: {
+    height: '30%',
     marginTop: theme.spacing(3),
   },
   icon: {
@@ -94,44 +100,50 @@ export const Sidebar: FC<Props> = ({ collapsed, onCollapse, onCreateProject }) =
   const styles = useStyles();
   return (
     <Grid container className={styles.container} direction={'column'}>
-      <Grid item container className={styles.mainSection}>
-        <Grid container>
-          <ProjectPicker />
+      <Grid item container className={styles.mainSectionContainer}>
+        <Grid item container className={styles.mainSection}>
+          <Grid container>
+            <ProjectPicker />
+          </Grid>
         </Grid>
-        <Grid container></Grid>
+        <Grid
+          container
+          className={styles.middleSection}
+          direction={'column'}
+          justify={'flex-start'}
+        >
+          <Grid container>
+            <MenuItem text={'Dashboard'}>
+              <BiBarChartSquare size={24} color={colors.GREY_3} />
+            </MenuItem>
+          </Grid>
+          <Grid container>
+            <MenuItem text={'Boards'}>
+              <GiCheckMark size={24} color={colors.GREY_3} />
+            </MenuItem>
+          </Grid>
+          <Grid container>
+            <MenuItem text={'Reports'}>
+              <RiLineChartLine size={24} color={colors.GREY_3} />
+            </MenuItem>
+          </Grid>
+          <Grid container>
+            <MenuItem text={'Settings'}>
+              <AiTwotoneSetting size={24} color={colors.GREY_3} />
+            </MenuItem>
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid container className={styles.middleSection} direction={'column'} justify={'flex-start'}>
+      <Grid container direction={'column'} className={styles.secondSection}>
         <Grid container>
-          <MenuItem text={'Dashboard'}>
-            <BiBarChartSquare size={24} color={colors.GREY_3} />
+          <MenuItem text={'My tasks'} color={theme.palette.primary.main}>
+            <IoMdArrowDropright size={24} color={theme.palette.primary.main} />
           </MenuItem>
         </Grid>
         <Grid container>
-          <MenuItem text={'Boards'}>
-            <GiCheckMark size={24} color={colors.GREY_3} />
+          <MenuItem text={'My meetings'} color={theme.palette.primary.main}>
+            <IoMdArrowDropright size={24} color={theme.palette.primary.main} />
           </MenuItem>
-        </Grid>
-        <Grid container>
-          <MenuItem text={'Reports'}>
-            <RiLineChartLine size={24} color={colors.GREY_3} />
-          </MenuItem>
-        </Grid>
-        <Grid container>
-          <MenuItem text={'Settings'}>
-            <AiTwotoneSetting size={24} color={colors.GREY_3} />
-          </MenuItem>
-        </Grid>
-        <Grid container direction={'column'} className={styles.subMenu}>
-          <Grid container>
-            <MenuItem text={'My tasks'} color={theme.palette.primary.main}>
-              <IoMdArrowDropright size={24} color={theme.palette.primary.main} />
-            </MenuItem>
-          </Grid>
-          <Grid container>
-            <MenuItem text={'My meetings'} color={theme.palette.primary.main}>
-              <IoMdArrowDropright size={24} color={theme.palette.primary.main} />
-            </MenuItem>
-          </Grid>
         </Grid>
       </Grid>
       <Grid container className={styles.bottomSection} justify={'center'} alignItems={'flex-end'}>

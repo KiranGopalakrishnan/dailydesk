@@ -4,6 +4,8 @@ import { getRandomThemeColor } from '@shared/utils/ColorUtils';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import { theme } from '@ui-kit/Theme';
+import { ListItem } from '@shared/ProjectPicker/ListItem';
+import { Project } from '@store/project';
 
 const useStyles = makeStyles({
   container: {
@@ -11,7 +13,7 @@ const useStyles = makeStyles({
     background: theme.palette.common.white,
     boxShadow: 'rgba(17, 12, 46, 0.15) 0px 48px 100px 0px',
     borderRadius: '16px',
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     border: `solid 2px ${theme.palette.common.white}`,
     cursor: 'pointer',
     '&:hover': {
@@ -30,28 +32,16 @@ const useStyles = makeStyles({
 });
 
 interface Props {
+  selected: Project;
   onClick: () => void;
 }
 
-export const Selected: FC<Props> = ({ onClick }) => {
+export const Selected: FC<Props> = ({ onClick, selected }) => {
   const styles = useStyles({ name: 'One' });
   return (
     <Grid container className={styles.container} onClick={onClick}>
-      <Grid container item xs={3} justify={'center'} alignItems={'center'}>
-        <Grid
-          container
-          item
-          justify={'center'}
-          alignItems={'center'}
-          className={styles.projectIcon}
-        >
-          <Typography style={{ color: theme.palette.common.white }}>{'NM'}</Typography>
-        </Grid>
-      </Grid>
-      <Grid container item xs={8} alignItems={'center'} justify={'flex-start'}>
-        <Box pl={1}>
-          <Typography>{'Project name'}</Typography>
-        </Box>
+      <Grid container item xs={11}>
+        <ListItem onClick={onClick} name={selected?.name} />
       </Grid>
       <Grid container item xs={1} alignItems={'center'} justify={'center'}>
         <Box height={'32px'}>
