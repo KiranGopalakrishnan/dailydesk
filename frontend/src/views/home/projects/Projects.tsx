@@ -52,7 +52,7 @@ export const Projects: FC = () => {
           <Box>
             <Grid container className={styles.projectsContainer}>
               {projects.map((project) => (
-                <Box mr={4} key={project.id}>
+                <Box mr={4} mt={4} key={project.id}>
                   <Link href={getProjectLink(project.id)}>
                     <ProjectItem key={project.id} project={project} />
                   </Link>

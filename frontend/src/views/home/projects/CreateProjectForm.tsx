@@ -11,7 +11,7 @@ import { TextField, withField } from '@ui-kit/Input/TextField';
 const useStyles = makeStyles({
   form: {
     borderRadius: '8px',
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
     background: colors.WHITE,
   },
   item: {

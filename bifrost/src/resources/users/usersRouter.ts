@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { authenticateUser, createUser, User } from './user-service';
+import { authenticateUser, createUser, User, UserPostRequest } from './user-service';
 import {
   validateUserLoginPost,
   validateUserPost,
@@ -22,7 +22,7 @@ interface TokenResponse {
 }
 
 usersRoute.post('/', jsonParser, async (req: Request, res: Response, throwable: NextFunction) => {
-  const userPost = req.body as User;
+  const userPost = req.body as UserPostRequest;
   const isPostValid = validateUserPost(userPost);
   if (!isPostValid) throwable(badRequest('Invalid arguments').getResponse());
   try {

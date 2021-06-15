@@ -1,4 +1,4 @@
-import { User, UserStatus } from '../resources/users/user-service';
+import { User, RecordStatus } from '../resources/users/user-service';
 import { ServerUnaryCall } from '@grpc/grpc-js';
 import { sendUnaryData } from '@grpc/grpc-js/src/server-call';
 import { verifyJWT } from '../utils/jwt';

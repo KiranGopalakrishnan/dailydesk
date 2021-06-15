@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Box, Grid, makeStyles, Modal as MUIModal } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-import { theme } from '@ui-kit/Theme';
+import { colors, theme } from '@ui-kit/Theme';
 
 const useStyles = makeStyles({
   container: {
@@ -33,7 +33,7 @@ export const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
       <Grid container justify="center" alignItems="center" style={{ height: '100%' }}>
         <Grid container className={styles.container}>
           <Box className={styles.closeIcon} onClick={onClose}>
-            <CloseIcon />
+            <CloseIcon style={{ color: colors.BLUE_1 }} />
           </Box>
           {children}
         </Grid>

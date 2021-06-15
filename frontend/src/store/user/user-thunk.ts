@@ -8,7 +8,7 @@ import {
   setCurrentUser,
   setLoading,
 } from '@store/user';
-import { User } from '@services/Users';
+import { User, UserPost } from '@services/Users';
 
 const authenticate = (email: string, password: string) =>
   post<{ user: User }>(bifrostUrl('users/login'), { email, password });
@@ -19,7 +19,7 @@ const fetchCurrentUser = () => get<{ user: User }>(bifrostUrl('current/me'));
 
 const logoutCurrentUser = () => get<{ user: User }>(bifrostUrl('current/logout'));
 
-const add = (user: User) => {
+const add = (user: UserPost) => {
   return post<{ user: User }>(bifrostUrl('users'), user);
 };
 
@@ -76,7 +76,7 @@ export const logout = (): AppThunk => async (dispatch: AppDispatch) => {
   }
 };
 
-export const addUser = (userData: User): AppThunk => async (dispatch: AppDispatch) => {
+export const addUser = (userData: UserPost): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading(true));
     const { user } = await add(userData);

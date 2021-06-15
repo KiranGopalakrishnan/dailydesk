@@ -1,7 +1,8 @@
 import { UserResponse } from '../../resources/users/user-post-transformer';
 import path from 'path';
-import { User } from '../../resources/users/user-service';
+import { JWTPayload, User } from '../../resources/users/user-service';
 import { getExistingRefreshToken } from '../../resources/tokens/token-service';
+import { Company } from '../../resources/companies/company-service';
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -40,7 +41,7 @@ const saltRounds = 10;
 
 const salt = bcrypt.genSaltSync(saltRounds);
 
-export const signJWT = (payload: Partial<User>, expiresIn: string = '15m'): string => {
+export const signJWT = (payload: JWTPayload, expiresIn: string = '15m'): string => {
   const signOptions = {
     issuer,
     subject,
@@ -66,8 +67,8 @@ export const comparePassword = (passwordToCompare: string, hashedPassword: strin
   return bcrypt.compareSync(passwordToCompare, hashedPassword);
 };
 
-export const generateTokens = async (user: Partial<User>): Promise<Tokens> => {
-  const { id, firstname, lastname, company, email, status } = user;
+export const generateTokens = async (user: User, company: Company): Promise<Tokens> => {
+  const { id, firstname, lastname, companyId, email, status } = user;
   const token = signJWT({ id, firstname, lastname, company, email, status });
   const refresh_token = generateRefreshToken({ id });
   return { token, refresh_token };

@@ -1,12 +1,13 @@
 package com.dailydesk.common.authentication
 
 import BifrostOuterClass
+import com.dailydesk.common.id.ShortId
 
 data class User(
-    val id: String,
+    val id: ShortId,
     val firstname: String,
     val lastname: String,
-    val company: String,
+    val company: Company,
     val email: String,
     val status: String,
 ){
@@ -15,10 +16,10 @@ data class User(
         fun transform(user: Any):User {
             val userObj = user as BifrostOuterClass.User
             return User(
-                id = userObj.id,
+                id = ShortId(userObj.id),
                 firstname = userObj.firstname,
                 lastname = userObj.lastname,
-                company = userObj.company,
+                company = Company.transform(userObj.company),
                 email = userObj.email,
                 status = userObj.status
             )

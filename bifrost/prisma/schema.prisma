@@ -10,14 +10,24 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Companies {
+  id      String  @id
+  name    String
+  domain  String  @unique
+  website String  @unique
+  status  String
+  users   Users[]
+}
+
 model Users {
   id           String         @id
   email        String         @unique
   firstname    String
   lastname     String
-  company      String
+  companyId    String
   password     String         @unique
   status       String
+  companies    Companies      @relation(fields: [companyId], references: [id])
   AccessTokens AccessTokens[]
 }
 

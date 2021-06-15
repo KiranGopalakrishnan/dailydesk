@@ -10,9 +10,6 @@ import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
 import { TextField, withField } from '@ui-kit/Input/TextField';
-import { User } from '@services/Users';
-import { getProjects } from '@store/project/projects-thunk';
-import { get } from '../../api/Api';
 
 const useStyles = makeStyles({
   form: {
@@ -31,6 +28,8 @@ export interface SignupData {
   lastname: string;
   email: string;
   company: string;
+  website: string;
+  domain: string;
   password: string;
 }
 
@@ -64,12 +63,22 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
     control,
   } = useForm<SignupData>();
 
-  const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
+  const onAdd = ({
+    firstname,
+    lastname,
+    email,
+    company,
+    website,
+    domain,
+    password,
+  }: SignupData) => {
     onSubmit({
       firstname,
       lastname,
       email,
       company,
+      website,
+      domain,
       password,
     });
   };
@@ -146,23 +155,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
             )}
           />
         </Grid>
-        <Grid container className={styles.item}>
-          <Controller
-            name="company"
-            control={control}
-            defaultValue={''}
-            rules={{ required: true, maxLength: 20 }}
-            render={({ field }) => (
-              <TextField
-                error={!!errors.company}
-                helperText={getErrorText(!!errors.company, 'company')}
-                placeholder="The Resistance"
-                label="Company"
-                {...withField(field)}
-              />
-            )}
-          />
-        </Grid>
+
         <Grid container className={styles.item}>
           <Controller
             name="password"
@@ -181,7 +174,60 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
             )}
           />
         </Grid>
+        <Grid container spacing={3} className={styles.item}>
+          <Grid item xs={6}>
+            <Controller
+              name="company"
+              control={control}
+              defaultValue={''}
+              rules={{ required: true, maxLength: 20 }}
+              render={({ field }) => (
+                <TextField
+                  error={!!errors.company}
+                  helperText={getErrorText(!!errors.company, 'company')}
+                  placeholder="The Resistance"
+                  label="Company"
+                  {...withField(field)}
+                />
+              )}
+            />
+          </Grid>
 
+          <Grid item xs={6}>
+            <Controller
+              name="domain"
+              control={control}
+              defaultValue={''}
+              rules={{ required: true, maxLength: 16 }}
+              render={({ field }) => (
+                <TextField
+                  error={!!errors.company}
+                  helperText={getErrorText(!!errors.company, 'company')}
+                  placeholder="starwars"
+                  label="Account Name"
+                  {...withField(field)}
+                />
+              )}
+            />
+          </Grid>
+        </Grid>
+        <Grid container className={styles.item}>
+          <Controller
+            name="website"
+            control={control}
+            defaultValue={''}
+            rules={{ required: true, maxLength: 16 }}
+            render={({ field }) => (
+              <TextField
+                error={!!errors.company}
+                helperText={getErrorText(!!errors.company, 'company')}
+                placeholder="resistance.com"
+                label="Website"
+                {...withField(field)}
+              />
+            )}
+          />
+        </Grid>
         <Grid container spacing={3} className={styles.item}>
           <Grid item xs={6}>
             <Button type="reset" fullWidth variant="outlined" color="primary">

@@ -15,10 +15,10 @@ export const colors = {
   BLUE_1: '#2e4acc',
   BLUE_2: '#0151fe',
   BLUE_3: '#3474fe',
-  BLUE_4: '#5E81F4',
-  BLUE_5: '#9eb3f8',
-  BLUE_6: '#bfcdfb',
-  BLUE_7: '#dfe6fd',
+  BLUE_4: '#6248fe',
+  BLUE_5: '#5E81F4',
+  BLUE_6: '#9eb3f8',
+  BLUE_7: '#bfcdfb',
 
   //Grey
   GREY_1: '#525166',

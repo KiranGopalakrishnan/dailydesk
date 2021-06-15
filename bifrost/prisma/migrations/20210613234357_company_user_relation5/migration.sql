@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE "Users" ADD FOREIGN KEY ("companyId") REFERENCES "Companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;

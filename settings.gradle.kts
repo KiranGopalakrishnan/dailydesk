@@ -25,9 +25,9 @@ pluginManagement {
 
 rootProject.name = "dailydesk"
 include(
-    "bifrost",
     "protobuf",
-    "projector",
     "common-bifrost-client",
     "common-service-utils",
+    "bifrost",
+    "projector",
 )

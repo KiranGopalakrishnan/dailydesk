@@ -10,7 +10,6 @@ import { Modal } from '@ui-kit/Modal/Modal';
 const useStyles = makeStyles({
   container: {
     background: theme.palette.common.white,
-    padding: theme.spacing(2),
     width: '480px',
     borderRadius: '24px',
   },

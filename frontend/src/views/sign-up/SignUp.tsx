@@ -1,19 +1,12 @@
 import * as React from 'react';
-import { TextField, withField } from '@ui-kit/Input/TextField';
-import { get } from '../../api/Api';
-import { User } from '@services/Users';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '@store/user/user-thunk';
 import { RootState } from '@store';
-import { useEffect } from 'react';
-import { getProjects } from '@store/project/projects-thunk';
-import { Box, Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { colors } from '@ui-kit/Theme/colors';
 import { theme } from '@ui-kit/Theme';
 import { useForm, Controller } from 'react-hook-form';
-import validator from 'validator';
-import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 import { SignupData, SignUpForm } from '@views/sign-up/SignUpForm';
 import Image from 'next/image';
 
@@ -52,8 +45,27 @@ const SignUp: React.FC = () => {
 
   const { register, handleSubmit, control } = useForm<SignupData>();
 
-  const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
-    dispatch(addUser({ firstname, lastname, email, company, password }));
+  const onAdd = ({
+    firstname,
+    lastname,
+    email,
+    company,
+    domain,
+    website,
+    password,
+  }: SignupData) => {
+    const userPost = {
+      firstname,
+      lastname,
+      email,
+      password,
+      company: {
+        domain,
+        website,
+        name: company,
+      },
+    };
+    dispatch(addUser(userPost));
   };
 
   return (

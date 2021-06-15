@@ -30,8 +30,9 @@ import {
 } from '../tokens/token-service';
 import { generateId } from '../../utils/nano-id';
 import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
+import { Company, createCompany } from '../companies/company-service';
 
-export enum UserStatus {
+export enum RecordStatus {
   CREATED = 'CREATED',
   VERIFIED = 'VERIFIED',
   ACTIVE = 'ACTIVE',
@@ -44,10 +45,22 @@ export interface User {
   id?: string;
   firstname: string;
   lastname: string;
-  company: string;
+  companyId: Company["id"];
   email: string;
   password: string;
-  status: UserStatus;
+  status: RecordStatus;
+}
+
+export interface JWTPayload extends Omit<User,'password'|'companyId'> {
+  company: Company
+}
+
+export interface UserPostRequest extends Omit<User,'id'|'status'|'companyId'>{
+  firstname: string;
+  lastname: string;
+  company: Pick<Company,'name'| 'website' | 'domain'>,
+  email: string;
+  password: string;
 }
 
 export const getUserById = async (id: User['id']): Promise<User | null> => {
@@ -74,18 +87,19 @@ export const getUser = async (id: User['id']): Promise<Outcome> => {
   }
 };
 
-export const createUser = async (user: Omit<User, 'id' | 'status'>): Promise<Outcome> => {
+export const createUser = async (user: UserPostRequest): Promise<Outcome> => {
   try {
     const id = await generateId();
     const exists = await prisma.users.findUnique({ where: { email: user.email } });
 
     if (exists) return new Outcome(badRequest('User already exists'));
 
-    const userWithStatus = { ...user, id, status: UserStatus.CREATED };
+    const company = await createCompany(user.company)
+    const userWithStatus = { ...user, id, companyId: company.id, status: RecordStatus.CREATED };
     const encryptedUser: Required<User> = userDocumentTransformer().to(userWithStatus);
     const newUser = await prisma.users.create({
-      data: encryptedUser,
-    });
+      data: encryptedUser
+    })
 
     if (!newUser) return new Outcome(notFound('User creation failed'));
 
@@ -120,10 +134,10 @@ export const authenticateUser = async (
     if (!authenticatedUser || !comparePassword(user.password, authenticatedUser.password))
       return new Outcome(notFound('User not found'));
 
-    if (authenticatedUser.status === UserStatus.REVOKED)
+    if (authenticatedUser.status === RecordStatus.REVOKED)
       return new Outcome(forbidden('User access has been revoked'));
 
-    if (authenticatedUser.status === UserStatus.DELETED) return new Outcome(notFound());
+    if (authenticatedUser.status === RecordStatus.DELETED) return new Outcome(notFound());
 
     const transformedUser = userDocumentTransformer().from(authenticatedUser);
     const tokens = await generateTokens(transformedUser);

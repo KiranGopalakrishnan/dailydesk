@@ -8,11 +8,20 @@ message Token {
   string token = 1;
 }
 
+message Company {
+    string id = 1;
+    string name = 2;
+    string domain = 3;
+    string website = 4;
+    string status = 5;
+}
+
 message User {
    string id = 1;
    string firstname = 2;
    string lastname = 3;
    string email = 4;
-   string company = 5;
+   Company company = 5;
    string status = 6;
 }
+
