@@ -37,6 +37,7 @@ export const userTokenTransformer: TransformFunction<User, UserResponse> = (data
       ...data,
     };
   },
+  from :(user)=> user
 });
 
 export const userPostTransformer: TransformFunction<User, UserResponse> = (data: any) => ({
@@ -57,6 +58,7 @@ export const userPostTransformer: TransformFunction<User, UserResponse> = (data:
       ...data,
     };
   },
+  from :(user)=> user
 });
 
 export const validateUserPost = (user?: UserPostRequest): boolean => {

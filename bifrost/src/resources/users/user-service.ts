@@ -30,7 +30,7 @@ import {
 } from '../tokens/token-service';
 import { generateId } from '../../utils/nano-id';
 import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
-import { Company, createCompany } from '../companies/company-service';
+import { Company, createCompany, getCompanyById } from '../companies/company-service';
 
 export enum RecordStatus {
   CREATED = 'CREATED',
@@ -51,8 +51,8 @@ export interface User {
   status: RecordStatus;
 }
 
-export interface JWTPayload extends Omit<User,'password'|'companyId'> {
-  company: Company
+export interface JWTPayload extends Partial<Omit<User,'password'|'companyId'>> {
+  company?: Company
 }
 
 export interface UserPostRequest extends Omit<User,'id'|'status'|'companyId'>{
@@ -104,7 +104,7 @@ export const createUser = async (user: UserPostRequest): Promise<Outcome> => {
     if (!newUser) return new Outcome(notFound('User creation failed'));
 
     const transformedUser = userDocumentTransformer().from(newUser);
-    const tokens = await generateTokens(transformedUser);
+    const tokens = await generateTokens(transformedUser,company);
 
     //save the refresh token
     await saveRefreshToken(transformedUser.id, tokens.refresh_token);
@@ -139,8 +139,9 @@ export const authenticateUser = async (
 
     if (authenticatedUser.status === RecordStatus.DELETED) return new Outcome(notFound());
 
+    const company = await getCompanyById(authenticatedUser.companyId)
     const transformedUser = userDocumentTransformer().from(authenticatedUser);
-    const tokens = await generateTokens(transformedUser);
+    const tokens = await generateTokens(transformedUser,company);
 
     //save the refresh token
     await saveRefreshToken(transformedUser.id, tokens.refresh_token);

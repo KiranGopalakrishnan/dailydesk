@@ -1,5 +1,5 @@
 import { Project } from '@store/project';
-import { get, post } from '../api/Api';
+import { get, post } from '@api/Api';
 import { projectorUrl } from './utils';
 
 const createProject = (project: Project) => {

@@ -10,7 +10,7 @@ interface DbTransformerObject<T> {
 }
 
 interface TransformerObject<T, U = T> {
-  from?: FromTransformer<T>;
+  from: FromTransformer<T>;
   to: (response: T) => U;
 }
 
@@ -83,6 +83,7 @@ class Outcome<T = any> {
   transformOrThrow(
     convertor: TransformFunction<T> = () => ({
       to: (val: any) => val,
+      from: (val: any) => val,
     }),
     middleware: (payload: any) => any = (val) => val
   ): void {

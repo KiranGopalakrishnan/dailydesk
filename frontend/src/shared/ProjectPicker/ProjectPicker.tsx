@@ -3,11 +3,12 @@ import { Grid, makeStyles, Slide, Typography } from '@material-ui/core';
 import { theme } from '@ui-kit/Theme';
 import { Selected } from '@shared/ProjectPicker/Selected';
 import { ListItem } from '@shared/ProjectPicker/ListItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store';
 import { RenderConditionally } from '@shared/utils/RenderConditionally';
 import { LoadingState } from '@shared/Loading/LoadingState';
 import { Project } from '@store/project';
+import { fetchProjects } from '@store/project/project-thunk';
 
 const useStyles = makeStyles({
   container: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 });
 
 export const ProjectPicker: FC = () => {
+  const dispatch = useDispatch();
   const { isLoading, list: projects } = useSelector((state: RootState) => state.project);
 
   const [selected, setSelected] = useState(projects?.[0]);
@@ -39,6 +41,11 @@ export const ProjectPicker: FC = () => {
     setSelected(project);
     setOpen(false);
   };
+
+  useEffect(() => {
+    console.error('projects');
+    dispatch(fetchProjects());
+  }, []);
 
   useEffect(() => {
     setSelected(projects?.[0]);

@@ -5,15 +5,15 @@ import { theme } from '@ui-kit/Theme';
 import { colors } from '@ui-kit/Theme/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store';
-import { fetchProjects } from '@store/project/projects-thunk';
+import { fetchProjects } from '@store/project/project-thunk';
 import { Project } from '@store/project';
 import { routes } from '@config/routes';
 import { WithSidebar } from '@shared/Sidebar/WithSidebar';
 
 const useStyles = makeStyles({
   container: {
-    padding: theme.spacing(0, 8),
     backgroundColor: colors.GREY_6,
+    padding: theme.spacing(0, 8),
   },
   title: {
     padding: theme.spacing(4, 0),
@@ -33,8 +33,6 @@ export const Projects: FC = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
   const projects = useSelector((root: RootState) => root.project.list);
-
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProjects());

@@ -3,7 +3,7 @@ import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { getRandomThemeColor } from '@shared/utils/ColorUtils';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
-import { theme } from '@ui-kit/Theme';
+import { colors, theme } from '@ui-kit/Theme';
 import { ListItem } from '@shared/ProjectPicker/ListItem';
 import { Project } from '@store/project';
 
@@ -11,7 +11,8 @@ const useStyles = makeStyles({
   container: {
     height: '72px',
     background: theme.palette.common.white,
-    boxShadow: 'rgba(17, 12, 46, 0.15) 0px 48px 100px 0px',
+    //border: `solid 2px ${colors.GREY_3}`,
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
     borderRadius: '16px',
     padding: theme.spacing(0, 1),
     border: `solid 2px ${theme.palette.common.white}`,

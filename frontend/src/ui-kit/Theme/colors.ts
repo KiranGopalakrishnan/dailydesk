@@ -40,7 +40,8 @@ export const colors = {
   DARK_GREEN_4: '#0B525B',
   DARK_GREEN_5: '#065A60',
   DARK_GREEN_6: '#006466',
-  DARK_GREY_7: '#338385',
+  DARK_GREEN_7: '#338385',
+  DARK_GREEN_8: '#439f8e',
 
   //Yellow
   YELLOW_1: '#e85d04',

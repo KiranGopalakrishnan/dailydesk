@@ -1,10 +1,12 @@
-import { Action, AsyncThunkAction, configureStore } from '@reduxjs/toolkit';
+import { Action, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from '@store/user';
 import { projectReducer } from '@store/project';
+import { boardReducer } from '@store/board';
 
 const reducer = {
   user: userReducer,
   project: projectReducer,
+  board: boardReducer,
 };
 
 export const store = configureStore({

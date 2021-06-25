@@ -7,7 +7,7 @@ import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 import { colors } from '@ui-kit/Theme/colors';
 import { Projects } from '@views/home/projects/Projects';
 import { ProjectOverview } from '@views/projects/overview/ProjectOverview';
-import { setCurrentProject } from '@store/project/projects-thunk';
+import { setCurrentProject } from '@store/project/project-thunk';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles({});

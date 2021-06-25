@@ -5,7 +5,7 @@ import { theme } from '@ui-kit/Theme';
 
 export const LoadingState: FC = () => {
   return (
-    <Grid container justify={'center'} alignItems={'center'}>
+    <Grid container style={{ height: '100%' }} justify={'center'} alignItems={'center'}>
       <PulseLoader color={theme.palette.primary.main} />
     </Grid>
   );

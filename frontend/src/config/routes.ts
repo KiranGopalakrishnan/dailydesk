@@ -37,8 +37,18 @@ export const routes: Record<string, Route> = {
     as,
     isPublic: false,
   },
+  BOARDS: {
+    url: '/boards',
+    as,
+    isPublic: false,
+  },
   PROJECT_OVERVIEW: {
     url: '/projects/[id]',
+    as,
+    isPublic: false,
+  },
+  BOARD_OVERVIEW: {
+    url: '/boards/[id]',
     as,
     isPublic: false,
   },

@@ -4,7 +4,7 @@ import { Grid, makeStyles } from '@material-ui/core';
 
 import { theme } from '@ui-kit/Theme';
 import { CreateProject, CreateProjectForm } from '@views/home/projects/CreateProjectForm';
-import { createProject } from '@store/project/projects-thunk';
+import { createProject } from '@store/project/project-thunk';
 import { Modal } from '@ui-kit/Modal/Modal';
 
 const useStyles = makeStyles({

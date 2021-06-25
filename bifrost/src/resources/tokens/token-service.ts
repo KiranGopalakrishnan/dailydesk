@@ -16,6 +16,7 @@ import { nanoid } from 'nanoid';
 import { generateId } from '../../utils/nano-id';
 import { TokenExpiredError } from 'jsonwebtoken';
 import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
+import { getCompanyById } from '../companies/company-service';
 
 export enum TokenStatus {
   ACTIVE = 'ACTIVE',
@@ -138,7 +139,10 @@ export const refreshJwtToken = async (token: string): Promise<Outcome> => {
     const user = await getUserById(record.userId);
     if (!user) return new Outcome(unauthorized('User id associated to this token is invalid'));
 
-    const tokens = await generateTokens(user);
+    const company = await getCompanyById(user.companyId);
+    if (!company) return new Outcome(unauthorized('Company id associated to this user is invalid'));
+
+    const tokens = await generateTokens(user,company);
     //save the refresh token
     await saveRefreshToken(record.userId, tokens.refresh_token);
     const refreshCookie = getRefreshTokenCookieData(tokens.refresh_token);

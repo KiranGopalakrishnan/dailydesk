@@ -34,8 +34,8 @@ class ProjectService {
 
     fun create(user:User,project: Project):Response<Project>{
         val projectToBeCreated = project.copy(
-            companyId = user.company,
-            createdBy = user.id
+            companyId = user.company.id.value,
+            createdBy = user.id.value
         )
         projectRepository.save(
             projectToBeCreated

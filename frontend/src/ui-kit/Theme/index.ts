@@ -80,36 +80,36 @@ export const theme = createMuiTheme({
       color: colors.MIDNIGHT_4,
     },
     h1: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '2.5rem',
     },
 
     h2: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '2rem',
     },
 
     h3: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '1.75rem',
     },
 
     h4: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '1.5rem',
     },
 
     h5: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '1.25rem',
     },
 
     h6: {
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: '1rem',
     },
     subtitle1: {
-      fontWeight: 300,
+      fontWeight: 700,
       fontSize: '1rem',
     },
     subtitle2: {

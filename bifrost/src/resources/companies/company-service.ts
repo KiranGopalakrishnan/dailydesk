@@ -7,7 +7,7 @@ import { saveRefreshToken } from '../tokens/token-service';
 import { getJWTCookieData, getRefreshTokenCookieData } from '../../utils/http/cookies';
 import { logger } from '../../logger';
 import { RecordStatus, User, UserPostRequest } from '../users/user-service';
-import { companyPostTransformer } from './company-response-transformer';
+import { companyDbTransformer, companyPostTransformer } from './company-response-transformer';
 
 export interface Company {
   id: string;
@@ -38,4 +38,15 @@ export const createCompany = async (company: CompanyPost):Promise<Company> =>{
       if (!newCompany) throw new Error("Company creation failed");
 
       return companyResponse
+}
+
+export const getCompanyById = async (id: Company["id"]):Promise<Company> => {
+  const company = await prisma.companies.findUnique({
+    where:{
+      id,
+    }
+  })
+
+  if (!company) throw new Error("No company found for the provided id");
+  return companyDbTransformer().from(company)
 }

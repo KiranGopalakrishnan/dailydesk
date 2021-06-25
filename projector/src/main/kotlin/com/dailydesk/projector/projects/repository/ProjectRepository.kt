@@ -20,8 +20,8 @@ class ProjectRepository( collectionFactory: CollectionFactory ) {
          entityCollection.save(project)
     }
 
-    fun getAllProjectsForUser(userId: String): List<Project>? {
-        val userFilter = Filters.eq(CommonDocumentKey.USER_ID.key,userId)
+    fun getAllProjectsForUser(userId: ShortId): List<Project>? {
+        val userFilter = Filters.eq(CommonDocumentKey.USER_ID.key,userId.value)
         return entityCollection.findAll()
     }
 
