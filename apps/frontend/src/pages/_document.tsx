@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from './createEmotionCache';
+import createEmotionCache from '../utils/createEmotionCache';
 
 export default class MyDocument extends Document {
   render() {
@@ -14,8 +14,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );
@@ -58,13 +58,13 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App) =>
-        (function EnhanceApp(props) {
-        const enhancedProps = {
-          emotionCache: cache,
-          ...props
-        }
+        function EnhanceApp(props) {
+          const enhancedProps = {
+            emotionCache: cache,
+            ...props,
+          };
           return <App {...enhancedProps} />;
-        }),
+        },
     });
   /* eslint-enable */
 
