@@ -9,9 +9,7 @@ export const Project: FC = () => {
   const dispatch = useDispatch();
   const projectId = router.query?.id as string;
 
-  useEffect(() => {
-    //dispatch(setCurrentProject(projectId));
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Grid container style={{ height: '100%' }}>
