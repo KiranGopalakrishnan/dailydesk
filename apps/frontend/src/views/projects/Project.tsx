@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { ProjectOverview } from '@views/projects/overview/ProjectOverview';
 import { useRouter } from 'next/router';
@@ -8,8 +8,6 @@ export const Project: FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const projectId = router.query?.id as string;
-
-  useEffect(() => {}, []);
 
   return (
     <Grid container style={{ height: '100%' }}>
