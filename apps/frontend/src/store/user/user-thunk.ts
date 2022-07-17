@@ -1,6 +1,5 @@
 import { AppDispatch, AppThunk } from '@store';
 import { get, post } from '@api/Api';
-import { bifrostUrl } from '@services/utils';
 import {
   AuthenticationStatus,
   clearCurrentUser,
@@ -11,17 +10,16 @@ import {
 import { User } from '@services/Users';
 
 const authenticate = (email: string, password: string) =>
-  post<{ user: User }>(bifrostUrl('users/signup'), { email, password });
+  post<{ user: User }>('users/signup', { email, password });
 
-const attemptAutoLogin = () => get<any>(bifrostUrl('auto/login'));
+const attemptAutoLogin = () => get<any>('auto/login');
 
-const fetchCurrentUser = () => get<{ user: User }>(bifrostUrl('current/me'));
+const fetchCurrentUser = () => get<{ user: User }>('current/me');
 
-const logoutCurrentUser = () =>
-  get<{ user: User }>(bifrostUrl('current/logout'));
+const logoutCurrentUser = () => get<{ user: User }>('current/logout');
 
 const add = (user: User) => {
-  return post<{ user: User }>(bifrostUrl('users'), user);
+  return post<{ user: User }>('users', user);
 };
 
 export const login =
