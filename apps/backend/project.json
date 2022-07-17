@@ -67,6 +67,13 @@
         "parallel": true
       }
     },
+    "prisma-apply-db-migrations": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/backend && npx prisma migrate --schema apps/backend/prisma/schema.prisma",
+        "parallel": true
+      }
+    },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
@@ -75,7 +82,7 @@
             "command": "nx run backend:start-db"
           },
           {
-            "command": "nx run backend:generate-prisma-client"
+            "command": "nx run backend:prisma-apply-db-migrations"
           },
           {
             "command": "nx run backend:serve-with-deps"
