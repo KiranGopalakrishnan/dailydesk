@@ -1,15 +1,17 @@
-import React, { FC, useState } from 'react';
-import { Grid, makeStyles, Slide } from '@material-ui/core';
+import React, { FC, ReactNode, useState } from 'react';
 import { Sidebar } from '@shared/Sidebar/Sidebar';
 import { theme } from '@ui-kit/Theme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { MiniSidebar } from '@shared/Sidebar/MiniSidebar';
 import { RenderConditionally } from '@shared/utils/RenderConditionally';
 import { CreateProjectModal } from '@views/home/projects/CreateProjectModal';
+import { Grid, Slide } from '@mui/material';
 
-interface Props {}
+interface Props {
+  children: ReactNode
+}
 
-const useStyles = makeStyles({
+const styles = {
   container: {
     height: '100%',
     overflowX: 'hidden',
@@ -39,13 +41,12 @@ const useStyles = makeStyles({
     boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
     cursor: 'pointer',
   },
-});
+}
 
 export const WithSidebar: FC<Props> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
 
-  const styles = useStyles({ collapsed });
 
   const Icon = collapsed ? IoIosArrowForward : IoIosArrowBack;
 
@@ -65,8 +66,8 @@ export const WithSidebar: FC<Props> = ({ children }) => {
   const shouldShowMiniSidebar = collapsed;
 
   return (
-    <Grid container className={styles.container} direction={'row'}>
-      <Grid item container className={styles.sidebar}>
+    <Grid container sx={styles.container} direction={'row'}>
+      <Grid item container sx={styles.sidebar({ collapsed})}>
         <RenderConditionally basedOn={shouldShowFullSidebar}>
           <Slide in={shouldShowFullSidebar} direction={'right'} mountOnEnter unmountOnExit>
             <Grid container direction={'column'}>
@@ -93,9 +94,9 @@ export const WithSidebar: FC<Props> = ({ children }) => {
             <Grid container>
               <Grid
                 container
-                justify={'center'}
+                justifyContent={'center'}
                 alignItems={'center'}
-                className={styles.collapseIcon}
+                sx={styles.collapseIcon}
                 onClick={handleExpanded}
               >
                 <Icon size={24} color={theme.palette.primary.dark} />
@@ -105,7 +106,7 @@ export const WithSidebar: FC<Props> = ({ children }) => {
           </Slide>
         </RenderConditionally>
       </Grid>
-      <Grid item container className={styles.componentContainer}>
+      <Grid item container sx={styles.componentContainer}>
         {children}
       </Grid>
       <RenderConditionally basedOn={isCreateProjectOpen}>

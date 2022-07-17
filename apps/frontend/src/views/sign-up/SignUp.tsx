@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from '@store/user/user-thunk';
-import { Grid, makeStyles } from '@material-ui/core';
 import { colors } from '@ui-kit/Theme/colors';
 import { theme } from '@ui-kit/Theme';
 import { SignupData, SignUpForm } from '@views/sign-up/SignUpForm';
 import Image from 'next/image';
+import { Grid } from '@mui/material';
+import { User } from '@services/Users';
+import { post } from '@api/Api';
 
-const useStyles = makeStyles({
+const styles = {
   container: {
     // background: `linear-gradient(to bottom left, ${colors.WHITE} 50%, ${colors.BLUE_1} 50%)`,
     background: colors.WHITE,
@@ -29,25 +30,41 @@ const useStyles = makeStyles({
   item: {
     padding: theme.spacing(2, 0),
   },
-});
+};
+
+const add = async (user: User) => {
+  return post<{ user: User }>('users', user);
+};
 
 const SignUp: React.FC = () => {
-  const styles = useStyles();
-
   const dispatch = useDispatch();
 
-
-  const onAdd = ({ firstname, lastname, email, company, password }: SignupData) => {
-    dispatch(addUser({ firstname, lastname, email, company, password }));
+  const onAdd = async ({
+    firstname,
+    lastname,
+    email,
+    company,
+    password,
+  }: SignupData) => {
+    await add({ firstname, lastname, email, company, password });
   };
 
   return (
-    <Grid container justify="center" alignItems="center" className={styles.container}>
-      <Grid container justify="center" direction="row">
-        <Grid item container justify="flex-end" xs={5}>
-          <Image src={'/illustrations/signup.png'} width={'700px'} height={'100%'} />
+    <Grid
+      container
+      justifyItems="center"
+      alignItems="center"
+      sx={styles.container}
+    >
+      <Grid container justifyItems="center" direction="row">
+        <Grid item container justifyItems="flex-end" xs={5}>
+          <Image
+            src={'/illustrations/signup.png'}
+            width={'700px'}
+            height={'100%'}
+          />
         </Grid>
-        <Grid item container justify="center" xs={7}>
+        <Grid item container justifyItems="center" xs={7}>
           <SignUpForm onSubmit={onAdd} />
         </Grid>
       </Grid>

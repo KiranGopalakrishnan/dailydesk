@@ -1,18 +1,71 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compileOnSave": true,
   "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./static/build/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
     "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": false,
+    "skipLibCheck": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
-    "types": ["jest", "node"]
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@views/*": [
+        "views/*"
+      ],
+      "@common/*": [
+        "common/*"
+      ],
+      "@reducers/*": [
+        "reducers/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@ui-kit/*": [
+        "ui-kit/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@store": [
+        "store/index"
+      ],
+      "@store/*": [
+        "store/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@api/*": [
+        "api/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
-  "exclude": ["node_modules", "jest.config.ts"]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "jest.config.ts"
+  ]
 }

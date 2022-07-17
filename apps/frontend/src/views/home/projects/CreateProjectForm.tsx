@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import validator from 'validator';
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@mui/material';
 
 import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
 import { TextField, withField } from '@ui-kit/Input/TextField';
 
-const useStyles = makeStyles({
+const styles = {
   form: {
     borderRadius: '8px',
     padding: theme.spacing(4),
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   item: {
     padding: theme.spacing(2, 0),
   },
-});
+}
 
 export interface CreateProject {
   name: string;
@@ -36,7 +36,6 @@ const getErrorText = (hasError: boolean, field: string): string | null => {
 };
 
 export const CreateProjectForm: React.FC<Props> = ({ onSubmit }) => {
-  const styles = useStyles();
 
   const {
     register,
@@ -61,11 +60,11 @@ export const CreateProjectForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onAdd)}>
-      <Grid container className={styles.form}>
-        <Grid container className={styles.item}>
+      <Grid container sx={styles.form}>
+        <Grid container sx={styles.item}>
           <Typography variant="h5">{'Create project'}</Typography>
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="name"
             control={control}
@@ -82,7 +81,7 @@ export const CreateProjectForm: React.FC<Props> = ({ onSubmit }) => {
             )}
           />
         </Grid>
-        <Grid container spacing={3} className={styles.item} justify="flex-end">
+        <Grid container spacing={3} sx={styles.item} justifyContent="flex-end">
           <Grid item xs={5}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               {'Create Project'}

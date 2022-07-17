@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0dea24ea-a467-4f48-906d-b2c9661d955e" name="Default Changelist" comment="asdasd">
+      <change afterPath="$PROJECT_DIR$/../.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/jest.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/controllers/auth/auth.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/controllers/controllers.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/domains/auth/auth.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/app/domains/auth/auth.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/environments/environment.prod.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/environments/environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/backend/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/cypress.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/src/fixtures/example.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/src/integration/app.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/src/support/app.po.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/src/support/commands.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/src/support/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend-e2e/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/jest.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/next-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/next.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/proxy.conf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/illustrations/signin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/illustrations/signup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/illustrations/work-signin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/logo-128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/logo-64-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/logo-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/logo-dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/public/work-systems.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/specs/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/api/Api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/config/env.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/config/routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/_app.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/_document.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/createEmotionCache.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/home/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/projects/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/sign-in/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/pages/sign-up/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/services/Projects.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/services/Users.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/services/utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/Loading/LoadingState.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/ProjectPicker/ListItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/ProjectPicker/ProjectPicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/ProjectPicker/Selected.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/Sidebar/MiniSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/Sidebar/WithSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/header/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/utils/ColorUtils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/shared/utils/RenderConditionally.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/store/project/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/store/project/projects-thunk.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/store/user/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/store/user/user-thunk.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/Input/TextField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/Modal/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/Theme/colors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/Theme/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/assets/DailyDeskLogo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/assets/LogoDark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/ui-kit/assets/LogoDark.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/utils/WithAutoLogin.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/utils/algolia.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/home/Home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/home/projects/CreateProjectForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/home/projects/CreateProjectModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/home/projects/ProjectItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/home/projects/Projects.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/projects/Project.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/projects/overview/ProjectOverview.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/sign-in/SignIn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/sign-in/SignInForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/sign-up/SignUp.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/src/views/sign-up/SignUpForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apps/frontend/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../babel.config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jest.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jest.preset.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nx.json" beforeDir="false" afterPath="$PROJECT_DIR$/../nx.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../workspace.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/..">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/../protobuf">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="common-bifrost-client" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="protobuf" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="protobuf" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="dailydesk" type="f1a62948:ProjectNode" />
+                <item name="protobuf" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
+        <option value="Kotlin Data Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1pmCtDQkzoI201p37JWqqzDfFTu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.kotlinCompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../common-service-utils/src/main/kotlin/com/dailydesk/common" />
+      <recent name="$PROJECT_DIR$/../common-service-utils/src/main/kotlin/com/dailydesk/common/service" />
+      <recent name="$PROJECT_DIR$/../common-service-utils" />
+      <recent name="$PROJECT_DIR$/../common-bifrost-client" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Projector-backend-local">
+    <configuration name="Projector-backend-local" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="Kotlin SDK" />
+      <option name="MAIN_CLASS_NAME" value="com.dailydesk.projector.ApplicationKt" />
+      <module name="dailydesk.projector.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="backend [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="projector::Users:Kiran:Documents:work:dailydesk [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/.." />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="projector::Users:Kiran:Documents:work:dailydesk:protobuf [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../protobuf" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Projector-backend-local" />
+      <item itemvalue="Gradle.backend [build]" />
+      <item itemvalue="Gradle.projector::Users:Kiran:Documents:work:dailydesk [build]" />
+      <item itemvalue="Gradle.projector::Users:Kiran:Documents:work:dailydesk:protobuf [build]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.projector::Users:Kiran:Documents:work:dailydesk:protobuf [build]" />
+        <item itemvalue="Gradle.projector::Users:Kiran:Documents:work:dailydesk [build]" />
+        <item itemvalue="Gradle.backend [build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0dea24ea-a467-4f48-906d-b2c9661d955e" name="Default Changelist" comment="" />
+      <created>1615779093092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615779093092</updated>
+    </task>
+    <task id="LOCAL-00001" summary="asdasd">
+      <created>1623775367882</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623775367883</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="asdasd" />
+    <option name="LAST_COMMIT_MESSAGE" value="asdasd" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -15,18 +15,5 @@ model Users {
   email        String         @unique
   firstname    String
   lastname     String
-  company      String
-  password     String         @unique
   status       String
-  AccessTokens AccessTokens[]
-}
-
-model AccessTokens {
-  id     String @id
-  userId String
-  token  String @unique
-  status String
-  Users  Users  @relation(fields: [userId], references: [id])
-
-  @@unique([token, status], name: "token_status_unique_constraint")
 }

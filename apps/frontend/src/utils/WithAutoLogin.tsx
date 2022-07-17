@@ -1,15 +1,19 @@
-import React, { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, ReactNode, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { autoLogin } from '@store/user/user-thunk';
-import { RootState } from '@store';
+import { RootState, useAppDispatch } from '@store';
 import { AuthenticationStatus } from '@store/user';
 import { useRouter } from 'next/router';
 import { isPublic, routes } from '@config/routes';
 
 const TOKEN_EXPIRY_IN_MS = 13 * 60 * 1000;
 
-export const WithAutoLogin: FC = ({ children }) => {
-  const dispatch = useDispatch();
+interface Props {
+  children?: ReactNode;
+}
+
+export const WithAutoLogin: FC<Props> = ({ children }) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const path = router.route;
   const isPublicRoute = isPublic(path);
@@ -25,7 +29,7 @@ export const WithAutoLogin: FC = ({ children }) => {
     return () => {
       if (autoLoginRefresh) clearInterval(autoLoginRefresh);
     };
-  }, []);
+  }, [dispatch, isPublicRoute]);
 
   useEffect(() => {
     console.error({ path, authStatus, isPublicRoute });

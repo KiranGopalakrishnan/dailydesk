@@ -1,13 +1,11 @@
 import * as React from 'react';
 import {
   Box,
-  FormControl,
   FormGroup,
   InputLabel,
-  makeStyles,
   TextField as MUITextField,
   TextFieldProps,
-} from '@material-ui/core';
+} from '@mui/material';
 import { ControllerRenderProps } from 'react-hook-form';
 
 export const withField = <T, P>({

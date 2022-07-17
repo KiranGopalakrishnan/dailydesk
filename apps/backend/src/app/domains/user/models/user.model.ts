@@ -11,7 +11,7 @@ interface UserArgs{
   email: string;
   status?: UserStatus;
 }
-export class User {
+export class UserModel {
   private id!: string;
   private firstname!: string;
   private lastname!: string;

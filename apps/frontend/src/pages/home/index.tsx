@@ -1,2 +1,2 @@
-import { Home } from '../../src/views/home/Home';
+import { Home } from '@views/home/Home';
 export default Home;

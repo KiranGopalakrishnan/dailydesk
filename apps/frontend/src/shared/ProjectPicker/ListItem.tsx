@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
-import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { getRandomThemeColor } from '@shared/utils/ColorUtils';
-import { RiArrowDownSLine } from 'react-icons/ri';
-import { RiArrowUpSLine } from 'react-icons/ri';
 import { theme } from '@ui-kit/Theme';
+import { Box, Grid, Typography } from '@mui/material';
 
 interface StyleProps {
   main: boolean;
   name: string;
 }
-const useStyles = makeStyles({
+const styles = {
   container: ({ main }: StyleProps) => ({
     height: '64px',
     background: theme.palette.common.white,
@@ -32,7 +30,7 @@ const useStyles = makeStyles({
   arrows: {
     height: '16px',
   },
-});
+}
 
 interface Props {
   name: string;
@@ -41,23 +39,22 @@ interface Props {
 }
 
 export const ListItem: FC<Props> = ({ name, onClick, main = false }) => {
-  const styles = useStyles({ name, main });
   return (
-    <Grid container className={styles.container} onClick={onClick}>
-      <Grid container item xs={3} justify={'center'} alignItems={'center'}>
+    <Grid container sx={styles.container({ main, name })} onClick={onClick}>
+      <Grid container item xs={3} justifyContent={'center'} alignItems={'center'}>
         <Grid
           container
           item
-          justify={'center'}
+          justifyContent={'center'}
           alignItems={'center'}
-          className={styles.projectIcon}
+          sx={styles.projectIcon({ main, name })}
         >
-          <Typography style={{ color: theme.palette.common.white }}>{'NM'}</Typography>
+          <Typography sx={{ color: theme.palette.common.white }}>{'NM'}</Typography>
         </Grid>
       </Grid>
-      <Grid container item xs={8} alignItems={'center'} justify={'flex-start'}>
+      <Grid container item xs={8} alignItems={'center'} justifyContent={'flex-start'}>
         <Box pl={1}>
-          <Typography className={styles.name}>{name}</Typography>
+          <Typography sx={styles.name}>{name}</Typography>
         </Box>
       </Grid>
     </Grid>

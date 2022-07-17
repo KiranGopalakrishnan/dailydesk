@@ -1,5 +1,10 @@
-import React, { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-export const RenderConditionally: FC<{ basedOn: boolean }> = ({ basedOn, children }) => (
+interface Props {
+  children: ReactNode
+  basedOn: boolean
+}
+
+export const RenderConditionally: FC<Props> = ({ basedOn, children }) => (
   <>{basedOn && children}</>
 );

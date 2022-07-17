@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import validator from 'validator';
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
 
 import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
-import { TextField, withField } from '@ui-kit/Input/TextField';
+import { TextField } from '@ui-kit/Input/TextField';
+import { Button, Grid, Typography } from '@mui/material';
 
-const useStyles = makeStyles({
+const styles = {
   form: {
     borderRadius: '8px',
     padding: theme.spacing(4),
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   item: {
     padding: theme.spacing(2, 0),
   },
-});
+}
 
 export interface SignInData {
   email: string;
@@ -37,8 +37,6 @@ const getErrorText = (hasError: boolean, field: string): string | null => {
 };
 
 export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
-  const styles = useStyles();
-
   const {
     register,
     handleSubmit,
@@ -63,11 +61,11 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onAdd)}>
-      <Grid container className={styles.form}>
-        <Grid container className={styles.item}>
+      <Grid container sx={styles.form}>
+        <Grid container sx={styles.item}>
           <Typography variant="h3">Sign In</Typography>
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="email"
             control={control}
@@ -84,7 +82,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
             )}
           />
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="password"
             control={control}
@@ -103,7 +101,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
           />
         </Grid>
 
-        <Grid container spacing={3} className={styles.item}>
+        <Grid container spacing={3} sx={styles.item}>
           <Grid item xs={6}>
             <Button type="reset" fullWidth variant="outlined" color="primary">
               {'Reset'}

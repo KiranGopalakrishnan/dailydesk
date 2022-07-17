@@ -1,6 +1,7 @@
 import { Action, AsyncThunkAction, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from '@store/user';
 import { projectReducer } from '@store/project';
+import { useDispatch } from 'react-redux';
 
 const reducer = {
   user: userReducer,
@@ -28,3 +29,5 @@ export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
+
+export const useAppDispatch: () => AppDispatch = useDispatch

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
 
 import { theme } from '@ui-kit/Theme';
 import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
@@ -11,8 +10,9 @@ import { RootState } from '@store';
 import { AuthenticationStatus } from '@store/user';
 import { RenderConditionally } from '@shared/utils/RenderConditionally';
 import { isPublic } from '@config/routes';
+import { Grid, Typography } from '@mui/material';
 
-const useStyles = makeStyles({
+const styles = {
   header: {
     height: '72px',
     padding: theme.spacing(2),
@@ -25,10 +25,9 @@ const useStyles = makeStyles({
       textDecoration: 'underline',
     },
   },
-});
+}
 
 export const Header: FC = () => {
-  const styles = useStyles();
   const router = useRouter();
 
   const authStatus = useSelector((state: RootState) => state.user.authStatus);
@@ -42,20 +41,20 @@ export const Header: FC = () => {
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(logout());
+    //dispatch(logout());
     router.push('/sign-in');
   };
 
   return (
     <Grid container style={{ height: '100%' }}>
-      <Grid container className={styles.header}>
-        <Grid container item xs={4} justify="flex-start">
+      <Grid container sx={styles.header}>
+        <Grid container item xs={4} justifyContent="flex-start">
           <DailyDeskLogo />
         </Grid>
         <RenderConditionally basedOn={shouldShowLoggedInOptions}>
-          <Grid container item xs={8} justify="flex-end" alignItems="center">
+          <Grid container item xs={8} justifyContent="flex-end" alignItems="center">
             <Grid item>
-              <Typography className={styles.logout} onClick={onClick}>
+              <Typography sx={styles.logout} onClick={onClick}>
                 {'Logout'}
               </Typography>
             </Grid>

@@ -1,3 +1,3 @@
-import { Project } from '../../src/views/projects/Project';
+import { Project } from '@views/projects/Project';
 
 export default Project;

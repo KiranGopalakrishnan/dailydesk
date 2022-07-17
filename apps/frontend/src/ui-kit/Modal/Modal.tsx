@@ -1,10 +1,9 @@
-import React, { ReactElement } from 'react';
-import { Box, Grid, makeStyles, Modal as MUIModal } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { ReactNode } from 'react';
+import { Box, Grid, Modal as MUIModal } from '@mui/material';
 
 import { theme } from '@ui-kit/Theme';
 
-const useStyles = makeStyles({
+const styles = {
   container: {
     background: theme.palette.common.white,
     padding: theme.spacing(2),
@@ -18,22 +17,22 @@ const useStyles = makeStyles({
     top: '16px',
     cursor: 'pointer',
   },
-});
+}
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  children: ReactNode
 }
 
 export const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
-  const styles = useStyles();
 
   return (
     <MUIModal open={isOpen}>
-      <Grid container justify="center" alignItems="center" style={{ height: '100%' }}>
-        <Grid container className={styles.container}>
-          <Box className={styles.closeIcon} onClick={onClose}>
-            <CloseIcon />
+      <Grid container justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+        <Grid container sx={styles.container}>
+          <Box sx={styles.closeIcon} onClick={onClose}>
+            X
           </Box>
           {children}
         </Grid>

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import validator from 'validator';
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@mui/material';
 
 import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
-import { TextField, withField } from '@ui-kit/Input/TextField';
+import { TextField } from '@ui-kit/Input/TextField';
 
-const useStyles = makeStyles({
+const styles = {
   form: {
     width: '640px',
     borderRadius: '8px',
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   item: {
     padding: theme.spacing(2, 0),
   },
-});
+}
 
 export interface SignupData {
   firstname: string;
@@ -45,7 +45,6 @@ const getErrorText = (hasError: boolean, field: string): string | null => {
 };
 
 export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
-  const styles = useStyles();
 
   const {
     register,
@@ -77,11 +76,11 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onAdd)}>
-      <Grid container className={styles.form}>
-        <Grid container className={styles.item}>
+      <Grid container sx={styles.form}>
+        <Grid container sx={styles.item}>
           <Typography variant="h3">Sign Up</Typography>
         </Grid>
-        <Grid item container spacing={3} className={styles.item}>
+        <Grid item container spacing={3} sx={styles.item}>
           <Grid item xs={6}>
             <Controller
               name="firstname"
@@ -94,7 +93,7 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                   helperText={getErrorText(!!errors.firstname, 'firstname')}
                   placeholder="Luke"
                   label="Firstname"
-                  {...withField(field)}
+                  {...field}
                 />
               )}
             />
@@ -111,13 +110,13 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                   helperText={getErrorText(!!errors.lastname, 'lastname')}
                   placeholder="Skywalker"
                   label="Lastname"
-                  {...withField(field)}
+                  {...field}
                 />
               )}
             />
           </Grid>
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="email"
             control={control}
@@ -129,12 +128,12 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                 helperText={getErrorText(!!errors.email, 'email')}
                 placeholder="luke@resistance.com"
                 label="Email"
-                {...withField(field)}
+                {...field}
               />
             )}
           />
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="company"
             control={control}
@@ -146,12 +145,12 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                 helperText={getErrorText(!!errors.company, 'company')}
                 placeholder="The Resistance"
                 label="Company"
-                {...withField(field)}
+                {...field}
               />
             )}
           />
         </Grid>
-        <Grid container className={styles.item}>
+        <Grid container sx={styles.item}>
           <Controller
             name="password"
             control={control}
@@ -164,13 +163,13 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
                 type="password"
                 placeholder="The deathstar has a design flaw"
                 label="Password"
-                {...withField(field)}
+                {...field}
               />
             )}
           />
         </Grid>
 
-        <Grid container spacing={3} className={styles.item}>
+        <Grid container spacing={3} sx={styles.item}>
           <Grid item xs={6}>
             <Button type="reset" fullWidth variant="outlined" color="primary">
               {'Reset'}

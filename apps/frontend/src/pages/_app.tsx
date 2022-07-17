@@ -1,46 +1,35 @@
 import * as React from 'react';
-import { Grid, MuiThemeProvider } from '@material-ui/core';
-import { theme } from '../src/ui-kit/Theme';
-import { Provider, useDispatch } from 'react-redux';
+import { theme } from '@ui-kit/Theme';
+import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
 import { store } from '@store';
-import { createGlobalStyle } from 'styled-components';
-import { useEffect } from 'react';
-import { autoLogin } from '../src/store/user/user-thunk';
-import { WithAutoLogin } from '../src/utils/WithAutoLogin';
-import { Header } from '../src/shared/header/Header';
+import { WithAutoLogin } from '../utils/WithAutoLogin';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from './createEmotionCache';
-
-const GlobalStyle = createGlobalStyle`
-html,body,#__next {
-  height: 100%;
-  margin: 0;
-}
-`;
+import './global.css'
+import { Grid, ThemeProvider, StyledEngineProvider } from '@mui/material';
 
 
 const clientSideEmotionCache = createEmotionCache();
 
-interface ExtraMUIProps {
+interface EnhancedAppProps extends AppProps {
   emotionCache: EmotionCache
 }
 
-const App: React.FC<AppProps> = (props : AppProps&ExtraMUIProps) => {
+const App: React.FC<EnhancedAppProps> = (props : EnhancedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
       <WithAutoLogin>
-        <MuiThemeProvider theme={theme}>
-          <GlobalStyle />
-          {/*<Grid container style={{ height: '72px' }}>*/}
-          {/*  <Header />*/}
-          {/*</Grid>*/}
-          <Grid container style={{ height: '100%' }}>
-            <Component {...pageProps}/>
-          </Grid>
-        </MuiThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Grid container style={{ height: '100%' }}>
+              <Component {...pageProps}/>
+            </Grid>
+          </ThemeProvider>
+        </StyledEngineProvider>
       </WithAutoLogin>
       </CacheProvider>
     </Provider>

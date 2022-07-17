@@ -1,24 +1,19 @@
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-interface UserEntityArgs {
-  id: string | undefined;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  company: string;
-  status: string;
-}
-
+@Entity('Users')
 export class UserEntity {
-  id: string | undefined;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  company: string;
-  status: string;
+  @PrimaryColumn()
+  id: string;
 
-  constructor(args:UserEntityArgs) {
-    Object.assign(this,args)
-  }
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  status: 'active';
 }

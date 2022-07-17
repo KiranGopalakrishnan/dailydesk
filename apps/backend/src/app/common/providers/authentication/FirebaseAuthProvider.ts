@@ -29,4 +29,8 @@ export class FirebaseAuthProvider {
   async createFirebaseUser(userProperties: UserProperties){
     await this.auth.createUser(userProperties)
   }
+
+  async verifyToken(token: string): Promise<void> {
+    await this.auth.verifyIdToken(token, true)
+  }
 }

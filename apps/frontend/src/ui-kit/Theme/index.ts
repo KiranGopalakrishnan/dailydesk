@@ -1,7 +1,7 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme, adaptV4Theme } from '@mui/material/styles';
 import { colors } from './colors';
 
-export const theme = createMuiTheme({
+export const theme = createTheme(adaptV4Theme({
   overrides: {
     MuiButton: {
       text: {
@@ -126,6 +126,6 @@ export const theme = createMuiTheme({
       fontWeight: 500,
     },
   },
-});
+}));
 
 export { colors };

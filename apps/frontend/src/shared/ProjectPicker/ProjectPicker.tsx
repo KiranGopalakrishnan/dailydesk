@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Grid, makeStyles, Slide, Typography } from '@material-ui/core';
+import { Grid, Slide, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { theme } from '@ui-kit/Theme';
 import { Selected } from '@shared/ProjectPicker/Selected';
 import { ListItem } from '@shared/ProjectPicker/ListItem';

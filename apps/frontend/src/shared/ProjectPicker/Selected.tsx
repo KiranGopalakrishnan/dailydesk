@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { getRandomThemeColor } from '@shared/utils/ColorUtils';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
@@ -43,7 +44,7 @@ export const Selected: FC<Props> = ({ onClick, selected }) => {
       <Grid container item xs={11}>
         <ListItem onClick={onClick} name={selected?.name} />
       </Grid>
-      <Grid container item xs={1} alignItems={'center'} justify={'center'}>
+      <Grid container item xs={1} alignItems={'center'} justifyContent={'center'}>
         <Box height={'32px'}>
           <Box className={styles.arrows}>
             <RiArrowUpSLine />

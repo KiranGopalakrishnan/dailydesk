@@ -1,2 +1,2 @@
-import { SignIn } from '../../src/views/sign-in/SignIn';
+import { SignIn } from '@views/sign-in/SignIn';
 export default SignIn;

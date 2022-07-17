@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { Box, Button, Grid, makeStyles, Typography } from '@material-ui/core';
+import React, { FC, ReactNode } from 'react';
 import { theme, colors } from '@ui-kit/Theme';
 import { ProjectPicker } from '@shared/ProjectPicker/ProjectPicker';
 import { FaRegChartBar } from 'react-icons/fa';
@@ -8,6 +7,7 @@ import { AiOutlinePlus, AiTwotoneSetting } from 'react-icons/ai';
 import { BiBarChartSquare } from 'react-icons/bi';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { RiLineChartLine } from 'react-icons/ri';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 interface Props {
   collapsed: boolean;
@@ -15,7 +15,7 @@ interface Props {
   onCreateProject: () => void;
 }
 
-const useStyles = makeStyles({
+const styles = {
   container: {
     height: '100%',
     backgroundColor: colors.WHITE,
@@ -67,17 +67,17 @@ const useStyles = makeStyles({
       backgroundColor: theme.palette.primary.dark,
     },
   },
-});
+}
 
 interface MenuItemProps {
   text: string;
   color?: string;
+  children: ReactNode
 }
 
 const MenuItem: FC<MenuItemProps> = ({ children, text, color = colors.GREY_3 }) => {
-  const styles = useStyles();
   return (
-    <Grid container item justify={'flex-start'} alignItems={'center'} className={styles.menuItem}>
+    <Grid container item justifyContent={'flex-start'} alignItems={'center'} sx={styles.menuItem}>
       {children}
       <Box pl={2}>
         <Typography
@@ -97,20 +97,19 @@ const MenuItem: FC<MenuItemProps> = ({ children, text, color = colors.GREY_3 }) 
 };
 
 export const Sidebar: FC<Props> = ({ collapsed, onCollapse, onCreateProject }) => {
-  const styles = useStyles();
   return (
-    <Grid container className={styles.container} direction={'column'}>
-      <Grid item container className={styles.mainSectionContainer}>
-        <Grid item container className={styles.mainSection}>
+    <Grid container sx={styles.container} direction={'column'}>
+      <Grid item container sx={styles.mainSectionContainer}>
+        <Grid item container sx={styles.mainSection}>
           <Grid container>
             <ProjectPicker />
           </Grid>
         </Grid>
         <Grid
           container
-          className={styles.middleSection}
+          sx={styles.middleSection}
           direction={'column'}
-          justify={'flex-start'}
+          justifyContent={'flex-start'}
         >
           <Grid container>
             <MenuItem text={'Dashboard'}>
@@ -134,7 +133,7 @@ export const Sidebar: FC<Props> = ({ collapsed, onCollapse, onCreateProject }) =
           </Grid>
         </Grid>
       </Grid>
-      <Grid container direction={'column'} className={styles.secondSection}>
+      <Grid container direction={'column'} sx={styles.secondSection}>
         <Grid container>
           <MenuItem text={'My tasks'} color={theme.palette.primary.main}>
             <IoMdArrowDropright size={24} color={theme.palette.primary.main} />
@@ -146,12 +145,12 @@ export const Sidebar: FC<Props> = ({ collapsed, onCollapse, onCreateProject }) =
           </MenuItem>
         </Grid>
       </Grid>
-      <Grid container className={styles.bottomSection} justify={'center'} alignItems={'flex-end'}>
+      <Grid container sx={styles.bottomSection} justifyContent={'center'} alignItems={'flex-end'}>
         <Button type="submit" variant="contained" color="primary" onClick={onCreateProject}>
-          <Grid item container xs={2} justify={'center'} alignItems={'flex-start'}>
+          <Grid item container xs={2} justifyContent={'center'} alignItems={'flex-start'}>
             <AiOutlinePlus size={24} color={theme.palette.common.white} />
           </Grid>
-          <Grid item container xs={10} justify={'center'} alignItems={'flex-start'}>
+          <Grid item container xs={10} justifyContent={'center'} alignItems={'flex-start'}>
             {'New Project'}
           </Grid>
         </Button>

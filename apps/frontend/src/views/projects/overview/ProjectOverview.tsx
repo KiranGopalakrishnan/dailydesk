@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store';
 import { theme } from '@ui-kit/Theme';
@@ -20,7 +21,7 @@ export const ProjectOverview: FC = () => {
   if (isLoading || !current) return null;
   return (
     <Grid container style={{ height: '100%' }}>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid container className={styles.projectHeader} alignItems="center">
           <Typography variant={'body1'}>{current?.name}</Typography>
         </Grid>
