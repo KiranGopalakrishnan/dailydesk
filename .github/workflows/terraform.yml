@@ -37,7 +37,7 @@ jobs:
         id: plan
         working-directory: ${{ secrets.TF_DIRECTORY }}
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color -input=false
+        run: terraform -chdir=${{ secrets.TF_DIRECTORY }} plan -no-color -input=false
         continue-on-error: true
 
       - uses: actions/github-script@v6
