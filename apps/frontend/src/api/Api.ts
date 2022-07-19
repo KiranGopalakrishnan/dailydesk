@@ -4,7 +4,10 @@ interface Payload {
   [key: string]: any;
 }
 
-const withApiRoute = (url: string): string => `/api/${url}`;
+const baseRoute = process.env.NEXT_PUBLIC_API_URL;
+
+const withApiRoute = (url: string): string => `${baseRoute}/api/${url}`;
+console.error({ SDadasd: withApiRoute('sdsd') });
 
 const get = <T>(url: string, params?: Payload): Promise<T> => {
   return axios

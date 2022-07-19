@@ -1,10 +1,18 @@
 terraform {
-  #backend "pg" {}
+  backend "pg" {}
 
   required_providers {
     heroku = {
       source  = "heroku/heroku"
       version = "~> 5.0"
+    }
+  }
+
+  cloud {
+    organization = "dailydesk"
+
+    workspaces {
+      name = "production"
     }
   }
 }
@@ -28,9 +36,11 @@ resource "heroku_app" "app" {
 
 # Create a database, and configure the app to use it
 resource "heroku_addon" "database" {
+  plan   = "heroku-postgresql:hobby-dev"
   app_id = heroku_app.app.id
-  plan   = "heroku-postgresql:hobby-basic"
-  app    = var.appname
+  config = {
+    sslmode = false
+  }
 }
 
 variable "app_quantity" {
@@ -39,18 +49,19 @@ variable "app_quantity" {
 }
 
 resource "heroku_build" "deploy" {
-  app = var.appname
+  app_id     = heroku_app.app.id
+  buildpacks = ["https://github.com/heroku/heroku-buildpack-nodejs"]
 
   source {
-    path = "./dist/apps/backend"
+    path = "../../../../dist/apps/backend"
   }
 }
 
 resource "heroku_formation" "machine_config" {
-  app        = heroku_app.app.id
+  app_id     = heroku_app.app.id
   type       = "web"
   quantity   = var.app_quantity
-  size       = "Standard-1x"
+  size       = "Free"
   depends_on = [heroku_build.deploy]
 }
 

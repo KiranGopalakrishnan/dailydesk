@@ -15,8 +15,14 @@
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
         "tsConfig": "apps/backend/tsconfig.app.json",
+        "generatePackageJson": true,
         "assets": [
-          "apps/backend/src/assets"
+          "apps/backend/src/assets",
+          {
+            "glob": "Procfile",
+            "input": "apps/backend/src/deployment-config",
+            "output": "./"
+          }
         ]
       },
       "configurations": {
@@ -70,7 +76,7 @@
     "prisma-apply-db-migrations": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd apps/backend && npx prisma migrate --schema apps/backend/prisma/schema.prisma",
+        "command": "cd apps/backend && npx prisma migrate dev --schema ./apps/backend/prisma/schema.prisma",
         "parallel": true
       }
     },

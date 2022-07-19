@@ -1,4 +1,4 @@
 output "app_url" {
-  value       = var.appname
+  value       = heroku_app.app.web_url
   description = "Application URL"
 }
