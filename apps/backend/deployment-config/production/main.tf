@@ -16,7 +16,7 @@ terraform {
 }
 
 variable "prefix" {
-  description = "High-level name of this configuration, used as a resource name prefix."
+  description = "High-level name of this configuration, used as a resource name prefix"
   type        = string
   default     = "heroku"
 }
