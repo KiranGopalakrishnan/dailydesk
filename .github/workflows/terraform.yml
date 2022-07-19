@@ -21,19 +21,16 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Format
-        id: fmt
-        working-directory: ${{ secrets.TF_DIRECTORY }}
-        run: terraform fmt -check
+        id: fmt=
+        run: terraform -chdir=${{ secrets.TF_DIRECTORY }} fmt -check
 
       - name: Terraform Init
         id: init
-        working-directory: ${{ secrets.TF_DIRECTORY }}
-        run: terraform init
+        run: terraform -chdir=${{ secrets.TF_DIRECTORY }} init
 
       - name: Terraform Validate
         id: validate
-        working-directory: ${{ secrets.TF_DIRECTORY }}
-        run: terraform validate -no-color
+        run: terraform -chdir=${{ secrets.TF_DIRECTORY }} validate -no-color
 
       - name: Terraform Plan
         id: plan
@@ -66,11 +63,9 @@ jobs:
               body: output
             })
       - name: Terraform Plan Status
-        working-directory: ${{ secrets.TF_DIRECTORY }}
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
       - name: Terraform Apply
-        working-directory: ${{ secrets.TF_DIRECTORY }}
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform -chdir=${{ secrets.TF_DIRECTORY }} apply -auto-approve -input=false
