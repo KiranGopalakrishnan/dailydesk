@@ -72,6 +72,7 @@
     "@reduxjs/toolkit": "^1.8.2",
     "class-transformer": "^0.5.1",
     "core-js": "^3.6.5",
+    "dotenv": "^16.0.1",
     "firebase": "^9.8.4",
     "firebase-admin": "^11.0.0",
     "nanoid": "^3.0.0",
