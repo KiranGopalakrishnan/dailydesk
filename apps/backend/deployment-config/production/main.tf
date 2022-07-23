@@ -1,6 +1,4 @@
 terraform {
-  backend "pg" {}
-
   required_providers {
     heroku = {
       source  = "heroku/heroku"
@@ -24,7 +22,7 @@ variable "prefix" {
 }
 
 variable "appname" {
-  description = "Name of the app"
+  description = "Name of the app."
   type        = string
   default     = "dailydesk"
 }
