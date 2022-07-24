@@ -19,6 +19,8 @@ jobs:
 
       - name: Nx Cloud - Affected
         uses: nrwl/nx-set-shas@v2
+
+      - name: Building project
         run: npx nx affected --target=build --parallel=3
 
       - name: Logging into heroku
