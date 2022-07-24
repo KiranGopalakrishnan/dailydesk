@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checking out code
         uses: actions/checkout@v2
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
 
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -25,6 +28,7 @@ jobs:
 
       - name: Nx Cloud - Affected
         uses: nrwl/nx-set-shas@v2
+      - run: npm ci
       - run: npx nx affected --target=build --parallel=3
 
       - name: Deploying
