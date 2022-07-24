@@ -10,34 +10,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Production
-    env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-      HEROKU_DEPLOY_DIR: ${{ secrets.HEROKU_DEPLOY_DIR }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Use Node.js 18
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          node-version: 18
-
-      - name: Installing heroku cli
-        run: curl https://cli-assets.heroku.com/install.sh | sh
-
-      - name: Version check
-        run: heroku -v
-
-      - name: Env verification
-        run: echo '$HEROKU_DEPLOY_DIR'
-
-      - name: Verify remote
-        run: git remote -v
-
-      - name: Version check
-        run: heroku login
-
-      - name: Set heroku remote
-        run: heroku git:remote -a $HEROKU_APP_NAME
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: ${{ secrets.HEROKU_DEPLOY_DIR }}
