@@ -27,5 +27,4 @@ jobs:
       - name: Version check
         run: heroku -v
       - name: Env verification
-        run: "$heroku_email"
-
+        run: '$heroku_email'
