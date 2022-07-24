@@ -46,15 +46,6 @@ variable "app_quantity" {
   description = "Number of dynos in your Heroku formation"
 }
 
-resource "heroku_build" "deploy" {
-  app_id     = heroku_app.app.id
-  buildpacks = ["https://github.com/heroku/heroku-buildpack-nodejs"]
-
-  source {
-    path = "."
-  }
-}
-
 resource "heroku_formation" "machine_config" {
   app_id     = heroku_app.app.id
   type       = "web"
