@@ -10,7 +10,7 @@ terraform {
     organization = "dailydesk"
 
     workspaces {
-      name = "production"
+      name = "Production-CD"
     }
   }
 }
