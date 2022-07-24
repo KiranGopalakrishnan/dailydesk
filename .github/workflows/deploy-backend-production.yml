@@ -18,10 +18,10 @@ jobs:
           fetch-depth: 0
 
       - uses: nrwl/nx-set-shas@v2
+      - run: npm ci
 
       - name: Building project
         run: npx nx affected --target=build --parallel=3
-      - run: npm ci
 
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
