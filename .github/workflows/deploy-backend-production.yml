@@ -43,6 +43,3 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: 'dist/apps/backend'
-          justlogin: true
-      - run: heroku git:remote -a "dailydesk"
-      - run: git push --force heroku `git subtree split --prefix=dist/apps/backend HEAD`:refs/heads/main
