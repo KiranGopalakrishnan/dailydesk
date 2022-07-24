@@ -26,10 +26,10 @@ jobs:
           appdir: ${{ secrets.HEROKU_DEPLOY_DIR }}
           justlogin: true
 
-      - name: Nx Cloud - Affected
-        uses: nrwl/nx-set-shas@v2
-      - run: npm ci
-      - run: npx nx affected --target=build --parallel=3
+      #      - name: Nx Cloud - Affected
+      #        uses: nrwl/nx-set-shas@v2
+      #      - run: npm ci
+      #      - run: npx nx affected --target=build --parallel=3
 
       - name: Deploying
         run: npx nx affected --target=deploy --parallel=3
