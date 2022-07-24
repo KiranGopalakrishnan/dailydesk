@@ -8,9 +8,6 @@
       "outputs": [
         "{options.outputPath}"
       ],
-      "dependsOn": [
-        "generate-prisma-client"
-      ],
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
@@ -82,6 +79,17 @@
           },
           {
             "command": "nx run backend:serve-with-deps"
+          }
+        ],
+        "parallel": true
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "cd apps/backend && sh ./actions/deploy.sh"
           }
         ],
         "parallel": true
