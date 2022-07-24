@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     environment: Production
     steps:
@@ -19,9 +19,20 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
+      - run: npx nx affected --target=build --parallel=3
+      - name: 'Check file existence'
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/backend'
 
       - run: ls -la
 
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+    if: steps.check_files.outputs.files_exists == 'true'
+    steps:
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
@@ -30,8 +41,5 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: 'dist/apps/backend'
           justlogin: true
-
-      - name: Building project
-        run: npx nx affected --target=build --parallel=3
       - run: heroku git:remote -a "dailydesk"
       - run: git push --force heroku `git subtree split --prefix=dist/apps/backend HEAD`:refs/heads/main
