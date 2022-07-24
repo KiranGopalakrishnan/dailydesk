@@ -31,7 +31,7 @@ jobs:
         run: heroku -v
 
       - name: Env verification
-        run: '$heroku_email'
+        run: echo '$heroku_email'
 
       - name: Verify remote
         run: git remote -v
