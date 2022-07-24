@@ -20,9 +20,6 @@ jobs:
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
 
-      - name: Building project
-        run: npx nx affected --target=build --parallel=3
-
       - run: ls -la
 
       - name: Logging into heroku
@@ -31,4 +28,8 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          appdir: "dist/apps/backend"
+          appdir: 'dist/apps/backend'
+          justlogin: true
+
+      - name: Building project
+        run: npx nx affected --target=deploy --parallel=3
