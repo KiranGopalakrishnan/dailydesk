@@ -35,3 +35,6 @@ jobs:
 
       - name: Verify remote
         run: git remote -v
+
+      - name: Set remote
+        run: heroku git:remote -a $heroku_app_name
