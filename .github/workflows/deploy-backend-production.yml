@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Production
     needs: [ build ]
-    if: steps.check_files.outputs.files_exists == 'true'
+    if: needs.deploy.check_files.outputs.files_exists == 'true'
     steps:
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
