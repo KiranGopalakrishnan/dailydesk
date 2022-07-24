@@ -20,10 +20,16 @@ jobs:
       - name: Checking out code
         uses: actions/checkout@v2
 
-      - name: Starting deployment
+      - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: ${{ secrets.HEROKU_DEPLOY_DIR }}
+          justlogin: true
+
+      - name: Running affected
+        uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.6
+        with:
+          parallel-commands: npx nx affected --target=deploy --parallel=3

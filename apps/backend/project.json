@@ -5,12 +5,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "dependsOn": [
-        "generate-prisma-client"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
@@ -47,20 +42,14 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/backend/**/*.ts"
-        ]
+        "lintFilePatterns": ["apps/backend/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/backend"
-      ],
+      "outputs": ["coverage/apps/backend"],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts",
         "passWithNoTests": true
@@ -82,6 +71,17 @@
           },
           {
             "command": "nx run backend:serve-with-deps"
+          }
+        ],
+        "parallel": true
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "cd apps/backend && sh ./deploy.sh"
           }
         ],
         "parallel": true
