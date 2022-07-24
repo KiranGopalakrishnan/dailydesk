@@ -1,4 +1,4 @@
-name: Heroku Deploy Backend
+name: 'Daikydesk - Deploy Backend'
 
 on:
   push:

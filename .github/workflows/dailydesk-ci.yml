@@ -1,4 +1,4 @@
-name: DailydeskCI
+name: 'Dailydesk - Lint, Test, Build'
 on:
   push:
     branches:
