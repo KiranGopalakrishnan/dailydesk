@@ -32,4 +32,7 @@ jobs:
           justlogin: true
 
       - name: Building project
-        run: npx nx affected --target=deploy --parallel=3
+        run: npx nx affected --target=build --parallel=3
+      - run: heroku git:remote -a "dailydesk"
+      - run: git subtree add --prefix=dist/apps/backend
+      - run: git push --force heroku "git subtree split --prefix=dist/apps/backend HEAD":refs/heads/main
