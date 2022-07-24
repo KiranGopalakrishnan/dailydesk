@@ -51,7 +51,7 @@ resource "heroku_build" "deploy" {
   buildpacks = ["https://github.com/heroku/heroku-buildpack-nodejs"]
 
   source {
-    path = "../../../../dist/apps/backend"
+    path = "./"
   }
 }
 
