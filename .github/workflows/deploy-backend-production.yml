@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Production
     env:
       heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
       heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
