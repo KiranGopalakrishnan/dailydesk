@@ -19,6 +19,7 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
+      - run: echo "$GITHUB_CONTEXT"
 
       - name: Building project
         run: npx nx affected --target=build --parallel=3
