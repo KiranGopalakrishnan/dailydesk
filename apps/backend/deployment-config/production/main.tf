@@ -47,10 +47,9 @@ variable "app_quantity" {
 }
 
 resource "heroku_formation" "machine_config" {
-  app_id     = heroku_app.app.id
-  type       = "web"
-  quantity   = var.app_quantity
-  size       = "Free"
-  depends_on = [heroku_build.deploy]
+  app_id   = heroku_app.app.id
+  type     = "web"
+  quantity = var.app_quantity
+  size     = "Free"
 }
 
