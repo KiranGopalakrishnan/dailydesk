@@ -39,12 +39,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Production
-    needs: [build]
+    needs: [ build ]
     if: needs.build.outputs.build_successful == 'true'
     steps:
       - name: Download build output
-
-      - uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v2
         with:
           name: build_output
 
