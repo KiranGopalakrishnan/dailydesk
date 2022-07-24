@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: Production
+    outputs:
+      build_successful: ${{ steps.check_files.outputs.files_exists }}
     steps:
       - name: Checking out code
         uses: actions/checkout@v2
@@ -32,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Production
     needs: [ build ]
-    if: needs.deploy.check_files.outputs.files_exists == 'true'
+    if: needs.deploy.outputs.build_successful == 'true'
     steps:
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
