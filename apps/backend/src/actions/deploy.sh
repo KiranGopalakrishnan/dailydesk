@@ -1,5 +1,5 @@
-heroku git:remote -a "$HEROKU_APP_NAME" --app "$HEROKU_APP_NAME"
+heroku git:remote -a "dailydesk"
 
-echo "$HEROKU_APP_NAME"
+git subtree add --prefix=dist/apps/backend
 
-git push heroku main --force
+git push --force heroku "git subtree split --prefix=dist/apps/backend HEAD":refs/heads/main

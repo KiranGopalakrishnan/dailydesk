@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -19,8 +20,7 @@ jobs:
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
 
-      - name: Building project
-        run: npx nx affected --target=build --parallel=3
+      - run: ls -la
 
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -28,4 +28,10 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          appdir: ${{ secrets.HEROKU_DEPLOY_DIR }}
+          appdir: 'dist/apps/backend'
+          justlogin: true
+
+      - name: Building project
+        run: npx nx affected --target=build --parallel=3
+      - run: heroku git:remote -a "dailydesk"
+      - run: git push --force heroku `git subtree split --prefix=dist/apps/backend HEAD`:refs/heads/main
