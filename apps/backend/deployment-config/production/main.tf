@@ -5,12 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
-
+  
   cloud {
     organization = "dailydesk"
 
     workspaces {
-      name = "production"
+      name = "Production-CD"
     }
   }
 }
