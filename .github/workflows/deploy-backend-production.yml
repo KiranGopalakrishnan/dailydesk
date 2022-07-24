@@ -19,10 +19,11 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
-      - run: ls -la
 
       - name: Building project
         run: npx nx affected --target=build --parallel=3
+
+      - run: ls -la
 
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
