@@ -28,6 +28,7 @@ jobs:
         with:
           files: 'dist/apps/backend'
 
+      - run: echo steps.check_files.outputs.files_exists
       - run: ls -la
 
   deploy:
