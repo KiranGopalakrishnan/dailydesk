@@ -39,5 +39,5 @@ jobs:
       - name: Version check
         run: heroku login
 
-      - name: Set remote
+      - name: Set heroku remote
         run: heroku git:remote -a $HEROKU_APP_NAME
