@@ -28,14 +28,13 @@ jobs:
         with:
           files: 'dist/apps/backend'
 
-      - run: echo $steps.check_files.outputs.files_exists
       - run: ls -la
 
   deploy:
     runs-on: ubuntu-latest
     environment: Production
     needs: [ build ]
-    if: needs.deploy.outputs.build_successful == 'true'
+    if: needs.build.outputs.build_successful == 'true'
     steps:
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
