@@ -7,9 +7,11 @@ on:
   pull_request:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     environment: Production
+    outputs:
+      build_successful: ${{ steps.check_files.outputs.files_exists }}
     steps:
       - name: Checking out code
         uses: actions/checkout@v2
@@ -19,9 +21,39 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
+      - run: npx nx affected --target=build --parallel=3
+      - name: 'Check file existence'
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/backend'
 
       - run: ls -la
 
+      - name: Uploading artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build_output
+          path: dist/apps/backend
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: [build]
+    if: needs.build.outputs.build_successful == 'true'
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v2
+      - name: Download build output
+        uses: actions/download-artifact@v2
+        with:
+          name: build_output
+          path: dist/apps/backend
+
+      - run: ls -la
+      - run: git config --global user.email "kirangplkrishnan@gmail.com"
+      - run: git config --global user.name "Kiran Gopalakrishnan"
+      - run: git add -A && git commit -m "Release"
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
@@ -29,9 +61,3 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: 'dist/apps/backend'
-          justlogin: true
-
-      - name: Building project
-        run: npx nx affected --target=build --parallel=3
-      - run: heroku git:remote -a "dailydesk"
-      - run: git push --force heroku `git subtree split --prefix=dist/apps/backend HEAD`:refs/heads/main
