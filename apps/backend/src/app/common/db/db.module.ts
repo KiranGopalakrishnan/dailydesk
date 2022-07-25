@@ -23,6 +23,7 @@ import 'pg';
           password: connectionOptions.password,
           database: connectionOptions.database,
           autoLoadEntities: true,
+          ssl: true,
         };
       },
     }),

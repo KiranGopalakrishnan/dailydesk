@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   build:
@@ -28,8 +27,6 @@ jobs:
         with:
           files: 'dist/apps/backend'
 
-      - run: ls -la
-
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         with:
@@ -42,22 +39,16 @@ jobs:
     needs: [build]
     if: needs.build.outputs.build_successful == 'true'
     steps:
-      - name: Checking out code
-        uses: actions/checkout@v2
-      - name: Download build output
+      - name: Downloading and extracting build output
         uses: actions/download-artifact@v2
         with:
           name: build_output
           path: dist/apps/backend
 
-      - run: ls -la
-      - run: git config --global user.email "kirangplkrishnan@gmail.com"
-      - run: git config --global user.name "Kiran Gopalakrishnan"
-      - run: git add -A && git commit -m "Release"
-      - name: Logging into heroku
+      - run: git init
+      - name: Deploying to heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          appdir: 'dist/apps/backend'
