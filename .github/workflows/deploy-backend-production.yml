@@ -39,7 +39,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Production
-    needs: [ build ]
+    needs: [build]
     if: needs.build.outputs.build_successful == 'true'
     steps:
       - name: Checking out code
@@ -51,6 +51,8 @@ jobs:
           path: dist/apps/backend
 
       - run: ls -la
+      - run: git config --global user.email "kirangplkrishnan@gmail.com"
+      - run: git config --global user.name "Kiran Gopalakrishnan"
       - run: git add -A && git commit -m "Release"
       - name: Logging into heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
