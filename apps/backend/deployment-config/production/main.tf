@@ -50,6 +50,6 @@ resource "heroku_formation" "machine_config" {
   app_id   = heroku_app.app.id
   type     = "web"
   quantity = var.app_quantity
-  size     = "Free"
+  size     = "Hobby"
 }
 

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   build:
@@ -28,8 +27,6 @@ jobs:
         with:
           files: 'dist/apps/backend'
 
-      - run: ls -la
-
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         with:
@@ -39,7 +36,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Production
-    needs: [ build ]
+    needs: [build]
     if: needs.build.outputs.build_successful == 'true'
     steps:
       - name: Downloading and extracting build output
@@ -49,9 +46,7 @@ jobs:
           path: dist/apps/backend
 
       - run: git init
-
-      - run: ls -la
-      - name: Logging into heroku
+      - name: Deploying to heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
