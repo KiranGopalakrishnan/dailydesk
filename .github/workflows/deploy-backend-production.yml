@@ -31,7 +31,7 @@ jobs:
       - run: ls -la
 
       - name: Uploading artifact
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: build_output
           path: dist/apps/backend
