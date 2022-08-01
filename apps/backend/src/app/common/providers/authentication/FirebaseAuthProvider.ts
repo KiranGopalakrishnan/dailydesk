@@ -1,36 +1,45 @@
-import { initializeApp } from "firebase-admin/app"
+import { initializeApp } from 'firebase-admin/app';
 import { auth, credential } from 'firebase-admin';
 import { getAuth } from 'firebase-admin/auth';
 import { Injectable } from '@nestjs/common';
+import { UserModel } from '../../../domains/user/models/user.model';
 
 const applicationDefault = credential.applicationDefault;
 
-interface UserProperties{
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
+export enum SignInType {
+  PASSWORD = 'PASSWORD',
 }
 
 @Injectable()
 export class FirebaseAuthProvider {
-  private auth!: auth.Auth
+  private auth!: auth.Auth;
+
   constructor() {
     const firebaseApp = initializeApp({
-      credential: applicationDefault()
+      credential: applicationDefault(),
     });
-    this.auth = getAuth(firebaseApp)
+    this.auth = getAuth(firebaseApp);
   }
 
-  async createTokenForUser(firebaseUID: string): Promise<string>{
-    return this.auth.createCustomToken(firebaseUID)
+  async createTokenForUser(user: UserModel): Promise<string> {
+    return this.auth.createCustomToken(user.getId());
   }
 
-  async createFirebaseUser(userProperties: UserProperties){
-    await this.auth.createUser(userProperties)
+  async createFirebaseUserWithPassword(user: UserModel, password: string) {
+    const profile = user.getUserProfile();
+    await this.auth.createUser({
+      uid: profile.id,
+      displayName: `${profile.firstname} ${profile.lastname}`,
+      email: profile.email,
+      password,
+    });
+  }
+
+  async createSignInTokenForUser(id: string): Promise<string> {
+    return await this.auth.createCustomToken(id);
   }
 
   async verifyToken(token: string): Promise<void> {
-    await this.auth.verifyIdToken(token, true)
+    await this.auth.verifyIdToken(token, true);
   }
 }

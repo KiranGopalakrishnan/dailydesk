@@ -13,7 +13,11 @@ export const withField = <T, P>({
   ...rest
 }: ControllerRenderProps<T>): Omit<ControllerRenderProps, 'ref'> => rest;
 
-const TextField: React.FC<TextFieldProps> = ({ id, label, ...rest }: TextFieldProps) => (
+const TextField: React.FC<TextFieldProps> = ({
+  id,
+  label,
+  ...rest
+}: TextFieldProps) => (
   <FormGroup style={{ width: '100%' }}>
     <InputLabel htmlFor={id}>
       <Box mb={1}>{label}</Box>

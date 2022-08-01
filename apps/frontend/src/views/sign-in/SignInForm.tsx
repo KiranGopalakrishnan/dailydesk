@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import validator from 'validator';
+import { Controller, useForm } from 'react-hook-form';
 
 import { colors } from '@ui-kit/Theme/colors';
 
 import { theme } from '@ui-kit/Theme';
 import { TextField } from '@ui-kit/Input/TextField';
 import { Button, Grid, Typography } from '@mui/material';
+import validator from 'validator';
 
 const styles = {
   form: {
@@ -17,7 +17,7 @@ const styles = {
   item: {
     padding: theme.spacing(2, 0),
   },
-}
+};
 
 export interface SignInData {
   email: string;
@@ -70,7 +70,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
             name="email"
             control={control}
             defaultValue={''}
-            rules={{ required: true, maxLength: 100 }}
+            //rules={{ required: true, maxLength: 100 }}
             render={({ field }) => (
               <TextField
                 error={!!errors.email}
@@ -87,7 +87,7 @@ export const SignInForm: React.FC<Props> = ({ onSubmit }) => {
             name="password"
             control={control}
             defaultValue={''}
-            rules={{ required: true, maxLength: 20, minLength: 8 }}
+            // rules={{ required: true, maxLength: 20, minLength: 8 }}
             render={({ field }) => (
               <TextField
                 error={!!errors.password}
