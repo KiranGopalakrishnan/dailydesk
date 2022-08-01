@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Box, Button, Grid, Link, Typography } from '@mui/material';
+import { Box, Grid, Link, Typography } from '@mui/material';
 import { ProjectItem } from '@views/home/projects/ProjectItem';
 import { theme } from '@ui-kit/Theme';
 import { colors } from '@ui-kit/Theme/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store';
-import { fetchProjects } from '@store/project/projects-thunk';
 import { Project } from '@store/project';
 import { routes } from '@config/routes';
 import { WithSidebar } from '@shared/Sidebar/WithSidebar';
@@ -23,10 +22,10 @@ const styles = {
   projectsContainer: {
     padding: theme.spacing(2, 0),
   },
-}
+};
 
-const getProjectLink = (id: Project['id']) => {
-  return routes.PROJECT_OVERVIEW.as({ id });
+const getProjectLink = (_id: Project['id']) => {
+  return routes.HOME.url;
 };
 
 export const Projects: FC = () => {
@@ -36,7 +35,7 @@ export const Projects: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-   // dispatch(fetchProjects());
+    // dispatch(fetchProjects());
   }, []);
 
   return (
