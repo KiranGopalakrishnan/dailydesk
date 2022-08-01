@@ -5,7 +5,7 @@ import { SignInData, SignInForm } from '@views/sign-in/SignInForm';
 import { useRouter } from 'next/router';
 import { routes } from '@config/routes';
 import Image from 'next/image';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { firebaseSignIn } from '../../utils/auth/on-auth-sign-in';
 import { DailyDeskLogo } from '@ui-kit/assets/DailyDeskLogo';
 
@@ -77,11 +77,7 @@ const SignIn: React.FC = () => {
           xs={7}
         >
           <Grid container>
-            <Box pt={8}>
-              <Typography variant={'h1'} fontWeight={100}>
-                {'Improving productivity for agile teams'}
-              </Typography>
-            </Box>
+            <Box pt={8} />
           </Grid>
 
           <Grid container sx={styles.loginform}>
