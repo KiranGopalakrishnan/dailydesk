@@ -7,7 +7,7 @@ export class UserController {
 
   @Post()
   getUser(@Body() data) {
-    return this.userService.signup(data);
+    return this.userService.signupWithPassword(data);
   }
 
   @Get()

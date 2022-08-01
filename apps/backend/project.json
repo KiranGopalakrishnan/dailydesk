@@ -15,7 +15,7 @@
           "apps/backend/src/assets",
           {
             "glob": "Procfile",
-            "input": "apps/backend/src/deployment-config",
+            "input": "apps/backend/src/heroku-config",
             "output": "./"
           }
         ]

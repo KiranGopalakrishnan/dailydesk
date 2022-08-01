@@ -17,14 +17,21 @@ export const DailyDeskLogo: React.FC<Props> = ({ fontSize = '16px' }) => {
           <Image src={'/work-systems.png'} height={'32px'} width={'32px'} />
         </Grid>
         {/*<Grid item>*/}
-        {/*  <Typography variant="subtitle2" style={{ color: colors.BLACK, fontSize }}>*/}
+        {/*  <Typography*/}
+        {/*    variant="subtitle2"*/}
+        {/*    style={{ color: colors.BLACK, fontSize }}*/}
+        {/*  >*/}
         {/*    {'daily'}*/}
         {/*  </Typography>*/}
         {/*</Grid>*/}
         <Grid item style={{ marginLeft: theme.spacing(1) }}>
           <Typography
             variant="subtitle2"
-            style={{ color: colors.BLACK, fontSize, fontWeight: theme.typography.fontWeightBold }}
+            style={{
+              color: colors.BLACK,
+              fontSize,
+              fontWeight: theme.typography.fontWeightBold,
+            }}
           >
             {'worksystems'}
           </Typography>

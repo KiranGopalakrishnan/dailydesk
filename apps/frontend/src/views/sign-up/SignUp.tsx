@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { colors } from '@ui-kit/Theme/colors';
 import { theme } from '@ui-kit/Theme';
 import { SignupData, SignUpForm } from '@views/sign-up/SignUpForm';
 import Image from 'next/image';
 import { Grid } from '@mui/material';
-import { User } from '@services/Users';
-import { post } from '@api/Api';
+import { signUp } from '@services/Users';
+import { useRouter } from 'next/router';
+import { routes } from '@config/routes';
 
 const styles = {
   container: {
@@ -32,12 +32,8 @@ const styles = {
   },
 };
 
-const add = async (user: User) => {
-  return post<{ user: User }>('users', user);
-};
-
 const SignUp: React.FC = () => {
-  const dispatch = useDispatch();
+  const router = useRouter();
 
   const onAdd = async ({
     firstname,
@@ -46,7 +42,13 @@ const SignUp: React.FC = () => {
     company,
     password,
   }: SignupData) => {
-    await add({ firstname, lastname, email, company, password });
+    await signUp({
+      firstname,
+      lastname,
+      email,
+      password,
+    });
+    await router.push(routes.HOME.url);
   };
 
   return (
