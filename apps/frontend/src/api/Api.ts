@@ -6,6 +6,8 @@ interface Payload {
 
 const baseRoute = process.env.NEXT_PUBLIC_API_URL;
 
+console.error({ env: process.env });
+
 const withApiRoute = (url: string): string => `${baseRoute}/api/${url}`;
 
 const get = <T>(url: string, params?: Payload): Promise<T> => {
