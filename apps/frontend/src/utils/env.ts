@@ -1,0 +1,5 @@
+export const env = {
+  API_URL: process.env.NEXT_PUBLIC_API_URL,
+  FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+};

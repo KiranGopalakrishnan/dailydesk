@@ -10,11 +10,6 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  env: {
-    API_URL: process.env.NEXT_PUBLIC_API_URL,
-    FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  },
 };
 
 module.exports = withNx(nextConfig);
