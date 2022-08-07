@@ -4,11 +4,11 @@ interface Payload {
   [key: string]: any;
 }
 
-const baseRoute = process.env.NEXT_PUBLIC_API_URL;
+const baseRoute = process.env.API_URL;
 
 const withApiRoute = (url: string): string => `${baseRoute}/api/${url}`;
 
-console.error({ env: process.env.NEXT_PUBLIC_API_URL });
+console.error({ env: process.env.API_URL });
 const get = <T>(url: string, params?: Payload): Promise<T> => {
   return axios
     .get(withApiRoute(url), params)
