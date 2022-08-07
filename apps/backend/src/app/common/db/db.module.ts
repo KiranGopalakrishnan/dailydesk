@@ -14,6 +14,8 @@ import 'pg';
           configService.get('DATABASE_URL')
         );
 
+        const ssl = Boolean(configService.get('SSL'));
+
         return {
           //eslint-disable-next-line
           type: 'postgres' as 'postgres',
@@ -23,7 +25,7 @@ import 'pg';
           password: connectionOptions.password,
           database: connectionOptions.database,
           autoLoadEntities: true,
-          ssl: true,
+          ssl,
         };
       },
     }),
