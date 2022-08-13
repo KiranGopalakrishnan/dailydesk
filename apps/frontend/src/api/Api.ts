@@ -9,7 +9,7 @@ const baseRoute = env.API_URL;
 
 const withApiRoute = (url: string): string => `${baseRoute}/api/${url}`;
 
-console.error({ baseRoute });
+console.error({ baseRoute, with: withApiRoute('blah') });
 const get = <T>(url: string, params?: Payload): Promise<T> => {
   return axios
     .get(withApiRoute(url), params)
