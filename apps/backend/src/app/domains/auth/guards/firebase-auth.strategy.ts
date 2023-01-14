@@ -5,7 +5,7 @@ import { FirebaseAuthProvider } from '../../../common/providers/authentication/F
 
 @Injectable()
 export class FirebaseAuthStrategy extends PassportStrategy(Strategy) {
-
+//sdsdwqdqwd
   constructor(private authProvider: FirebaseAuthProvider) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
