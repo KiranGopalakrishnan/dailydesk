@@ -36,4 +36,4 @@ jobs:
           ECR_REPOSITORY: dailydesk
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          npx nx affected --target=build-and-push --registry=$ECR_REGISTRY --tag=$IMAGE_TAG .
+          npx nx affected --target=build-and-push --registry=$ECR_REGISTRY --tag=$IMAGE_TAG
