@@ -10,6 +10,7 @@ import 'pg';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
+        console.error({asd: configService.get('DATABASE_URL')})
         const connectionOptions = PostgressConnectionStringParser.parse(
           configService.get('DATABASE_URL')
         );

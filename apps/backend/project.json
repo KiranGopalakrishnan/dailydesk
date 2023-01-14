@@ -76,15 +76,14 @@
         "parallel": true
       }
     },
-    "deploy": {
+    "build-and-tag": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          {
-            "command": "cd apps/backend && sh ./src/actions/deploy.sh"
-          }
+          "nx build backend",
+          "docker build -f ./apps/backend/Dockerfile . -t {args.registry}/backend:{args.tag}"
         ],
-        "parallel": true
+        "parallel": false
       }
     }
   },

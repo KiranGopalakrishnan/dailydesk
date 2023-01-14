@@ -1,54 +1,39 @@
-name: 'Daikydesk - Deploy Backend'
+name: Deploy
 
 on:
+
   push:
-    branches:
-      - main
+    branches: [ master ]
 
 jobs:
+
   build:
+
+    name: Build Image
     runs-on: ubuntu-latest
-    environment: Production
-    outputs:
-      build_successful: ${{ steps.check_files.outputs.files_exists }}
+
+
     steps:
-      - name: Checking out code
+
+      - name: Check out code
         uses: actions/checkout@v2
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
-      - run: npx nx affected --target=build --parallel=3
-      - name: 'Check file existence'
-        id: check_files
-        uses: andstor/file-existence-action@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          files: 'dist/apps/backend'
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      - name: Uploading artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build_output
-          path: dist/apps/backend
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-  deploy:
-    runs-on: ubuntu-latest
-    environment: Production
-    needs: [build]
-    if: needs.build.outputs.build_successful == 'true'
-    steps:
-      - name: Downloading and extracting build output
-        uses: actions/download-artifact@v2
-        with:
-          name: build_output
-          path: dist/apps/backend
-
-      - run: git init
-      - name: Deploying to heroku
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: dailydesk
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

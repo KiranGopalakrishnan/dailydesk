@@ -14,11 +14,20 @@
         "outputPath": "dist/apps/frontend"
       },
       "configurations": {
-        "development": {},
+        "development": {
+
+        },
         "production": {}
       }
     },
     "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "frontend:serve-next-project",
+        "parallel": true
+      }
+    },
+    "serve-next-project": {
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
@@ -62,6 +71,26 @@
         "lintFilePatterns": [
           "apps/frontend/**/*.{ts,tsx,js,jsx}"
         ]
+      }
+    },
+    "build-and-push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "echo \"Skipping build and push since we're using vercel\""
+        ],
+        "parallel": false
+      }
+    },
+    "vercel-env-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "cd apps/frontend && npx vercel dev"
+          }
+        ],
+        "parallel": true
       }
     }
   },
