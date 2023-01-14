@@ -35,5 +35,4 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: dailydesk
           IMAGE_TAG: ${{ github.sha }}
-        run: |
-          npx nx affected --target=build-and-push --registry=$ECR_REGISTRY --tag=$IMAGE_TAG
+        run: npx nx affected --target=build-and-push --registry=$ECR_REGISTRY --tag=$IMAGE_TAG
