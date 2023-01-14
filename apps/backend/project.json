@@ -82,7 +82,7 @@
         "commands": [
           "nx build backend",
           "docker build -f ./apps/backend/Dockerfile . -t {args.registry}/backend:{args.tag}",
-          "docker push {args.registry}/backend:{args.tag}\""
+          "docker push {args.registry}/backend:{args.tag}"
         ],
         "parallel": false
       }

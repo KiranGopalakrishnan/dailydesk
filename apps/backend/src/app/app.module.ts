@@ -10,7 +10,6 @@ import { DbModule } from './common/db/db.module';
     DbModule,
     UserModule,
     AuthModule,
-    
   ],
 })
 export class AppModule {}
