@@ -1,55 +1,16 @@
-terraform {
-  required_providers {
-    heroku = {
-      source  = "heroku/heroku"
-      version = "~> 5.0"
-    }
-  }
-
-  cloud {
-    organization = "dailydesk"
-
-    workspaces {
-      name = "Production-CD"
-    }
-  }
+variable "vpc_subnet_module" {
+  type = object({
+    name = string
+    cidr = string
+    azs = list(string)
+    private_subnets = list(string)
+    public_subnets = list(string)
+    enable_nat_gateway = bool
+    enable_vpn_gateway = bool
+  })
 }
 
-variable "prefix" {
-  description = "High-level name of this configuration, used as a resource name prefix"
-  type        = string
-  default     = "heroku"
-}
-
-variable "appname" {
-  description = "Name of the app."
-  type        = string
-  default     = "dailydesk"
-}
-
-resource "heroku_app" "app" {
-  name   = var.appname
-  region = "us"
-}
-
-# Create a database, and configure the app to use it
-resource "heroku_addon" "database" {
-  plan   = "heroku-postgresql:hobby-dev"
-  app_id = heroku_app.app.id
-  config = {
-    sslmode = false
-  }
-}
-
-variable "app_quantity" {
-  default     = 1
-  description = "Number of dynos in your Heroku formation"
-}
-
-resource "heroku_formation" "machine_config" {
-  app_id   = heroku_app.app.id
-  type     = "web"
-  quantity = var.app_quantity
-  size     = "Hobby"
+output "VMCount" {
+  value = var.vpc_subnet_module
 }
 

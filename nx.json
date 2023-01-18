@@ -2,7 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "dailydesk",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "origin/main"
   },
   "implicitDependencies": {
     "package.json": {
